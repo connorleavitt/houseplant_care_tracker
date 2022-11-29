@@ -9,11 +9,16 @@ export default function PlantProfiles() {
       <main className="pp-main">
         <h1 className="pp--title">Plant Profiles</h1>
         <Searchbar />
-        <button>All</button>
-        <button>Indoor</button>
-        <button>Outdoor</button>
-        <button>Other</button>
-        <AddNew name={"Plant"} />
+        <div className="pp--filters-new">
+          <div className="pp--filtering">
+            <button className="pp--filter-item">All</button>
+            <button className="pp--filter-item">Indoor</button>
+            <button className="pp--filter-item">Outdoor</button>
+            <button className="pp--filter-item">Other</button>
+          </div>
+          <AddNew name={"Plant"} />
+        </div>
+
         <PlantProfileCard />
       </main>
     </div>

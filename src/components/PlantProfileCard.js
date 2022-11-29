@@ -7,7 +7,10 @@ export default function PlantProfileCard() {
       <h2 className="pp-card--title">Plant Profile - TITLE</h2>
       <div className="pp-card--left-side">
         <div className="pp-card--img">IMG HERE</div>
-        <h4 className="pp-card--headers">COMMON ISSUES</h4>
+        <div className="pp-card--common-issues">
+          <h4 className="pp-card--headers">COMMON ISSUES</h4>
+          <textarea className="textarea----test"></textarea>
+        </div>
       </div>
       <div className="pp-card--right-side">
         <div className="pp-card--general-info">
@@ -67,6 +70,7 @@ export default function PlantProfileCard() {
       </div>
       <div className="pp-card--notes">
         <h4 className="pp-card--headers">NOTES</h4>
+        <textarea className="textarea----test"></textarea>
       </div>
     </div>
   );

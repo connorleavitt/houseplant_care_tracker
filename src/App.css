@@ -57,6 +57,17 @@ body {
   line-height: 1.6;
 }
 
+button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
 /* img {
     display: block;
     max-width: 100%;
@@ -169,10 +180,118 @@ h4 {
   margin: 0;
 }
 
+.pp--filters-new {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.pp--filtering {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.pp--filter-item {
+  border: 2px solid red;
+  border-radius: 7px;
+  background-color: transparent;
+  width: 100px;
+}
+
 /* PLANT PROFILES CARD */
+
+.pp-card--container {
+  border: 2px solid red;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pp-card--title {
+  color: darkgreen;
+  /* margin-bottom: 1rem; */
+}
+
+.pp-card--headers {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.pp-card--right-side {
+  order: 1;
+}
+
+.pp-card--left-side {
+  order: 2;
+}
+
+.pp-card--img {
+  height: 100px;
+  border: 2px solid gray;
+  margin: 1rem 0;
+}
+
+.pp-card--common-issues {
+  border: 2px solid gray;
+  margin: 1rem 0;
+}
+
+.pp-card--common-issues .pp-card--headers {
+  background-color: lightgray;
+  border-bottom: 2px solid gray;
+  margin: 0;
+  padding: 0.1rem 0;
+  padding-top: 0.3rem;
+}
+
+.pp-card--notes {
+  order: 3;
+  background-color: lightgray;
+  /* height: 100px; */
+  border: 2px solid lightblue;
+}
+
+.pp-card--notes .pp-card--headers {
+  margin: 0.2rem 0;
+  padding-top: 0.3rem;
+}
 
 .pp-card--form-individual {
   display: flex;
+}
+
+.textarea----test {
+  background-color: inherit;
+  margin: 1rem;
+  border: 1px solid red;
+  resize: none;
+  width: calc(100% - 2rem);
+  height: 100px;
+}
+
+@media (min-width: 800px) {
+  .pp-card--container {
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "left right"
+      "left right"
+      "notes notes";
+  }
+
+  /* .pp-card--right-side {
+    order: 0;
+  }
+
+  .pp-card--left-side {
+    order: 0;
+  }
+
+  .pp-card--notes {
+    order: 0;
+  } */
 }
 
 /* SEARCHBAR */
@@ -250,4 +369,26 @@ input[type="search"]::-webkit-search-results-decoration {
   #search {
     min-width: 400px;
   }
+}
+
+/* ADD NEW BTN */
+
+.add-new--container {
+  display: flex;
+  align-items: center;
+  min-width: fit-content;
+}
+
+.add-new--btn {
+  box-shadow: var(--bs);
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  padding: 0.4rem;
+  background-color: #2ba6f3;
+  color: var(--clr-light);
+}
+
+.add-new--btn:hover {
+  background-color: #1c91da;
 }
