@@ -56,7 +56,7 @@ export default function Searchbar({ findSearchInput }) {
             ref={query}
             type="search"
             id="search"
-            placeholder="Enter Item"
+            placeholder="Search..."
           />
         </label>
       </form>
