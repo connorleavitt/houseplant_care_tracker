@@ -1,3 +1,182 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Custom Properties & Variables */
+
+:root {
+  --ff-primary: "Inter", sans-serif;
+  --ff-secondary: "Ubuntu Mono", monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #f5f5f5;
+  --clr-light-rgb: 255, 255, 255;
+  --clr-main: #365943;
+  --clr-main-rgb: 54, 89, 67;
+  --clr-dark: #303030;
+  --clr-accent: #c1aec0;
+  --clr-accent-rgb: 102, 204, 102;
+  --clr-accent-2: #eea144;
+  --clr-accent-2-rgb: 195, 177, 225;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-h4: 1.1rem;
+  --fs-body: 1rem;
+
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.25rem;
+  }
+}
+
+/* General Styles */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  margin: 0;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+/* img {
+    display: block;
+    max-width: 100%;
+} */
+
+:focus {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+/* BUTTONS */
+
+.btn {
+  display: inline-block;
+  padding: 0.5em 2.5em;
+  background: var(--clr-accent-2);
+  color: var(--clr-dark);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  transition: transform 200ms ease-in-out;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Typography */
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+h4 {
+  font-size: var(--fs-h4);
+}
+
+/* NAVBAR */
+
+.nav {
+  /* border: 3px solid red; */
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  padding: 0;
+  /* height: 50px; */
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  line-height: 1;
+}
+
+.nav-list a {
+  text-decoration: none;
+}
+
+.nav-list li:hover {
+  font-weight: var(--fw-bold);
+}
+
+.nav-list a:visited {
+  color: inherit;
+}
+
+/* HOME */
+
+.pp-list--container {
+  display: flex;
+  border: 1px solid black;
+}
+
+/* PLANT PROFILES */
+
+.pp {
+  background-color: gray;
+  margin: 0;
+  padding: 1rem;
+}
+
+.pp-main {
+  margin: 0 auto;
+  width: 80%;
+  background-color: white;
+}
+
+.pp--title {
+  text-align: center;
+  margin: 0;
+}
+
+/* PLANT PROFILES CARD */
+
+.pp-card--form-individual {
+  display: flex;
+}
+
+/* SEARCHBAR */
+
 /* clears the ‘X’ from Chrome */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -6,7 +185,69 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-.pp-list--container {
+.searchbar-wrapper {
   display: flex;
-  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 2px;
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: rgb(212, 212, 212);
+  position: relative;
+}
+
+.searchbar-wrapper[data-active-focus="active"] {
+  box-shadow: 0 0 5px #2ba6f3;
+}
+
+.searchbar-btn,
+.searchbar-delete-btn {
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.searchbar-btn {
+  padding: 0 0.5rem;
+}
+
+.searchbar-btn:hover {
+  font-weight: bold;
+}
+
+.searchbar-delete-btn {
+  position: absolute;
+  right: 0.5rem;
+}
+
+.form-searchbar {
+  height: 37px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.form-searchbar-label {
+  display: flex;
+}
+
+#search {
+  border: 0;
+  outline: none;
+  height: 90%;
+  /* width: 85%; */
+  align-self: center;
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+
+@media (min-width: 600px) {
+  #search {
+    min-width: 400px;
+  }
 }
