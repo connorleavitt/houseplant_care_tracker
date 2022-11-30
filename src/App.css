@@ -11,6 +11,7 @@
   --ff-secondary: "Ubuntu Mono", monospace;
 
   --fw-reg: 300;
+  --fw-mid: 600;
   --fw-bold: 900;
 
   --clr-light: #f5f5f5;
@@ -217,10 +218,15 @@ h4 {
 .pp-card--headers {
   text-align: center;
   margin: 1rem 0;
+  margin-top: 2rem;
 }
 
 .pp-card--right-side {
   order: 1;
+}
+
+.pp-card--form-label {
+  font-weight: var(--fw-mid);
 }
 
 .pp-card--left-side {
@@ -228,9 +234,11 @@ h4 {
 }
 
 .pp-card--img {
-  height: 100px;
+  height: 200px;
   border: 2px solid gray;
   margin: 1rem 0;
+  background-color: #1c91da;
+  text-align: center;
 }
 
 .pp-card--common-issues {
@@ -249,17 +257,11 @@ h4 {
 .pp-card--notes {
   order: 3;
   background-color: lightgray;
-  /* height: 100px; */
-  border: 2px solid lightblue;
 }
 
 .pp-card--notes .pp-card--headers {
   margin: 0.2rem 0;
   padding-top: 0.3rem;
-}
-
-.pp-card--form-individual {
-  display: flex;
 }
 
 .textarea----test {
@@ -269,6 +271,75 @@ h4 {
   resize: none;
   width: calc(100% - 2rem);
   height: 100px;
+}
+
+.pp-card--form-individual {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin: 0.25rem 0;
+}
+
+.pp-card--form-label {
+  padding-top: 0.2rem;
+  margin-right: 0.25rem;
+}
+
+.pp-card--general-info .pp-card--form-label {
+  min-width: 120px;
+}
+
+.pp-card--plant-care-needs .pp-card--form-label,
+.pp-card--fertilization .pp-card--form-label {
+  min-width: 90px;
+}
+
+.pp-card--form-input {
+  width: 100%;
+  /* font-size: 1rem; */
+  padding-left: 0.25rem;
+  border: 0;
+  border-bottom: 1px solid rgba(85, 85, 85, 0.5);
+}
+
+.pp-card--locations-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pp-card--location-item {
+  padding: 0.25rem 0.5rem;
+}
+
+.pp-card--location-item:first-child {
+  background-color: #da711c;
+  border-radius: 5px;
+}
+
+.pp-card--icon-water {
+  padding: 0.5rem;
+  width: 16px;
+}
+
+.pp-card--icon-water:nth-child(-n + 3) {
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.pp-card--icon-sunlight {
+  padding: 0.5rem;
+}
+
+.pp-card--icon-sunlight:nth-child(-n + 4) {
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.pp-card--water-container,
+.pp-card--sunlight-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (min-width: 800px) {

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import Input from "./Input";
 
 export default function PlantProfileCard() {
   return (
@@ -18,54 +19,198 @@ export default function PlantProfileCard() {
 
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">PLANT NAME:</div>
-            <div className="pp-card--form-input">USER INPUT</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />{" "}
           </div>
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">SCIENTIFIC NAME:</div>
-            <div className="pp-card--form-input">Example aka Example 1</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />{" "}
           </div>
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">DATE ACQUIRED:</div>
-            <div className="pp-card--form-input">Example 2</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
           </div>
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">PLANT TYPE:</div>
-            <div className="pp-card--form-input">Example 2</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
           </div>
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">I GOT IT FROM:</div>
-            <div className="pp-card--form-input">Example 2</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
           </div>
           <div className="pp-card--form-individual">
             <div className="pp-card--form-label">TOXICITIY:</div>
-            <div className="pp-card--form-input">Example 2</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
           </div>
         </div>
         <div className="pp-card--plant-care-needs">
           <h4 className="pp-card--headers">PLANT CARE NEEDS</h4>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">WATER:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">LIGHT:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">SOIL TYPE:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">HUMIDITY:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">IDEAL TEMP:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
         </div>
         <div className="pp-card--fertilization">
           <h4 className="pp-card--headers">FERTILIZATION</h4>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">METHOD:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
+          <div className="pp-card--form-individual">
+            <div className="pp-card--form-label">FREQUENCY:</div>
+            <Input
+              // onChange={(e) => onChange(e)}
+              type="text"
+              name="position"
+              placeholder="input"
+              // value="INPUT"
+            />
+          </div>
         </div>
         <div className="pp-card--location">
           <h4 className="pp-card--headers">CURRENT LOCATION</h4>
-          <div className="pp-card--location-item">INDOOR</div>
-          <div className="pp-card--location-item">OUTDOOR</div>
-          <div className="pp-card--location-item">OTHER</div>
+          <div className="pp-card--locations-container">
+            <div className="pp-card--location-item">Indoors</div>
+            <div className="pp-card--location-item">Outdoors</div>
+            <div className="pp-card--location-item">Other</div>
+          </div>
         </div>
         <div className="pp-card--water">
-          <FontAwesomeIcon icon="fa-solid fa-droplet" />
-          <FontAwesomeIcon icon="fa-solid fa-droplet" />
-          <FontAwesomeIcon icon="fa-solid fa-droplet" />
-          <FontAwesomeIcon icon="fa-solid fa-droplet" />
-          <FontAwesomeIcon icon="fa-solid fa-droplet" />
+          <h4 className="pp-card--headers">WATER</h4>
+          <div className="pp-card--water-container">
+            <FontAwesomeIcon
+              icon="fa-solid fa-droplet"
+              className="pp-card--icon-water"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-droplet"
+              className="pp-card--icon-water"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-droplet"
+              className="pp-card--icon-water"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-droplet"
+              className="pp-card--icon-water"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-droplet"
+              className="pp-card--icon-water"
+            />
+          </div>
         </div>
         <div className="pp-card--sunlight">
-          <FontAwesomeIcon icon="fa-solid fa-sun" />
-          <FontAwesomeIcon icon="fa-solid fa-sun" />
-          <FontAwesomeIcon icon="fa-solid fa-sun" />
-          <FontAwesomeIcon icon="fa-solid fa-sun" />
-          <FontAwesomeIcon icon="fa-solid fa-sun" />
+          <h4 className="pp-card--headers">SUNLIGHT</h4>
+          <div className="pp-card--sunlight-container">
+            <FontAwesomeIcon
+              icon="fa-solid fa-sun"
+              className="pp-card--icon-sunlight"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-sun"
+              className="pp-card--icon-sunlight"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-sun"
+              className="pp-card--icon-sunlight"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-sun"
+              className="pp-card--icon-sunlight"
+            />
+            <FontAwesomeIcon
+              icon="fa-solid fa-sun"
+              className="pp-card--icon-sunlight"
+            />
+          </div>
         </div>
       </div>
       <div className="pp-card--notes">
