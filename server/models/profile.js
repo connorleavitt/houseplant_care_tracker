@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const PlantProfileSchema = new Schema({
+const ProfileSchema = new Schema({
   plant_name: { type: String, required: true, maxLength: 100 },
   scientific_name: { type: String, maxLength: 100 },
   date_acquired: { type: Date, required: true },
@@ -25,6 +25,6 @@ const PlantProfileSchema = new Schema({
   date_last_edited: { type: Date },
 });
 
-const PlantProfile = mongoose.model("PlantProfile", PlantProfileSchema);
+const Profile = mongoose.model("Profile", ProfileSchema);
 
-export default PlantProfile;
+export default Profile;
