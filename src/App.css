@@ -345,24 +345,35 @@ h4 {
 @media (min-width: 800px) {
   .pp-card--container {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "title title"
-      "left right"
-      "left right"
+      "left-side right-side"
+      "left-side right-side"
       "notes notes";
+    gap: 1rem;
   }
 
-  /* .pp-card--right-side {
-    order: 0;
+  .pp-card--title {
+    grid-area: title;
+  }
+
+  .pp-card--right-side {
+    grid-area: right-side;
   }
 
   .pp-card--left-side {
-    order: 0;
+    grid-area: left-side;
   }
 
   .pp-card--notes {
-    order: 0;
-  } */
+    grid-area: notes;
+  }
+
+  .pp-card--icon-water {
+    /* padding: 0.5rem; */
+    width: 20px;
+  }
 }
 
 /* SEARCHBAR */
