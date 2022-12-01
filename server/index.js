@@ -12,8 +12,11 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import plantProfileRoutes from "./routes/plant-profiles.js";
 import { register } from "./controllers/auth.js";
-import { verifyToken } from "./middleware/auth.js";
 import { createPlantProfile } from "./controllers/plant-profiles-controller.js";
+import { verifyToken } from "./middleware/auth.js";
+import User from "./models/User.js";
+import PlantProfile from "./models/PlantProfile.js";
+import { users, plantProfiles } from "./data/index.js";
 
 // CONFIGURATIONS
 

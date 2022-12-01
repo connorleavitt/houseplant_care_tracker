@@ -10,7 +10,7 @@ const PlantProfileSchema = new Schema(
     plantName: { type: String, required: true, maxLength: 100 },
     scientificName: { type: String, maxLength: 100 },
     dateAcquired: { type: Date, required: true },
-    plantType: { type: String, maxLength: 50 },
+    plantFamily: { type: String, maxLength: 50 },
     iGotItFrom: { type: String, required: true, maxLength: 100 },
     toxicity: { type: String, maxLength: 50 },
     water: { type: String, maxLength: 50 },
