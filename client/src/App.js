@@ -5,6 +5,12 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "theme";
+
 import HomePage from "scenes/homePage/homePage";
 import LoginPage from "scenes/loginPage/loginPage";
 import UserProfilePage from "scenes/userProfilePage/userProfilePage";
