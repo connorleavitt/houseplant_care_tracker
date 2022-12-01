@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileListItem from "../components/ProfileListItem";
+import PlantProfileListItem from "../components/PlantProfileListItem";
 import Searchbar from "../components/Searchbar";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
       <main className="main">
         <Searchbar />
         <h2 className="pp-list--title">Plant Profile List</h2>
-        <ProfileListItem />
+        <PlantProfileListItem />
       </main>
     </div>
   );

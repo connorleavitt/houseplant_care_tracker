@@ -6,10 +6,10 @@ export default function CustomLink({ toggle, to, children, ...props }) {
 
   return (
     <li
-      className={isActive ? "active" : ""}
+      className={isActive ? "active searchbar" : "searchbar"}
       onClick={(e) => {
         e.stopPropagation();
-        toggle();
+        // toggle();
       }}
     >
       <Link to={to} {...props}>

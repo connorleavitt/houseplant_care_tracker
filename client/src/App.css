@@ -143,16 +143,26 @@ h4 {
   line-height: 1;
 }
 
-.nav-list a {
+.nav-list .searchbar:hover {
+  font-weight: var(--fw-bold);
   text-decoration: none;
 }
 
-.nav-list li:hover {
-  font-weight: var(--fw-bold);
+.nav-list .searchbar {
+  text-decoration: line-through;
+}
+
+.nav-list .searchbar.active {
+  border-bottom: 3px solid rgb(0, 174, 255);
+  text-decoration: none;
 }
 
 .nav-list a:visited {
   color: inherit;
+}
+
+.nav-list a {
+  text-decoration: none;
 }
 
 /* HOME */
