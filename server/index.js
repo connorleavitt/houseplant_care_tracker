@@ -72,7 +72,12 @@ mongoose
     useUnifiedTopology: true,
     // useFindAndModify: false, need to understand this a bit more - deprecated?
   })
-  .then(() => app.listen(PORT, () => console.log(`Server running on ${PORT}`)))
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+    // ADD DATA ONLY ONE TIME! - DONE ALREADY!!
+    // User.insertMany(users);
+    // PlantProfile.insertMany(plantProfiles);
+  })
   .catch((error) => console.log(error.message));
 
 // module.exports = app;
