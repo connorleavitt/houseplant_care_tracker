@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 const PlantProfileSchema = new Schema(
   {
+    userId: { type: String, required: true },
+    userFirstName: { type: String, required: true },
+    userPicturePath: { type: String, required: true },
     plantName: { type: String, required: true, maxLength: 100 },
     scientificName: { type: String, maxLength: 100 },
     dateAcquired: { type: Date, required: true },
@@ -21,10 +24,14 @@ const PlantProfileSchema = new Schema(
     sunlightLevel: { type: Number, default: 1, min: 1, max: 5 },
     commonIssues: { type: String, maxLength: 300 },
     notes: { type: String, maxLength: 500 },
-    image: { type: String },
+    picturePath: { type: String },
   },
   { timestamps: true }
 );
+
+// PlantProfileSchema.virtual("url").get(function () {
+//   return `/plant-profiles/${this.userId}/${this._id}`;
+// });
 
 const PlantProfile = mongoose.model("PlantProfile", PlantProfileSchema);
 

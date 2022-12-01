@@ -1,13 +1,19 @@
 import express from "express";
-
+import { verifyToken } from "../middleware/auth.js";
 import {
-  getPlantProfiles,
-  createPlantProfile,
+  getUserPlantProfiles,
+  getSpecificUserPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
 
 const router = express.Router();
 
-router.get("/", getPlantProfiles);
-router.post("/", createPlantProfile);
+// READ
+
+// router.get("/:userId/plant-profiles", verifyToken, getUserPlantProfiles);
+router.get("/:userId/all", verifyToken, getUserPlantProfiles);
+router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
+
+// UPDATE
+// router.patch('/:')
 
 export default router;

@@ -9,9 +9,11 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
-import profileRoutes from "./routes/plant-profiles.js";
 import userRoutes from "./routes/users.js";
+import plantProfileRoutes from "./routes/plant-profiles.js";
 import { register } from "./controllers/auth.js";
+import { verifyToken } from "./middleware/auth.js";
+import { createPlantProfile } from "./controllers/plant-profiles-controller.js";
 
 // CONFIGURATIONS
 
@@ -20,8 +22,6 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
-
-app.use("/plant-profiles", profileRoutes);
 
 app.use(express.json());
 app.use(helmet());
@@ -46,10 +46,17 @@ const upload = multer({ storage });
 
 // ROUTES WITH FILES
 app.post("/auth/register", upload.single("picture"), register);
+app.post(
+  "/plant-profiles",
+  verifyToken,
+  upload.single("picture"),
+  createPlantProfile
+);
 
 // ROUTES
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/plant-profiles", plantProfileRoutes);
 
 // MONGOOSE SETUP
 
