@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import thunk from "redux-thunk";
 // import reducers from "./reducers";
 import App from "./App";
+import "./index.css";
 
 // minute 57
 

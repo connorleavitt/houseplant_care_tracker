@@ -6,7 +6,7 @@ import PlantProfiles from "./pages/PlantProfiles";
 
 function App() {
   return (
-    <div className="page-container">
+    <div className="app">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>

@@ -1,9 +1,9 @@
 import React from "react";
-import AddNew from "../components/AddNew";
-import PlantProfileCard from "../components/PlantProfileCard";
-import Searchbar from "../components/Searchbar";
+import AddNew from "../../components/AddNew";
+import PlantProfileCard from "../../components/PlantProfileCard";
+import Searchbar from "../../components/Searchbar";
 
-export default function PlantProfiles() {
+export default function PlantProfilesPage() {
   return (
     <div className="pp">
       <main className="pp-main">

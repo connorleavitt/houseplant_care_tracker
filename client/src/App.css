@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -7,7 +9,7 @@
 /* Custom Properties & Variables */
 
 :root {
-  --ff-primary: "Inter", sans-serif;
+  --ff-primary: "Rubik", sans-serif;
   --ff-secondary: "Ubuntu Mono", monospace;
 
   --fw-reg: 300;

@@ -1,8 +1,8 @@
 import React from "react";
-import PlantProfileListItem from "../components/PlantProfileListItem";
-import Searchbar from "../components/Searchbar";
+import PlantProfileListItem from "../../components/PlantProfileListItem";
+import Searchbar from "../../components/Searchbar";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div>
       <main className="main">

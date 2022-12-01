@@ -1,7 +1,7 @@
 import React from "react";
-import CustomLink from "./CustomLink";
+import CustomLink from "../../components/CustomLink";
 
-export default function Navbar({ toggle }) {
+export default function NavbarPage({ toggle }) {
   return (
     <nav className="nav">
       <ul className="nav-list">
