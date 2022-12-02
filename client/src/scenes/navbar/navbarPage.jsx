@@ -92,10 +92,10 @@ export default function NavbarPage({ toggle }) {
               />
             )}
             {theme.palette.mode === "dark" ? (
-              <p className="text-underneath-icon-on-hover">Plant Profiles</p>
+              <p className="text-underneath-icon-on-hover">PLANT PROFILES</p>
             ) : (
               <p className="text-underneath-icon-on-hover dark">
-                Plant Profiles
+                PLANT PROFILES
               </p>
             )}
           </IconButton>
@@ -112,9 +112,9 @@ export default function NavbarPage({ toggle }) {
               />
             )}
             {theme.palette.mode === "dark" ? (
-              <p className="text-underneath-icon-on-hover">Watering</p>
+              <p className="text-underneath-icon-on-hover">WATERING</p>
             ) : (
-              <p className="text-underneath-icon-on-hover dark">Watering</p>
+              <p className="text-underneath-icon-on-hover dark">WATERING</p>
             )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
@@ -130,9 +130,9 @@ export default function NavbarPage({ toggle }) {
               />
             )}
             {theme.palette.mode === "dark" ? (
-              <p className="text-underneath-icon-on-hover">Propagation</p>
+              <p className="text-underneath-icon-on-hover">PROPAGATION</p>
             ) : (
-              <p className="text-underneath-icon-on-hover dark">Propagation</p>
+              <p className="text-underneath-icon-on-hover dark">PROPAGATION</p>
             )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
@@ -148,10 +148,10 @@ export default function NavbarPage({ toggle }) {
               />
             )}
             {theme.palette.mode === "dark" ? (
-              <p className="text-underneath-icon-on-hover">Fertilization</p>
+              <p className="text-underneath-icon-on-hover">FERTILIZATION</p>
             ) : (
               <p className="text-underneath-icon-on-hover dark">
-                Fertilization
+                FERTILIZATION
               </p>
             )}
           </IconButton>
