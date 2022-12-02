@@ -33,7 +33,7 @@ export default function NavbarPage({ toggle }) {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  // const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt} className="navbar">
@@ -155,11 +155,11 @@ export default function NavbarPage({ toggle }) {
               </p>
             )}
           </IconButton>
-          {/* <FormControl variant="standard" value={fullName}> */}
-          <FormControl variant="standard" value="REPLACE NAME">
+          <FormControl variant="standard" value={fullName}>
+            {/* <FormControl variant="standard" value="REPLACE NAME"> */}
             <Select
-              // value={fullName}
-              value="REPLACE NAME"
+              value={fullName}
+              // value="REPLACE NAME"
               sx={{
                 backgroundColor: neutralLight,
                 width: "150px",
@@ -175,10 +175,10 @@ export default function NavbarPage({ toggle }) {
               }}
               input={<InputBase />}
             >
-              <MenuItem value="REPLACE NAME">
+              <MenuItem value={fullName}>
                 <Typography>
-                  {/* {fullName} */}
-                  REPLACE NAME
+                  {fullName}
+                  {/* REPLACE NAME */}
                 </Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
@@ -243,11 +243,11 @@ export default function NavbarPage({ toggle }) {
               <p className="nav-mobile-icon-text">Fertilization</p>
             </IconButton>
 
-            {/* <FormControl variant="standard" value={fullName}> */}
-            <FormControl variant="standard" value="REPLACE NAME">
+            <FormControl variant="standard" value={fullName}>
+              {/* <FormControl variant="standard" value="REPLACE NAME"> */}
               <Select
-                // value={fullName}
-                value="REPLACE NAME"
+                value={fullName}
+                // value="REPLACE NAME"
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -263,10 +263,10 @@ export default function NavbarPage({ toggle }) {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value="REPLACE NAME">
+                <MenuItem value={fullName}>
                   <Typography>
-                    {/* {fullName} */}
-                    REPLACE NAME
+                    {fullName}
+                    {/* REPLACE NAME */}
                   </Typography>
                 </MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>

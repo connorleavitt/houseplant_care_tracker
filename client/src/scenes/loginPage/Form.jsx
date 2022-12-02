@@ -75,8 +75,16 @@ export default function Form() {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
+    console.log(loggedIn.msg);
     onSubmitProps.resetForm();
-    if (loggedIn) {
+    if (
+      loggedIn.msg === "User does not exist" ||
+      loggedIn.msg === "Invalid credentials"
+    ) {
+      // NEED TO ADD A MESSAGE OF FAILURE OR SOMETHING
+      navigate("/");
+    } else {
+      // if (loggedIn) {
       dispatch(
         setLogin({
           user: loggedIn.user,
@@ -115,8 +123,8 @@ export default function Form() {
                   label="First Name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  values={values.firstName}
-                  name="firstname"
+                  value={values.firstName}
+                  name="firstName"
                   error={
                     Boolean(touched.firstName) && Boolean(errors.firstName)
                   }
