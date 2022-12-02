@@ -1,6 +1,7 @@
 import express from "express";
 import { verifyToken } from "../middleware/auth.js";
 import {
+  getAllPlantProfiles,
   getUserPlantProfiles,
   getSpecificUserPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
@@ -8,7 +9,7 @@ import {
 const router = express.Router();
 
 // READ
-
+router.get("/all", verifyToken, getAllPlantProfiles);
 // router.get("/:userId/plant-profiles", verifyToken, getUserPlantProfiles);
 router.get("/:userId/all", verifyToken, getUserPlantProfiles);
 router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);

@@ -1,7 +1,17 @@
 import PlantProfile from "../models/PlantProfile.js";
 import User from "../models/User.js";
 
-// GET (READ) of all pps
+// GET (READ) of all user's pps
+export const getAllPlantProfiles = async (req, res) => {
+  try {
+    const plantProfile = await PlantProfile.find();
+    res.status(200).json(plantProfile);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// GET (READ) of all user's pps
 export const getUserPlantProfiles = async (req, res) => {
   try {
     const { userId } = req.params;
