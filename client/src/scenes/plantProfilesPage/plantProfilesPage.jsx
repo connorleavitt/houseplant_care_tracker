@@ -1,4 +1,5 @@
 import React from "react";
+import NavbarPage from "scenes/navbar/navbarPage";
 import AddNew from "../../components/AddNew";
 import PlantProfileCard from "../../components/PlantProfileCard";
 import Searchbar from "../../components/Searchbar";
@@ -6,6 +7,7 @@ import Searchbar from "../../components/Searchbar";
 export default function PlantProfilesPage() {
   return (
     <div className="pp">
+      <NavbarPage />
       <main className="pp-main">
         <h1 className="pp--title">Plant Profiles</h1>
         <Searchbar />
