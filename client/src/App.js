@@ -20,6 +20,7 @@ import PlantProfilesPage from "scenes/plantProfilesPage/plantProfilesPage";
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
     <div className="app">
@@ -28,11 +29,17 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<LoginPage />}></Route>
-            <Route path="/home" element={<HomePage />}></Route>
-            <Route path="/user/:userId" element={<UserProfilePage />}></Route>
+            <Route
+              path="/home"
+              element={isAuth ? <HomePage /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/user/:userId"
+              element={isAuth ? <UserProfilePage /> : <Navigate to="/" />}
+            ></Route>
             <Route
               path="/plant-profiles"
-              element={<PlantProfilesPage />}
+              element={isAuth ? <PlantProfilesPage /> : <Navigate to="/" />}
             ></Route>
           </Routes>
         </ThemeProvider>

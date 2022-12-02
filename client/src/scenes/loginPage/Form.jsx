@@ -77,14 +77,15 @@ export default function Form() {
     const loggedIn = await loggedInResponse.json();
     console.log(loggedIn.msg);
     onSubmitProps.resetForm();
-    if (
-      loggedIn.msg === "User does not exist" ||
-      loggedIn.msg === "Invalid credentials"
-    ) {
-      // NEED TO ADD A MESSAGE OF FAILURE OR SOMETHING
-      navigate("/");
-    } else {
-      // if (loggedIn) {
+    // if (
+    //   loggedIn.msg === "User does not exist" ||
+    //   loggedIn.msg === "Invalid credentials"
+    // ) {
+    // NEED TO ADD A MESSAGE OF FAILURE OR SOMETHING
+    //   navigate("/");
+    // }
+    // else {
+    if (loggedIn) {
       dispatch(
         setLogin({
           user: loggedIn.user,
