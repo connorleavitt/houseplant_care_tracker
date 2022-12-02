@@ -36,11 +36,11 @@ export default function NavbarPage({ toggle }) {
   // const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
-    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+    <FlexBetween padding="1rem 6%" backgroundColor={alt} className="navbar">
       <FlexBetween gap="1.75rem">
         <Typography
           fontWeight="bold"
-          fontSize="clamp(1rem, 1rem, 2,25rem)"
+          fontSize="clamp(1rem, 2rem, 2.25rem)"
           color="primary"
           onClick={() => navigate("/home")}
           sx={{
@@ -80,33 +80,80 @@ export default function NavbarPage({ toggle }) {
             )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
-            <FontAwesomeIcon icon="fa-solid fa-leaf" className="navbar-icon" />
-            <p className="plant-profile-icon">Plant Profiles</p>
+            {theme.palette.mode === "dark" ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-leaf"
+                className="navbar-icon"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon="fa-solid fa-leaf"
+                className="navbar-icon dark"
+              />
+            )}
+            {theme.palette.mode === "dark" ? (
+              <p className="text-underneath-icon-on-hover">Plant Profiles</p>
+            ) : (
+              <p className="text-underneath-icon-on-hover dark">
+                Plant Profiles
+              </p>
+            )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
             {theme.palette.mode === "dark" ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-fill-drip"
-                className="navbar-icon dark"
+                className="navbar-icon"
               />
             ) : (
               <FontAwesomeIcon
                 icon="fa-solid fa-fill-drip"
-                className="navbar-icon light"
+                className="navbar-icon dark"
               />
+            )}
+            {theme.palette.mode === "dark" ? (
+              <p className="text-underneath-icon-on-hover">Watering</p>
+            ) : (
+              <p className="text-underneath-icon-on-hover dark">Watering</p>
             )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
-            <FontAwesomeIcon
-              icon="fa-solid fa-seedling"
-              className="navbar-icon"
-            />
+            {theme.palette.mode === "dark" ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-seedling"
+                className="navbar-icon"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon="fa-solid fa-seedling"
+                className="navbar-icon dark"
+              />
+            )}
+            {theme.palette.mode === "dark" ? (
+              <p className="text-underneath-icon-on-hover">Propagation</p>
+            ) : (
+              <p className="text-underneath-icon-on-hover dark">Propagation</p>
+            )}
           </IconButton>
           <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
-            <FontAwesomeIcon
-              icon="fa-solid fa-plant-wilt"
-              className="navbar-icon"
-            />
+            {theme.palette.mode === "dark" ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-plant-wilt"
+                className="navbar-icon"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon="fa-solid fa-plant-wilt"
+                className="navbar-icon dark"
+              />
+            )}
+            {theme.palette.mode === "dark" ? (
+              <p className="text-underneath-icon-on-hover">Fertilization</p>
+            ) : (
+              <p className="text-underneath-icon-on-hover dark">
+                Fertilization
+              </p>
+            )}
           </IconButton>
           {/* <FormControl variant="standard" value={fullName}> */}
           <FormControl variant="standard" value="REPLACE NAME">
@@ -241,17 +288,6 @@ export default function NavbarPage({ toggle }) {
           </div>
         </Box>
       )}
-      {/* 
-      <nav className="nav">
-        <ul className="nav-list">
-          <CustomLink toggle={toggle} to="/home">
-            Home
-          </CustomLink>
-          <CustomLink toggle={toggle} to="/plant-profiles">
-            Plant Profiles
-          </CustomLink>
-        </ul>
-      </nav> */}
     </FlexBetween>
   );
 }

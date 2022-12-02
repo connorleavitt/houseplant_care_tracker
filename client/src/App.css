@@ -171,21 +171,30 @@ h4 {
   font-size: 25px;
 }
 
-.navbar-icon .dark {
+.navbar-icon.dark {
   color: black;
 }
 
-.plant-profile-icon {
+.text-underneath-icon-on-hover {
   display: none;
   position: absolute;
-  top: 45px;
+  top: 30px;
+  color: white;
 }
 
-.navbar-icon:hover + .plant-profile-icon {
+.navbar-icon:hover + .text-underneath-icon-on-hover.dark {
   display: flex;
   width: 100px;
   justify-content: center;
-  color: red;
+  color: black;
+  font-size: 1rem;
+}
+
+.navbar-icon:hover + .text-underneath-icon-on-hover {
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  color: white;
   font-size: 1rem;
 }
 
@@ -201,6 +210,10 @@ h4 {
   padding-left: 1rem;
   margin: 0;
   font-size: 1rem;
+}
+
+.navbar {
+  height: 100px;
 }
 
 /* HOME */
