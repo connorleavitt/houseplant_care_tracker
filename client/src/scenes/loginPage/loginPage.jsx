@@ -3,7 +3,7 @@ import Form from "./Form";
 
 export default function LoginPage() {
   const theme = useTheme();
-  const isNonMobileScreens = useMediaQuery("min-width: 1000px");
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
   return (
     <Box>
       <Box
@@ -17,7 +17,7 @@ export default function LoginPage() {
         </Typography>
       </Box>
       <Box
-        width={isNonMobileScreens ? "50%" : "93%"}
+        width={isNonMobileScreens ? "30%" : "80%"}
         p="2rem"
         m="2rem auto"
         borderRadius="1.5rem"
