@@ -181,7 +181,7 @@ h4 {
   top: 30px;
   color: white;
 }
-
+/* 
 .navbar-icon:hover + .text-underneath-icon-on-hover.dark {
   display: flex;
   width: 200px;
@@ -195,6 +195,22 @@ h4 {
   width: 200px;
   justify-content: center;
   color: white;
+  font-size: 1rem;
+} */
+
+.MuiIconButton-root:hover > .text-underneath-icon-on-hover {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.MuiIconButton-root:hover > .text-underneath-icon-on-hover {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  color: black;
   font-size: 1rem;
 }
 
