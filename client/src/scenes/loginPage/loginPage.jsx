@@ -27,6 +27,7 @@ export default function LoginPage() {
           Welcome to Houseplant Care Tracker, the app to help organize you plant
           care system!
         </Typography>
+        <Form />
       </Box>
     </Box>
   );
