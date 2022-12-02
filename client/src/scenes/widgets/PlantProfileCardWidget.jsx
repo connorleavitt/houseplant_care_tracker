@@ -7,6 +7,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const PlantProfileWidget = ({ userId, picturePath }) => {
+const PlantProfileCardWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
 };
