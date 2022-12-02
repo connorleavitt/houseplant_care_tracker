@@ -157,13 +157,11 @@ export default function NavbarPage({ userId, picturePath }) {
             )}
           </IconButton>
           <FormControl variant="standard" value={fullName}>
-            {/* <FormControl variant="standard" value="REPLACE NAME"> */}
             <Select
               value={fullName}
-              // value="REPLACE NAME"
               sx={{
                 backgroundColor: neutralLight,
-                width: "150px",
+                width: "fit-content",
                 borderRadius: "0.25rem",
                 p: "0.25rem 1rem",
                 "& .MuiSvgIcon-root:": {
@@ -177,13 +175,11 @@ export default function NavbarPage({ userId, picturePath }) {
               input={<InputBase />}
             >
               <MenuItem value={fullName}>
-                <Typography>
-                  {fullName}
-                  <UserImage image={picturePath}></UserImage>
-                  {/* REPLACE NAME */}
-                </Typography>
+                <Typography fontSize="1rem">{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>
+                <Typography fontSize="1rem">Log Out</Typography>
+              </MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>
@@ -246,10 +242,8 @@ export default function NavbarPage({ userId, picturePath }) {
             </IconButton>
 
             <FormControl variant="standard" value={fullName}>
-              {/* <FormControl variant="standard" value="REPLACE NAME"> */}
               <Select
                 value={fullName}
-                // value="REPLACE NAME"
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -266,10 +260,7 @@ export default function NavbarPage({ userId, picturePath }) {
                 input={<InputBase />}
               >
                 <MenuItem value={fullName}>
-                  <Typography>
-                    {fullName}
-                    {/* REPLACE NAME */}
-                  </Typography>
+                  <Typography>{fullName}</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
                   Log Out
