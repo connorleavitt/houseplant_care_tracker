@@ -18,8 +18,9 @@ import FlexBetween from "components/FlexBetween";
 
 // import CustomLink from "../../components/CustomLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UserImage from "components/UserImage";
 
-export default function NavbarPage({ toggle }) {
+export default function NavbarPage({ userId, picturePath }) {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -178,6 +179,7 @@ export default function NavbarPage({ toggle }) {
               <MenuItem value={fullName}>
                 <Typography>
                   {fullName}
+                  <UserImage image={picturePath}></UserImage>
                   {/* REPLACE NAME */}
                 </Typography>
               </MenuItem>
@@ -223,8 +225,8 @@ export default function NavbarPage({ toggle }) {
             </IconButton>
             <IconButton sx={{ fontSize: "25px", borderRadius: "0px" }}>
               <FontAwesomeIcon
-                icon="fa-solid fa-fill-drip"
                 className="navbar-icon"
+                icon="fa-solid fa-fill-drip"
               />
               <p className="nav-mobile-icon-text">Watering</p>
             </IconButton>
