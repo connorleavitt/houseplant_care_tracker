@@ -5,6 +5,7 @@ import PlantProfilesWidget from "scenes/widgets/PlantProfilesWidget";
 import AddNew from "../../components/AddNew";
 import PlantProfileCard from "../../components/PlantProfileCard";
 import Searchbar from "../../components/Searchbar";
+import PlantProfileForm from "./plantProfileForm";
 
 export default function PlantProfilesPage() {
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
@@ -13,6 +14,8 @@ export default function PlantProfilesPage() {
     <Box>
       <NavbarPage />
 
+      <PlantProfileForm />
+      {/* 
       <Box mt={isNonMobileScreens ? undefined : "2rem"}>
         <h2 className="pp-list--title">Plant Profile List</h2>
 
@@ -33,7 +36,7 @@ export default function PlantProfilesPage() {
         </div>
 
         <PlantProfileCard />
-      </main>
+      </main> */}
     </Box>
   );
 }

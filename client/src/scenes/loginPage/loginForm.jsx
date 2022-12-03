@@ -37,7 +37,7 @@ const initialValuesLogin = {
   password: "",
 };
 
-export default function Form() {
+export default function LoginForm() {
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   const dispatch = useDispatch();

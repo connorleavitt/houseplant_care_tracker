@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import Form from "./Form";
+import loginForm from "./loginForm";
 
 export default function LoginPage() {
   const theme = useTheme();
@@ -27,7 +27,7 @@ export default function LoginPage() {
           Welcome to Houseplant Care Tracker, the app to help organize you plant
           care system!
         </Typography>
-        <Form />
+        <loginForm />
       </Box>
     </Box>
   );
