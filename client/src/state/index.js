@@ -22,6 +22,10 @@ export const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
+    // setEditProfile: (state, action) => {
+    //   state.user = action.payload.user;
+    //   state.token = action.payload.token;
+    // },
     setPlantProfiles: (state, action) => {
       state.plantProfiles = action.payload.plantProfiles;
     },

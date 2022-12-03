@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <Box className="main">
-      <NavbarPage userId={_id} picturePath={picturePath} />
+      <NavbarPage userId={_id} />
       <Box
         width="100%"
         padding="2rem 6%"

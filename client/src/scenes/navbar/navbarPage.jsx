@@ -18,7 +18,6 @@ import FlexBetween from "components/FlexBetween";
 
 // import CustomLink from "../../components/CustomLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserImage from "components/UserImage";
 
 export default function NavbarPage({ userId, picturePath }) {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
