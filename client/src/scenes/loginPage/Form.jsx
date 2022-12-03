@@ -75,7 +75,7 @@ export default function Form() {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
-    console.log(loggedIn.msg);
+    // console.log(loggedIn.msg);
     onSubmitProps.resetForm();
     // if (
     //   loggedIn.msg === "User does not exist" ||

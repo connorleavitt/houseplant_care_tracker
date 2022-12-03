@@ -2,12 +2,8 @@ import React from "react";
 import {
   Box,
   Button,
-  FormControl,
-  InputBase,
-  MenuItem,
-  Select,
   Typography,
-  useMediaQuery,
+  // useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -23,7 +19,7 @@ export default function UserProfilePage() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
+  // const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
 
   const theme = useTheme();
   const neutralMedium = theme.palette.neutral.medium;
@@ -31,7 +27,7 @@ export default function UserProfilePage() {
   const background = theme.palette.background.default;
   const primaryDark = theme.palette.primary.dark;
   const primaryMain = theme.palette.primary.main;
-  const alt = theme.palette.background.alt;
+  // const alt = theme.palette.background.alt;
 
   const getUser = async () => {
     const res = await fetch(`http://localhost:3001/users/${userId}`, {

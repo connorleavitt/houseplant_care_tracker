@@ -7,7 +7,7 @@ import UserWidget from "scenes/widgets/UserWidget";
 // import Searchbar from "../../components/Searchbar";
 
 export default function HomePage() {
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px");
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
   const { _id, picturePath } = useSelector((state) => state.user);
   // const { _id } = useSelector((state) => state.plantProfiles);
 

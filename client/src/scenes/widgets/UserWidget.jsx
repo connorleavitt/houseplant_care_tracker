@@ -1,5 +1,5 @@
-import { EditOutlined, ManageAccountsOutlined } from "@mui/icons-material";
-import { Box, Typography, Divider, useTheme } from "@mui/material";
+import { ManageAccountsOutlined } from "@mui/icons-material";
+import { Box, Typography, useTheme } from "@mui/material";
 import UserImage from "components/UserImage";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
@@ -14,7 +14,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const { palette } = useTheme();
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
-  const main = palette.neutral.main;
+  // const main = palette.neutral.main;
 
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -40,8 +40,12 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* FIRST ROW */}
       <FlexBetween
         gap="0.5rem"
-        pb="1.1rem"
         onClick={() => navigate(`/user/${userId}`)}
+        sx={{
+          "&:hover": {
+            cursor: "pointer",
+          },
+        }}
       >
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
@@ -52,7 +56,7 @@ const UserWidget = ({ userId, picturePath }) => {
               fontWeight="500"
               sx={{
                 "&:hover": {
-                  color: palette.primary.light,
+                  color: palette.primary.dark,
                   cursor: "pointer",
                 },
               }}

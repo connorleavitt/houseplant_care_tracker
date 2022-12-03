@@ -206,7 +206,7 @@ h4 {
   font-size: 1rem;
 }
 
-.MuiIconButton-root:hover > .text-underneath-icon-on-hover {
+.MuiIconButton-root:hover > .text-underneath-icon-on-hover.dark {
   display: flex;
   width: 200px;
   justify-content: center;
@@ -241,11 +241,11 @@ h4 {
 
 /* PLANT PROFILES */
 
-.pp {
+/* .pp {
   background-color: gray;
   margin: 0;
   padding: 1rem;
-}
+} */
 
 .pp-main {
   margin: 0 auto;

@@ -30,7 +30,8 @@ export default function NavbarPage({ userId, picturePath }) {
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
-  const primaryLight = theme.palette.primary.light;
+  const primaryDark = theme.palette.primary.dark;
+  const primaryMain = theme.palette.primary.main;
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
@@ -41,11 +42,11 @@ export default function NavbarPage({ userId, picturePath }) {
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color="primary"
+          color={primaryMain}
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
+              color: primaryDark,
               cursor: "pointer",
             },
           }}
@@ -79,7 +80,10 @@ export default function NavbarPage({ userId, picturePath }) {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
+          <IconButton
+            sx={{ fontSize: "25px", borderRadius: "5px" }}
+            onClick={() => navigate(`/plant-profiles`)}
+          >
             {theme.palette.mode === "dark" ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-leaf"
