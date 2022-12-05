@@ -14,8 +14,12 @@ import { themeSettings } from "theme";
 import HomePage from "scenes/homePage/homePage";
 import LoginPage from "scenes/loginPage/loginPage";
 import UserProfilePage from "scenes/userProfilePage/userProfilePage";
-// import NavbarPage from "scenes/navbar/navbarPage";
 import PlantProfilesPage from "scenes/plantProfilesPage/plantProfilesPage";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);
 
 function App() {
   const mode = useSelector((state) => state.mode);
