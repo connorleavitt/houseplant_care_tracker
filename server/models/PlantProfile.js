@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 
 const PlantProfileSchema = new Schema(
   {
-    userId: { type: String, required: true },
-    userFirstName: { type: String, required: true },
-    userPicturePath: { type: String, required: true },
-    plantName: { type: String, required: true, maxLength: 100 },
+    userId: { type: String },
+    userFirstName: { type: String },
+    userPicturePath: { type: String },
+    plantName: { type: String, maxLength: 100 },
     scientificName: { type: String, maxLength: 100 },
-    dateAcquired: { type: Date, required: true },
+    dateAcquired: { type: Date },
     plantFamily: { type: String, maxLength: 50 },
-    iGotItFrom: { type: String, required: true, maxLength: 100 },
+    iGotItFrom: { type: String, maxLength: 100 },
     toxicity: { type: String, maxLength: 50 },
     water: { type: String, maxLength: 50 },
     light: { type: String, maxLength: 50 },

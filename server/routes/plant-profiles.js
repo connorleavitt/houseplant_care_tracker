@@ -17,4 +17,6 @@ router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 // UPDATE
 // router.patch('/:')
 
+// POST
+
 export default router;
