@@ -1,4 +1,4 @@
-import WidgetWrapper from "components/WidgetWrapper";
+// import WidgetWrapper from "components/WidgetWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPlantProfiles } from "state";

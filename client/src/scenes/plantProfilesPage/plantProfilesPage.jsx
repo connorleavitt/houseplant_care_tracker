@@ -1,42 +1,18 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router";
 import NavbarPage from "scenes/navbar/navbarPage";
-import PlantProfilesWidget from "scenes/widgets/PlantProfilesWidget";
-import AddNew from "../../components/AddNew";
-import PlantProfileCard from "../../components/PlantProfileCard";
-import Searchbar from "../../components/Searchbar";
-import PlantProfileForm from "./plantProfileForm";
 
 export default function PlantProfilesPage() {
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
+  // const isNonMobileScreens = useMediaQuery("(min-width: 800px");
+  const navigate = useNavigate();
 
   return (
     <Box>
       <NavbarPage />
-
-      <PlantProfileForm />
-      {/* 
-      <Box mt={isNonMobileScreens ? undefined : "2rem"}>
-        <h2 className="pp-list--title">Plant Profile List</h2>
-
-        <PlantProfilesWidget />
-      </Box>
-
-      <main className="pp-main">
-        <h1 className="pp--title">Plant Profiles</h1>
-        <Searchbar />
-        <div className="pp--filters-new">
-          <div className="pp--filtering">
-            <button className="pp--filter-item">All</button>
-            <button className="pp--filter-item">Indoor</button>
-            <button className="pp--filter-item">Outdoor</button>
-            <button className="pp--filter-item">Other</button>
-          </div>
-          <AddNew name={"Plant"} />
-        </div>
-
-        <PlantProfileCard />
-      </main> */}
+      <Button onClick={() => navigate("/plant-profiles/create")}>
+        CREATE NEW PLANT PROFILE
+      </Button>
     </Box>
   );
 }

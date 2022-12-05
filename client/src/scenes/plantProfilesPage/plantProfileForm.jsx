@@ -1,40 +1,92 @@
 import { useState } from "react";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
-
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setLogin } from "state";
-import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+import Dropzone from "react-dropzone";
+// import { DesktopDatePicker } from "@mui/x-date-pickers";
+import { useNavigate } from "react-router-dom";
+import e from "express";
+// import { useDispatch } from "react-redux";
 
-const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  password: yup.string().required("required"),
-  picture: yup.string().required("required"),
+const plantProfileSchema = yup.object().shape({
+  userId: yup.string().required("required"),
+  userFirstName: yup.string().required("required"),
+  userPicturePath: yup.string().required("required"),
+  plantName: yup.string().required("required"),
+  scientificName: yup.string().required("required"),
+  dateAcquired: yup.string().required("required"),
+  plantFamily: yup.string().required("required"),
+  iGotItFrom: yup.string().required("required"),
+  toxicity: yup.string().required("required"),
+  water: yup.string().required("required"),
+  light: yup.string().required("required"),
+  soilType: yup.string().required("required"),
+  humidity: yup.string().required("required"),
+  idealTemp: yup.string().required("required"),
+  fertilizationMethod: yup.string().required("required"),
+  fertilizationFrequency: yup.string().required("required"),
+  waterLevel: yup.string().required("required"),
+  sunlightLevel: yup.string().required("required"),
+  commonIssues: yup.string().required("required"),
+  notes: yup.string().required("required"),
 });
 
 const initialValuesNewPlantProfile = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  picture: "",
+  userId: "",
+  userFirstName: "",
+  userPicturePath: "",
+  plantName: "",
+  scientificName: "",
+  dateAcquired: "",
+  plantFamily: "",
+  iGotItFrom: "",
+  toxicity: "",
+  water: "",
+  light: "",
+  soilType: "",
+  humidity: "",
+  idealTemp: "",
+  fertilizationMethod: "",
+  fertilizationFrequency: "",
+  waterLevel: "",
+  sunlightLevel: "",
+  commonIssues: "",
+  notes: "",
+  picturePath: "",
+};
+
+const savedValuesPlantProfile = {
+  userId: "",
+  userFirstName: "",
+  userPicturePath: "",
+  plantName: "",
+  scientificName: "",
+  dateAcquired: "",
+  plantFamily: "",
+  iGotItFrom: "",
+  toxicity: "",
+  water: "",
+  light: "",
+  soilType: "",
+  humidity: "",
+  idealTemp: "",
+  fertilizationMethod: "",
+  fertilizationFrequency: "",
+  waterLevel: "",
+  sunlightLevel: "",
+  commonIssues: "",
+  notes: "",
+  picturePath: "",
 };
 
 export default function PlantProfileForm() {
-  const [pageType, setPageType] = useState("login");
+  const [formValues, setFormValues] = useState(null);
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLogin = pageType === "login";
-  const isRegister = pageType === "register";
 
-  const register = async (values, onSubmitProps) => {
+  const newPlantProfileForm = async (values, onSubmitProps) => {
     // allows us to send form with image data
     const formData = new FormData();
     for (let value in values) {
@@ -43,57 +95,29 @@ export default function PlantProfileForm() {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      "http://localhost:3001/plant-profiles/create",
       {
         method: "POST",
         body: formData,
       }
     );
-    const savedUser = await savedUserResponse.json();
+    const savedPlantProfile = await savedUserResponse.json();
     onSubmitProps.resetForm();
 
-    if (savedUser) {
-      setPageType("login");
-    }
-  };
-
-  const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    const loggedIn = await loggedInResponse.json();
-    // console.log(loggedIn.msg);
-    onSubmitProps.resetForm();
-    // if (
-    //   loggedIn.msg === "User does not exist" ||
-    //   loggedIn.msg === "Invalid credentials"
-    // ) {
-    // NEED TO ADD A MESSAGE OF FAILURE OR SOMETHING
-    //   navigate("/");
-    // }
-    // else {
-    if (loggedIn) {
-      dispatch(
-        setLogin({
-          user: loggedIn.user,
-          token: loggedIn.token,
-        })
-      );
+    if (savedPlantProfile) {
       navigate("/home");
     }
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    if (isLogin) await login(values, onSubmitProps);
-    if (isRegister) await register(values, onSubmitProps);
+    await newPlantProfileForm(values, onSubmitProps);
   };
   return (
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
-      validationSchema={isLogin ? loginSchema : registerSchema}
+      initialValues={formValues || initialValuesNewPlantProfile}
+      validationSchema={plantProfileSchema}
+      enableReinitialize
     >
       {({
         values,
@@ -106,88 +130,77 @@ export default function PlantProfileForm() {
         resetForm,
       }) => (
         <form onSubmit={handleSubmit}>
-          <Box display="flex" flexDirection="column" gap="30px">
-            {isRegister && (
-              <>
-                <TextField
-                  label="First Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.firstName}
-                  name="firstName"
-                  error={
-                    Boolean(touched.firstName) && Boolean(errors.firstName)
-                  }
-                  helperText={touched.firstName && errors.firstName}
-                />
-                <TextField
-                  label="Last Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
-                  name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
-                />
-                <Box
-                  border={`1px solid ${palette.neutral.medium}`}
-                  borderRadius="5px"
-                  p="1rem"
-                >
-                  <Dropzone
-                    acceptedFiles=".jpg,.jpeg,.png,.webp"
-                    multiple={false}
-                    onDrop={(acceptedFiles) =>
-                      setFieldValue("picture", acceptedFiles[0])
-                    }
+          <Box display="flex" width="50%" flexDirection="column" gap="30px">
+            <TextField
+              label="Plant Name"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.plantName}
+              name="plantName"
+              error={Boolean(touched.plantName) && Boolean(errors.plantName)}
+              helperText={touched.plantName && errors.plantName}
+            />
+            <TextField
+              label="Scientific Name"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.scientificName}
+              name="scientificName"
+              error={
+                Boolean(touched.scientificName) &&
+                Boolean(errors.scientificName)
+              }
+              helperText={touched.scientificName && errors.scientificName}
+            />
+            {/* <DesktopDatePicker
+              label="Date desktop"
+              onBlur={handleBlur}
+              inputFormat="MM/DD/YYYY"
+              value={values.dateAcquired}
+              onChange={(values) => {
+                setFieldValue("dueDate", values);
+              }}
+              error={
+                Boolean(touched.dateAcquired) && Boolean(errors.dateAcquired)
+              }
+              renderInput={(params) => <TextField {...params} />}
+            /> */}
+            <Box
+              border={`1px solid ${palette.neutral.medium}`}
+              borderRadius="5px"
+              p="1rem"
+            >
+              <Dropzone
+                acceptedFiles=".jpg,.jpeg,.png,.webp"
+                multiple={false}
+                onDrop={(acceptedFiles) =>
+                  setFieldValue("picture", acceptedFiles[0])
+                }
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <Box
+                    {...getRootProps()}
+                    border={`2px dashed ${palette.primary.main}`}
+                    p="1rem"
+                    sx={{ "&:hover": { cursor: "pointer" } }}
                   >
-                    {({ getRootProps, getInputProps }) => (
-                      <Box
-                        {...getRootProps()}
-                        border={`2px dashed ${palette.primary.main}`}
-                        p="1rem"
-                        sx={{ "&:hover": { cursor: "pointer" } }}
-                      >
-                        <input {...getInputProps()} />
-                        {!values.picture ? (
-                          <p>Add Picture Here</p>
-                        ) : (
-                          <FlexBetween>
-                            <Typography>{values.picture.name}</Typography>
-                            <EditOutlinedIcon />
-                          </FlexBetween>
-                        )}
-                      </Box>
+                    <input {...getInputProps()} />
+                    {!values.picturePath ? (
+                      <p>Add Picture of Plant Here</p>
+                    ) : (
+                      <FlexBetween>
+                        <Typography>{values.picturePath.name}</Typography>
+                      </FlexBetween>
                     )}
-                  </Dropzone>
-                </Box>
-              </>
-            )}
-            <TextField
-              label="Email"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.email}
-              name="email"
-              error={Boolean(touched.email) && Boolean(errors.email)}
-              helperText={touched.email && errors.email}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.password}
-              name="password"
-              error={Boolean(touched.password) && Boolean(errors.password)}
-              helperText={touched.password && errors.password}
-            />
+                  </Box>
+                )}
+              </Dropzone>
+            </Box>
           </Box>
 
           {/* BUTTONS */}
           <Box>
             <Button
-              fullWidth
               type="submit"
               sx={{
                 m: "2rem 0",
@@ -197,26 +210,21 @@ export default function PlantProfileForm() {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              Submit New
             </Button>
-            <Typography
-              onClick={() => {
-                setPageType(isLogin ? "register" : "login");
-                resetForm();
-              }}
+            <Button
+              type="button"
+              onClick={() => setFormValues(savedValuesPlantProfile)}
               sx={{
-                textDecoration: "underline",
-                color: palette.primary.main,
-                "&:hover": {
-                  cursor: "pointer",
-                  color: palette.primary.light,
-                },
+                m: "2rem 0",
+                p: "1rem",
+                backgroundColor: palette.primary.main,
+                color: palette.background.alt,
+                "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin
-                ? "Don't have an account? Sign Up here."
-                : "Already have an account? Login here."}
-            </Typography>
+              Load Saved Data
+            </Button>
           </Box>
         </form>
       )}

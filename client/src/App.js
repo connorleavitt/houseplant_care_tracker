@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import HomePage from "scenes/homePage/homePage";
 import LoginPage from "scenes/loginPage/loginPage";
@@ -18,6 +19,8 @@ import PlantProfilesPage from "scenes/plantProfilesPage/plantProfilesPage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfilePage";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
 library.add(fas);
 
@@ -31,21 +34,29 @@ function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Routes>
-            <Route path="/" element={<LoginPage />}></Route>
-            <Route
-              path="/home"
-              element={isAuth ? <HomePage /> : <Navigate to="/" />}
-            />
-            <Route
-              path="/user/:userId"
-              element={isAuth ? <UserProfilePage /> : <Navigate to="/" />}
-            ></Route>
-            <Route
-              path="/plant-profiles"
-              element={isAuth ? <PlantProfilesPage /> : <Navigate to="/" />}
-            ></Route>
-          </Routes>
+          <LocalizationProvider dateAdapter={AdapterMoment}>
+            <Routes>
+              <Route path="/" element={<LoginPage />}></Route>
+              <Route
+                path="/home"
+                element={isAuth ? <HomePage /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/user/:userId"
+                element={isAuth ? <UserProfilePage /> : <Navigate to="/" />}
+              ></Route>
+              <Route
+                path="/plant-profiles"
+                element={isAuth ? <PlantProfilesPage /> : <Navigate to="/" />}
+              ></Route>
+              <Route
+                path="/plant-profiles/create"
+                element={
+                  isAuth ? <CreatePlantProfilePage /> : <Navigate to="/" />
+                }
+              ></Route>
+            </Routes>
+          </LocalizationProvider>
         </ThemeProvider>
       </Router>
     </div>
