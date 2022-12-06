@@ -14,9 +14,9 @@ import plantProfileRoutes from "./routes/plant-profiles.js";
 import { register } from "./controllers/auth.js";
 import { createPlantProfile } from "./controllers/plant-profiles-controller.js";
 import { verifyToken } from "./middleware/auth.js";
-import User from "./models/User.js";
-import PlantProfile from "./models/PlantProfile.js";
-import { users, plantProfiles } from "./data/index.js";
+// import User from "./models/User.js";
+// import PlantProfile from "./models/PlantProfile.js";
+// import { users, plantProfiles } from "./data/index.js";
 
 // CONFIGURATIONS
 
@@ -32,7 +32,8 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets"))); // local storage for images
 
 // FILE STORAGE
@@ -49,12 +50,12 @@ const upload = multer({ storage });
 
 // ROUTES WITH FILES
 app.post("/auth/register", upload.single("picture"), register);
-app.post(
-  "/plant-profiles/create",
-  verifyToken,
-  upload.single("picture"),
-  createPlantProfile
-);
+// app.post(
+//   "/plant-profiles/create",
+//   verifyToken,
+//   upload.single("picture"),
+//   createPlantProfile
+// );
 
 // ROUTES
 app.use("/auth", authRoutes);

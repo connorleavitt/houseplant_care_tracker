@@ -36,6 +36,8 @@ export const getSpecificUserPlantProfile = async (req, res) => {
 // POST (CREATE) new pp
 export const createPlantProfile = async (req, res) => {
   try {
+    console.log("body", req.body);
+
     const {
       userId,
       plantName,

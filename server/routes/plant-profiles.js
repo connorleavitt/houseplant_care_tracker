@@ -4,6 +4,7 @@ import {
   getAllPlantProfiles,
   getUserPlantProfiles,
   getSpecificUserPlantProfile,
+  createPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 // router.patch('/:')
 
 // POST
+router.post("/create", createPlantProfile);
 
 export default router;
