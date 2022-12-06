@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-import { Formik } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 import FlexBetween from "components/FlexBetween";
 import Dropzone from "react-dropzone";
 // import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { useNavigate } from "react-router-dom";
-import e from "express";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPlantProfiles } from "state";
 
 const plantProfileSchema = yup.object().shape({
   userId: yup.string().required("required"),
@@ -34,8 +34,6 @@ const plantProfileSchema = yup.object().shape({
 
 const initialValuesNewPlantProfile = {
   userId: "",
-  userFirstName: "",
-  userPicturePath: "",
   plantName: "",
   scientificName: "",
   dateAcquired: "",
@@ -56,55 +54,91 @@ const initialValuesNewPlantProfile = {
   picturePath: "",
 };
 
-const savedValuesPlantProfile = {
-  userId: "",
-  userFirstName: "",
-  userPicturePath: "",
-  plantName: "",
-  scientificName: "",
-  dateAcquired: "",
-  plantFamily: "",
-  iGotItFrom: "",
-  toxicity: "",
-  water: "",
-  light: "",
-  soilType: "",
-  humidity: "",
-  idealTemp: "",
-  fertilizationMethod: "",
-  fertilizationFrequency: "",
-  waterLevel: "",
-  sunlightLevel: "",
-  commonIssues: "",
-  notes: "",
-  picturePath: "",
-};
+// const savedValuesPlantProfile = {
+//   userId: "",
+//   userFirstName: "",
+//   userPicturePath: "",
+//   plantName: "",
+//   scientificName: "",
+//   dateAcquired: "",
+//   plantFamily: "",
+//   iGotItFrom: "",
+//   toxicity: "",
+//   water: "",
+//   light: "",
+//   soilType: "",
+//   humidity: "",
+//   idealTemp: "",
+//   fertilizationMethod: "",
+//   fertilizationFrequency: "",
+//   waterLevel: "",
+//   sunlightLevel: "",
+//   commonIssues: "",
+//   notes: "",
+//   picturePath: "",
+// };
 
 export default function PlantProfileForm() {
-  const [formValues, setFormValues] = useState(null);
+  const { _id } = useSelector((state) => state.user);
+
+  // const [formValues, setFormValues] = useState(null);
+
+  const [error, setError] = useState(null);
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const newPlantProfileForm = async (values, onSubmitProps) => {
-    // allows us to send form with image data
-    const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
-    }
-    formData.append("picturePath", values.picture.name);
+    // console.log("new plant:", values);
+    console.log("new plant:", JSON.stringify(values));
 
     const savedUserResponse = await fetch(
       "http://localhost:3001/plant-profiles/create",
       {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
       }
     );
+    // console.log(savedUserResponse);
     const savedPlantProfile = await savedUserResponse.json();
+    if (!savedUserResponse.ok) {
+      setError(savedPlantProfile.error);
+    }
+
+    if (savedUserResponse.ok) {
+      setError(null);
+      console.log("New plant profile added", savedPlantProfile);
+    }
+
     onSubmitProps.resetForm();
 
     if (savedPlantProfile) {
+      // dispatch(
+      //   setPlantProfiles({
+      //     userId: savedPlantProfile.userId,
+      //     userFirstName: savedPlantProfile.userFirstName,
+      //     userPicturePath: savedPlantProfile.userPicturePath,
+      //     plantName: savedPlantProfile.plantName,
+      //     scientificName: savedPlantProfile.scientificName,
+      //     dateAcquired: savedPlantProfile.dateAcquired,
+      //     plantFamily: savedPlantProfile.plantFamily,
+      //     iGotItFrom: savedPlantProfile.iGotItFrom,
+      //     toxicity: savedPlantProfile.toxicity,
+      //     water: savedPlantProfile.water,
+      //     light: savedPlantProfile.light,
+      //     soilType: savedPlantProfile.soilType,
+      //     humidity: savedPlantProfile.humidity,
+      //     idealTemp: savedPlantProfile.idealTemp,
+      //     fertilizationMethod: savedPlantProfile.fertilizationMethod,
+      //     fertilizationFrequency: savedPlantProfile.fertilizationFrequency,
+      //     waterLevel: savedPlantProfile.waterLevel,
+      //     sunlightLevel: savedPlantProfile.sunlightLevel,
+      //     commonIssues: savedPlantProfile.commonIssues,
+      //     notes: savedPlantProfile.notes,
+      //     picturePath: savedPlantProfile.picturePath,
+      //   })
+      // );
       navigate("/home");
     }
   };
@@ -112,95 +146,47 @@ export default function PlantProfileForm() {
   const handleFormSubmit = async (values, onSubmitProps) => {
     await newPlantProfileForm(values, onSubmitProps);
   };
+
   return (
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={formValues || initialValuesNewPlantProfile}
-      validationSchema={plantProfileSchema}
-      enableReinitialize
+      // onSubmit={(values, { setSubmitting }) => {
+      //   setSubmitting(true);
+      //   //make async call
+      //   handleFormSubmit(values);
+      //   setSubmitting(false);
+      // }}
+      initialValues={initialValuesNewPlantProfile}
+      // validationSchema={plantProfileSchema}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleBlur,
-        handleChange,
-        handleSubmit,
-        setFieldValue,
-        resetForm,
-      }) => (
-        <form onSubmit={handleSubmit}>
+      {({ values, isSubmitting }) => (
+        <Form>
           <Box display="flex" width="50%" flexDirection="column" gap="30px">
-            <TextField
-              label="Plant Name"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.plantName}
+            <pre>{JSON.stringify(values, null, 2)}</pre>
+            <Field
+              placeholder="userId"
+              name="userId"
+              type="input"
+              as={TextField}
+            />
+            <Field
+              placeholder="plant name"
               name="plantName"
-              error={Boolean(touched.plantName) && Boolean(errors.plantName)}
-              helperText={touched.plantName && errors.plantName}
+              type="input"
+              as={TextField}
             />
-            <TextField
-              label="Scientific Name"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.scientificName}
+            <Field
+              placeholder="scientific name"
               name="scientificName"
-              error={
-                Boolean(touched.scientificName) &&
-                Boolean(errors.scientificName)
-              }
-              helperText={touched.scientificName && errors.scientificName}
+              type="input"
+              as={TextField}
             />
-            {/* <DesktopDatePicker
-              label="Date desktop"
-              onBlur={handleBlur}
-              inputFormat="MM/DD/YYYY"
-              value={values.dateAcquired}
-              onChange={(values) => {
-                setFieldValue("dueDate", values);
-              }}
-              error={
-                Boolean(touched.dateAcquired) && Boolean(errors.dateAcquired)
-              }
-              renderInput={(params) => <TextField {...params} />}
-            /> */}
-            <Box
-              border={`1px solid ${palette.neutral.medium}`}
-              borderRadius="5px"
-              p="1rem"
-            >
-              <Dropzone
-                acceptedFiles=".jpg,.jpeg,.png,.webp"
-                multiple={false}
-                onDrop={(acceptedFiles) =>
-                  setFieldValue("picture", acceptedFiles[0])
-                }
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <Box
-                    {...getRootProps()}
-                    border={`2px dashed ${palette.primary.main}`}
-                    p="1rem"
-                    sx={{ "&:hover": { cursor: "pointer" } }}
-                  >
-                    <input {...getInputProps()} />
-                    {!values.picturePath ? (
-                      <p>Add Picture of Plant Here</p>
-                    ) : (
-                      <FlexBetween>
-                        <Typography>{values.picturePath.name}</Typography>
-                      </FlexBetween>
-                    )}
-                  </Box>
-                )}
-              </Dropzone>
-            </Box>
           </Box>
 
           {/* BUTTONS */}
           <Box>
             <Button
+              disabled={isSubmitting}
               type="submit"
               sx={{
                 m: "2rem 0",
@@ -210,23 +196,10 @@ export default function PlantProfileForm() {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              Submit New
-            </Button>
-            <Button
-              type="button"
-              onClick={() => setFormValues(savedValuesPlantProfile)}
-              sx={{
-                m: "2rem 0",
-                p: "1rem",
-                backgroundColor: palette.primary.main,
-                color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
-              }}
-            >
-              Load Saved Data
+              Submit
             </Button>
           </Box>
-        </form>
+        </Form>
       )}
     </Formik>
   );

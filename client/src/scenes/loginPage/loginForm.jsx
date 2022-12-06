@@ -75,16 +75,8 @@ export default function LoginForm() {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
-    // console.log(loggedIn.msg);
     onSubmitProps.resetForm();
-    // if (
-    //   loggedIn.msg === "User does not exist" ||
-    //   loggedIn.msg === "Invalid credentials"
-    // ) {
-    // NEED TO ADD A MESSAGE OF FAILURE OR SOMETHING
-    //   navigate("/");
-    // }
-    // else {
+
     if (loggedIn) {
       dispatch(
         setLogin({

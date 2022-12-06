@@ -9,7 +9,6 @@ import UserWidget from "scenes/widgets/UserWidget";
 export default function HomePage() {
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
   const { _id, picturePath } = useSelector((state) => state.user);
-  // const { _id } = useSelector((state) => state.plantProfiles);
 
   return (
     <Box className="main">
