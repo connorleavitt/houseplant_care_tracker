@@ -9,10 +9,9 @@ export default function CreatePlantProfilePage() {
   return (
     <Box>
       <NavbarPage />
-
-      <h3>FORM:</h3>
-
-      <PlantProfileForm />
+      <div className="pp-card--container">
+        <PlantProfileForm />
+      </div>
     </Box>
   );
 }

@@ -296,6 +296,7 @@ h4 {
 }
 
 .pp-card--title {
+  /* grid-area: header; */
   color: darkgreen;
   /* margin-bottom: 1rem; */
 }
@@ -347,6 +348,10 @@ h4 {
 .pp-card--notes .pp-card--headers {
   margin: 0.2rem 0;
   padding-top: 0.3rem;
+}
+
+.pp-form-buttons {
+  order: 4;
 }
 
 .textarea----test {
@@ -421,11 +426,11 @@ h4 {
   border-radius: 50%;
 }
 
-.pp-card--water-container,
+/* .pp-card--water-container,
 .pp-card--sunlight-container {
   display: flex;
   justify-content: space-between;
-}
+} */
 
 @media (min-width: 800px) {
   .pp-card--container {
