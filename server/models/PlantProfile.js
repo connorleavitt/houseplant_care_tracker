@@ -20,6 +20,7 @@ const PlantProfileSchema = new Schema(
     idealTemp: { type: String, maxLength: 50 },
     fertilizationMethod: { type: String, maxLength: 50 },
     fertilizationFrequency: { type: String, maxLength: 50 },
+    currentLocation: { type: String },
     waterLevel: { type: Number, default: 1, min: 1, max: 5 },
     sunlightLevel: { type: Number, default: 1, min: 1, max: 5 },
     commonIssues: { type: String, maxLength: 300 },
