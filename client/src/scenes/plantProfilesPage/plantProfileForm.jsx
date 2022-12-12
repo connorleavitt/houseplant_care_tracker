@@ -90,8 +90,8 @@ export default function PlantProfileForm() {
       "http://localhost:3001/plant-profiles/create",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        // headers: { "Content-Type": "application/json" },
+        body: formData,
       }
     );
     // console.log(savedUserResponse);
@@ -418,6 +418,7 @@ export default function PlantProfileForm() {
                     Current Value: {values.waterLevel}
                   </Typography>
                   <PrettoSlider
+                    className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
                     defaultValue={3}
@@ -440,6 +441,7 @@ export default function PlantProfileForm() {
                     Current Value: {values.sunlightLevel}
                   </Typography>
                   <PrettoSlider
+                    className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
                     defaultValue={3}

@@ -354,6 +354,11 @@ h4 {
   order: 4;
 }
 
+.pp-form--slider {
+  min-width: 200px;
+  max-width: 300px;
+}
+
 .textarea----test {
   background-color: inherit;
   margin: 1rem;
