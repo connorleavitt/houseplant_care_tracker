@@ -278,6 +278,14 @@ h4 {
   width: 100px;
 }
 
+.home-pp-list--contianer {
+  flex-direction: column;
+}
+
+.home-pp-list--img {
+  min-width: 200px;
+}
+
 /* PLANT PROFILES CARD */
 
 .pp-card--container {

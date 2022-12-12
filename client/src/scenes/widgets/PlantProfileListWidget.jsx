@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 import WidgetWrapper from "components/WidgetWrapper";
 
@@ -18,11 +18,18 @@ const PlantProfileListWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
+
   return (
     <WidgetWrapper m="2rem 0">
-      <Box display="grid" gridTemplateColumns="1fr 3fr">
+      <Box
+        display={isNonMobileScreens ? "grid" : "flex"}
+        gridTemplateColumns="1fr 3fr"
+        className="home-pp-list--contianer"
+      >
         <Box>
           <img
+            className="home-pp-list--img"
             width="100%"
             height="100%"
             alt="plant-profile"
@@ -57,15 +64,16 @@ const PlantProfileListWidget = ({
               style={{ objectFit: "cover", borderRadius: "50%" }}
               src={`http://localhost:3001/assets/${userPicturePath}`}
             />
-            <Typography color={main} p="0 0.5rem 0 1rem" fontSize="1.2rem">
-              This is
-            </Typography>
-            <Typography color={primary} fontWeight="bold" fontSize="1.2rem">
-              {userFirstName}'s
-            </Typography>
-            <Typography color={main} pl="0.5rem" fontSize="1.2rem">
-              plant!
-            </Typography>
+            <Box display="flex" alignItems="center">
+              <Typography
+                className="home-pp-list--text"
+                color={main}
+                p="0 0.5rem 0 1rem"
+                fontSize="1.2rem"
+              >
+                This is {userFirstName}'s plant!
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Box>
