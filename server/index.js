@@ -50,12 +50,11 @@ const upload = multer({ storage });
 
 // ROUTES WITH FILES
 app.post("/auth/register", upload.single("picture"), register);
-// app.post(
-//   "/plant-profiles/create",
-//   verifyToken,
-//   upload.single("picture"),
-//   createPlantProfile
-// );
+app.post(
+  "/plant-profiles/create",
+  upload.single("picture"),
+  createPlantProfile
+);
 
 // ROUTES
 app.use("/auth", authRoutes);
