@@ -10,3 +10,13 @@ export const getUser = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+// GET (READ) of all users
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const user = await User.find();
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
