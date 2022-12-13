@@ -37,7 +37,7 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
       getPlantProfiles();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  // console.log(isProfile);
   return (
     <Box>
       {plantProfiles.map(

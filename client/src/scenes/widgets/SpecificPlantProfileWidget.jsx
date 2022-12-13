@@ -3,28 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
+import { useParams } from "react-router";
 
-const SpecificPlantProfileWidget = ({ userId, isProfile = false }) => {
+const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const token = useSelector((state) => state.token);
+  const { userId, id } = useParams();
+  const { _id } = useSelector((state) => state.user);
 
-  const getUserPlantProfiles = async () => {
+  console.log(
+    `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
+  );
+
+  const getSpecificUserPlantProfile = async () => {
     const response = await fetch(
-      `http://localhost:3001/plant-profiles/${userId}/all`,
+      `http://localhost:3001/plant-profiles/${userId}/${id}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       }
     );
     const data = await response.json();
+    console.log(data);
     dispatch(setPlantProfiles({ plantProfiles: data }));
   };
 
   useEffect(() => {
-    getUserPlantProfiles();
+    getSpecificUserPlantProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (userId !== _id) {
+    console.log("Nope", userId, _id);
+    return <h3>Not your plant!</h3>;
+  }
   return (
     <>
       {plantProfiles.map(

@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import NavbarPage from "scenes/navbar/navbarPage";
 import PlantProfilesWidget from "scenes/widgets/PlantProfilesWidget";
-import UserListWidget from "scenes/widgets/UserListWidget";
 import UserWidget from "scenes/widgets/UserWidget";
 
 export default function PlantProfilesPage() {

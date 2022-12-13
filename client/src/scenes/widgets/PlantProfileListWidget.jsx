@@ -25,7 +25,7 @@ const PlantProfileListWidget = ({
 
   const { palette } = useTheme();
   const main = palette.neutral.main;
-  const primary = palette.primary.main;
+  // const primary = palette.primary.main;
   const navigate = useNavigate();
 
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
