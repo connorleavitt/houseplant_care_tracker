@@ -47,6 +47,8 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
           plantName,
           picturePath,
           userPicturePath,
+          currentLocation,
+          iGotItFrom,
         }) => (
           <PlantProfileListWidget
             key={_id}
@@ -56,6 +58,8 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
             plantName={plantName}
             picturePath={picturePath}
             userPicturePath={userPicturePath}
+            currentLocation={currentLocation}
+            iGotItFrom={iGotItFrom}
           />
         )
       )}
