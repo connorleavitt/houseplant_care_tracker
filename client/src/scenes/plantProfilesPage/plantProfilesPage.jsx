@@ -27,7 +27,6 @@ export default function PlantProfilesPage() {
       >
         <Box flexBasis={isNonMobileScreens ? "25%" : undefined}>
           <UserWidget userId={_id} picturePath={picturePath} />
-          <UserListWidget />
         </Box>
         <Box
           flexBasis={isNonMobileScreens ? "70%" : undefined}

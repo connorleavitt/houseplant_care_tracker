@@ -40,7 +40,7 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* FIRST ROW */}
       <FlexBetween
         gap="0.5rem"
-        onClick={() => navigate(`/user/${userId}`)}
+        onClick={() => navigate(`/user/account`)}
         sx={{
           "&:hover": {
             cursor: "pointer",

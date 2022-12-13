@@ -1,4 +1,10 @@
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useTheme,
+  useMediaQuery,
+  Button,
+} from "@mui/material";
 
 import WidgetWrapper from "components/WidgetWrapper";
 import { useNavigate } from "react-router";
@@ -35,10 +41,14 @@ const PlantProfileListWidget = ({
         display={isNonMobileScreens ? "grid" : "flex"}
         gridTemplateColumns="1fr 3fr"
         className="home-pp-list--contianer"
-        onClick={() =>
-          navigate(`/plant-profiles/${plantProfileUserId}/${plantProfileId}`)
-        }
       >
+        <Button
+          onClick={() =>
+            navigate(`/plant-profiles/${plantProfileUserId}/${plantProfileId}`)
+          }
+        >
+          Click me
+        </Button>
         <Box>
           <img
             className="home-pp-list--img"

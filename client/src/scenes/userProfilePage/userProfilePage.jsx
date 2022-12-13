@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { setLogout } from "state";
 import NavbarPage from "scenes/navbar/navbarPage";
 import UserWidget from "scenes/widgets/UserWidget";
@@ -16,7 +16,8 @@ import FlexBetween from "components/FlexBetween";
 
 export default function UserProfilePage() {
   const [user, setUser] = useState(null);
-  const { userId } = useParams();
+  const { _id, picturePath } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   // const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
@@ -30,7 +31,7 @@ export default function UserProfilePage() {
   // const alt = theme.palette.background.alt;
 
   const getUser = async () => {
-    const res = await fetch(`http://localhost:3001/users/${userId}`, {
+    const res = await fetch(`http://localhost:3001/users/${_id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -46,9 +47,10 @@ export default function UserProfilePage() {
 
   return (
     <Box>
-      <NavbarPage userId={userId} />
+      <NavbarPage userId={_id} />
       <Box m="2rem" display="flex" flexDirection="column" alignItems="center">
-        <UserWidget userId={userId} picturePath={user.picturePath} />
+        {/* <UserWidget userId={userId} picturePath={user.picturePath} /> */}
+        <UserWidget userId={_id} picturePath={picturePath} />
         <FlexBetween>
           <Button
             // onClick={() => dispatch(setEditProfile())}
