@@ -1,6 +1,7 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 import WidgetWrapper from "components/WidgetWrapper";
+import { useNavigate } from "react-router";
 
 const PlantProfileListWidget = ({
   plantProfileId,
@@ -19,6 +20,7 @@ const PlantProfileListWidget = ({
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
+  const navigate = useNavigate();
 
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
   const hasCurrentLocation = () => {
@@ -28,11 +30,14 @@ const PlantProfileListWidget = ({
   };
 
   return (
-    <WidgetWrapper m="2rem 0">
+    <WidgetWrapper m="2rem">
       <Box
         display={isNonMobileScreens ? "grid" : "flex"}
         gridTemplateColumns="1fr 3fr"
         className="home-pp-list--contianer"
+        onClick={() =>
+          navigate(`/plant-profiles/${plantProfileUserId}/${plantProfileId}`)
+        }
       >
         <Box>
           <img

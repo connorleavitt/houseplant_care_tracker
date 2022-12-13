@@ -52,7 +52,7 @@ const PlantProfileCardWidget = ({
       <Box sx={{ gridArea: "header" }}>
         <h2 className="pp-card--title">Plant Profile</h2>
       </Box>
-
+      {plantProfileId}
       <Box className="pp-card--left-side" sx={{ gridArea: "left" }}>
         <Box className="pp-card--img" borderRadius="5px" p="1rem">
           <img

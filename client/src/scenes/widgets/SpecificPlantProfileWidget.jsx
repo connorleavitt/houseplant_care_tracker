@@ -2,9 +2,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPlantProfiles } from "state";
-import PlantProfileListWidget from "./PlantProfileListWidget";
+import PlantProfileCardWidget from "./PlantProfileCardWidget";
 
-const PlantProfilesWidget = ({ userId, isProfile = false }) => {
+const SpecificPlantProfileWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const token = useSelector((state) => state.token);
@@ -53,7 +53,7 @@ const PlantProfilesWidget = ({ userId, isProfile = false }) => {
           commonIssues,
           notes,
         }) => (
-          <PlantProfileListWidget
+          <PlantProfileCardWidget
             key={_id}
             plantProfileId={_id}
             plantProfileUserId={userId}
@@ -85,4 +85,4 @@ const PlantProfilesWidget = ({ userId, isProfile = false }) => {
   );
 };
 
-export default PlantProfilesWidget;
+export default SpecificPlantProfileWidget;

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileListWidget from "./PlantProfileListWidget";
+import { Box } from "@mui/material";
 
 const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
+    <Box>
       {plantProfiles.map(
         ({
           _id,
@@ -63,7 +64,7 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
           />
         )
       )}
-    </>
+    </Box>
   );
 };
 

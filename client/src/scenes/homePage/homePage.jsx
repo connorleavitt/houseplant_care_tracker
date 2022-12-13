@@ -31,7 +31,6 @@ export default function HomePage() {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           <h2 className="pp-list--title">Plant Profile List</h2>
-
           <PlantProfilesHomeWidget />
         </Box>
       </Box>

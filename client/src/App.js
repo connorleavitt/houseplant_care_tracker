@@ -21,6 +21,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfilePage";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import SpecificPlantProfilePage from "scenes/plantProfilesPage/specificPlantProfilePage";
 
 library.add(fas);
 
@@ -53,6 +54,12 @@ function App() {
                 path="/plant-profiles/create"
                 element={
                   isAuth ? <CreatePlantProfilePage /> : <Navigate to="/" />
+                }
+              ></Route>
+              <Route
+                path="/plant-profiles/:userId/:id"
+                element={
+                  isAuth ? <SpecificPlantProfilePage /> : <Navigate to="/" />
                 }
               ></Route>
             </Routes>
