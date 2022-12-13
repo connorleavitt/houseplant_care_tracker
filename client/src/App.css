@@ -83,6 +83,7 @@ textarea {
 
 /* BUTTONS */
 
+.MuiButton-root,
 .btn {
   display: inline-block;
   padding: 0.5em 2.5em;
@@ -94,12 +95,40 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: var(--fw-bold);
-  transition: transform 200ms ease-in-out;
   border-radius: 5px;
+  transition: border 200ms ease-in-out;
 }
 
 .btn:hover {
-  transform: scale(1.1);
+  border: 2px solid red;
+}
+
+/* .logout-btn {
+  background-color: #2ba6f3;
+} */
+
+/* ADD NEW BTN */
+
+.add-new--container {
+  display: flex;
+  justify-content: flex-end;
+  min-width: fit-content;
+  margin: 1rem 0;
+  margin-right: 2rem;
+}
+
+.add-new--btn {
+  box-shadow: var(--bs);
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0.4rem;
+  background-color: #2ba6f3;
+  color: var(--clr-light);
+}
+
+.add-new--btn:hover {
+  background-color: #1c91da;
 }
 
 /* Typography */
@@ -289,8 +318,9 @@ h4 {
 /* PLANT PROFILES CARD */
 
 .pp-card--container {
-  border: 2px solid red;
+  border: 2px solid green;
   padding: 1rem;
+  margin: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -480,98 +510,3 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-
-.searchbar-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  border-radius: 2px;
-  border: 2px solid black;
-  cursor: pointer;
-  background-color: rgb(212, 212, 212);
-  position: relative;
-}
-
-.searchbar-wrapper[data-active-focus="active"] {
-  box-shadow: 0 0 5px #2ba6f3;
-}
-
-.searchbar-btn,
-.searchbar-delete-btn {
-  border: 0;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-.searchbar-btn {
-  padding: 0 0.5rem;
-}
-
-.searchbar-btn:hover {
-  font-weight: bold;
-}
-
-.searchbar-delete-btn {
-  position: absolute;
-  right: 0.5rem;
-}
-
-.form-searchbar {
-  height: 37px;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.form-searchbar-label {
-  display: flex;
-}
-
-#search {
-  border: 0;
-  outline: none;
-  height: 90%;
-  /* width: 85%; */
-  align-self: center;
-  font-size: 1.2rem;
-  background-color: transparent;
-}
-
-@media (min-width: 600px) {
-  #search {
-    min-width: 400px;
-  }
-}
-
-/* ADD NEW BTN */
-
-.add-new--container {
-  display: flex;
-  align-items: center;
-  min-width: fit-content;
-}
-
-.add-new--btn {
-  box-shadow: var(--bs);
-  cursor: pointer;
-  border: 0;
-  border-radius: 5px;
-  padding: 0.4rem;
-  background-color: #2ba6f3;
-  color: var(--clr-light);
-}
-
-.add-new--btn:hover {
-  background-color: #1c91da;
-}
-
-/* BUTTONS */
-
-/* .logout-btn {
-  background-color: #2ba6f3;
-} */

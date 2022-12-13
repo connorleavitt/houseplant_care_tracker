@@ -106,7 +106,7 @@ export default function PlantProfileForm() {
     if (savedUserResponse.ok) {
       setError(null);
       console.log("New plant profile added", savedPlantProfile);
-      navigate("/");
+      navigate("/plant-profiles");
     }
   };
 
