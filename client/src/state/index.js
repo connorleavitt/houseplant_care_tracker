@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   token: null,
   plantProfiles: [],
+  allUsers: [],
 };
 
 export const authSlice = createSlice({
@@ -26,6 +27,9 @@ export const authSlice = createSlice({
     //   state.user = action.payload.user;
     //   state.token = action.payload.token;
     // },
+    setAllUsers: (state, action) => {
+      state.allUsers = action.payload.allUsers;
+    },
     setPlantProfiles: (state, action) => {
       state.plantProfiles = action.payload.plantProfiles;
     },
@@ -44,6 +48,7 @@ export const {
   setMode,
   setLogin,
   setLogout,
+  setAllUsers,
   setPlantProfiles,
   setPlantProfile,
 } = authSlice.actions;

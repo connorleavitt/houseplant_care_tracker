@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import NavbarPage from "scenes/navbar/navbarPage";
 import PlantProfilesHomeWidget from "scenes/widgets/PlantProfilesHomeWidget";
+import UserListWidget from "scenes/widgets/UserListWidget";
 import UserWidget from "scenes/widgets/UserWidget";
 // import Searchbar from "../../components/Searchbar";
 
@@ -22,6 +23,7 @@ export default function HomePage() {
       >
         <Box flexBasis={isNonMobileScreens ? "25%" : undefined}>
           <UserWidget userId={_id} picturePath={picturePath} />
+          <UserListWidget />
         </Box>
 
         <Box
