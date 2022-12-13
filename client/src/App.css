@@ -318,7 +318,8 @@ h4 {
 /* PLANT PROFILES CARD */
 
 .pp-card--container {
-  border: 2px solid green;
+  border: 5px solid green;
+  border-radius: 5px;
   padding: 1rem;
   margin: 2rem;
   display: flex;
