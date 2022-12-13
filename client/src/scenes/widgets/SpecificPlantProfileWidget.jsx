@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { Box } from "@mui/material";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   console.log(
     `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
@@ -25,17 +27,19 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
       }
     );
     const data = await response.json();
-    console.log(data);
     dispatch(setPlantProfiles({ plantProfiles: data }));
   };
 
   useEffect(() => {
     getSpecificUserPlantProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   if (userId !== _id) {
-    console.log("Nope", userId, _id);
-    return <h3>Not your plant!</h3>;
+    return (
+      <Box>
+        <h3>This is not your plant!</h3>
+        <p>To view your own plant profiles, navigate to Plant Profiles!</p>
+      </Box>
+    );
   }
   return (
     <>

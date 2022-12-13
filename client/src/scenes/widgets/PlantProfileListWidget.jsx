@@ -41,14 +41,13 @@ const PlantProfileListWidget = ({
         display={isNonMobileScreens ? "grid" : "flex"}
         gridTemplateColumns="1fr 3fr"
         className="home-pp-list--contianer"
+        onClick={() =>
+          navigate(`/plant-profiles/${plantProfileUserId}/${plantProfileId}`)
+        }
+        sx={{
+          cursor: "pointer",
+        }}
       >
-        <Button
-          onClick={() =>
-            navigate(`/plant-profiles/${plantProfileUserId}/${plantProfileId}`)
-          }
-        >
-          Click me
-        </Button>
         <Box>
           <img
             className="home-pp-list--img"
