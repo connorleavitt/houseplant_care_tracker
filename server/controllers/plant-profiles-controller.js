@@ -27,9 +27,9 @@ export const getSpecificUserPlantProfile = async (req, res) => {
   try {
     const { userId, id } = req.params;
     //check these values
-    console.log(req.params);
+    // console.log(req.params);
     const plantProfile = await PlantProfile.find({ userId, _id: id });
-    console.log(plantProfile);
+    // console.log(plantProfile);
     res.status(200).json(plantProfile);
   } catch (error) {
     res.status(404).json({ message: error.message });
