@@ -130,7 +130,10 @@ export default function NavbarPage({ userId, picturePath }) {
               <p className="text-underneath-icon-on-hover dark">WATERING</p>
             )}
           </IconButton>
-          <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
+          <IconButton
+            sx={{ fontSize: "25px", borderRadius: "5px" }}
+            onClick={() => navigate(`/propagation`)}
+          >
             {theme.palette.mode === "dark" ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-seedling"
@@ -148,7 +151,10 @@ export default function NavbarPage({ userId, picturePath }) {
               <p className="text-underneath-icon-on-hover dark">PROPAGATION</p>
             )}
           </IconButton>
-          <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
+          <IconButton
+            sx={{ fontSize: "25px", borderRadius: "5px" }}
+            onClick={() => navigate(`/fertilization`)}
+          >
             {theme.palette.mode === "dark" ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-plant-wilt"
@@ -227,28 +233,40 @@ export default function NavbarPage({ userId, picturePath }) {
           </Box>
           {/* MENU ITEMS */}
           <div className="nav-mobile-container">
-            <IconButton sx={{ fontSize: "25px", borderRadius: "0px" }}>
+            <IconButton
+              sx={{ fontSize: "25px", borderRadius: "0px" }}
+              onClick={() => navigate(`/plant-profiles`)}
+            >
               <FontAwesomeIcon
                 icon="fa-solid fa-leaf"
                 className="navbar-icon"
               />
               <p className="nav-mobile-icon-text">Plant Profiles</p>
             </IconButton>
-            <IconButton sx={{ fontSize: "25px", borderRadius: "0px" }}>
+            <IconButton
+              sx={{ fontSize: "25px", borderRadius: "0px" }}
+              onClick={() => navigate(`/watering`)}
+            >
               <FontAwesomeIcon
                 className="navbar-icon"
                 icon="fa-solid fa-fill-drip"
               />
               <p className="nav-mobile-icon-text">Watering</p>
             </IconButton>
-            <IconButton sx={{ fontSize: "25px", borderRadius: "0px" }}>
+            <IconButton
+              sx={{ fontSize: "25px", borderRadius: "0px" }}
+              onClick={() => navigate(`/propagation`)}
+            >
               <FontAwesomeIcon
                 icon="fa-solid fa-seedling"
                 className="navbar-icon"
               />
               <p className="nav-mobile-icon-text">Propagation</p>
             </IconButton>
-            <IconButton sx={{ fontSize: "25px", borderRadius: "0px" }}>
+            <IconButton
+              sx={{ fontSize: "25px", borderRadius: "0px" }}
+              onClick={() => navigate(`/fertilization`)}
+            >
               <FontAwesomeIcon
                 icon="fa-solid fa-plant-wilt"
                 className="navbar-icon"
@@ -274,7 +292,10 @@ export default function NavbarPage({ userId, picturePath }) {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={fullName}>
+                <MenuItem
+                  value={fullName}
+                  onClick={() => navigate("/user/account")}
+                >
                   <Typography>{fullName}</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
