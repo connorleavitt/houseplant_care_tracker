@@ -522,6 +522,15 @@ h4 {
   }
 }
 
+/* SPECIFIC PLANT PROFILE PAGE */
+
+.MuiButton-root.spp--change-btns {
+  border: 2px solid var(--clr-main);
+  width: calc(50% - 2.1rem);
+  color: var(--clr-dark);
+  background-color: rgba(var(--clr-accent-rgb), 0.25);
+}
+
 /* SEARCHBAR */
 
 /* clears the ‘X’ from Chrome */
