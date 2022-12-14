@@ -182,29 +182,49 @@ export default function PlantProfileForm() {
     >
       {({ values, isSubmitting, setFieldValue }) => (
         <Form>
-          <pre>{JSON.stringify(values, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
 
           <Box
             className="pp-card--container"
             display={isNonMobileScreens ? "grid" : "flex"}
             sx={{
-              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateColumns: "3fr 5fr",
               gridTemplateRows: "auto",
               gridTemplateAreas: `"header header"
                                   "left right"
+                                  "issues issues"
                                   "notes notes"
                                   "buttons buttons"`,
+              gap: "1rem",
+              margin: `${isNonMobileScreens ? "2rem 15rem" : "0"}`,
             }}
           >
-            <Box sx={{ gridArea: "header" }}>
-              <h2 className="pp-card--title">Create a new Plant Profile</h2>
-            </Box>
+            {isNonMobileScreens ? (
+              <Box sx={{ gridArea: "header", m: "1rem", mb: "0" }}>
+                <h2 className="pp-card--title">Create a new Plant Profile</h2>
+              </Box>
+            ) : (
+              <Box sx={{ gridArea: "header" }} mb="1rem">
+                <h2 className="pp-card--title">Create a new Plant Profile</h2>
+              </Box>
+            )}
 
-            <Box className="pp-card--left-side" sx={{ gridArea: "left" }}>
+            <Box
+              className="pp-card--left-side"
+              sx={{ gridArea: "left" }}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              // justifyContent="space-around"
+              gap="3rem"
+              m="1rem"
+              pt={isNonMobileScreens ? "3.5rem" : "0"}
+            >
               <Box
                 border={`1px solid ${palette.neutral.medium}`}
                 borderRadius="5px"
                 p="1rem"
+                sx={{ minWidth: "100%", maxWidth: "500px" }}
               >
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png,.webp"
@@ -218,7 +238,10 @@ export default function PlantProfileForm() {
                       {...getRootProps()}
                       border={`2px dashed ${palette.primary.main}`}
                       p="1rem"
-                      sx={{ "&:hover": { cursor: "pointer" } }}
+                      textAlign="center"
+                      sx={{
+                        "&:hover": { cursor: "pointer" },
+                      }}
                     >
                       <input {...getInputProps()} />
                       {!values.picture ? (
@@ -233,151 +256,19 @@ export default function PlantProfileForm() {
                   )}
                 </Dropzone>
               </Box>
-              <Field
-                placeholder="commonIssues"
-                name="commonIssues"
-                type="input"
-                as={TextField}
-              />
-            </Box>
-            <Box
-              className="pp-card--right-side"
-              sx={{ gridArea: "right" }}
-              display="flex"
-              flexDirection="column"
-              gap="30px"
-            >
-              <Box className="pp-card--general-info">
-                <h4 className="pp-card--headers">GENERAL INFO</h4>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">PLANT NAME:</div>
-                  <Field
-                    placeholder="plant name"
-                    name="plantName"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">SCIENTIFIC NAME:</div>
-                  <Field
-                    placeholder="scientific name"
-                    name="scientificName"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">DATE ACQUIRED:</div>
-                  <Field
-                    placeholder="date acquired"
-                    name="dateAcquired"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">PLANT TYPE:</div>
-                  <Field
-                    placeholder="plantFamily"
-                    name="plantFamily"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">I GOT IT FROM:</div>
-                  <Field
-                    placeholder="iGotItFrom"
-                    name="iGotItFrom"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">TOXICITIY:</div>
-                  <Field
-                    placeholder="toxicity"
-                    name="toxicity"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-              </Box>
-              <Box className="pp-card--plant-care-needs">
-                <h4 className="pp-card--headers">PLANT CARE NEEDS</h4>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">WATER:</div>
-                  <Field
-                    placeholder="water"
-                    name="water"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">LIGHT:</div>
-                  <Field
-                    placeholder="light"
-                    name="light"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">SOIL TYPE:</div>
-                  <Field
-                    placeholder="soilType"
-                    name="soilType"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">HUMIDITY:</div>
-                  <Field
-                    placeholder="humidity"
-                    name="humidity"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">IDEAL TEMP:</div>
-                  <Field
-                    placeholder="idealTemp"
-                    name="idealTemp"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-              </Box>
-              <Box className="pp-card--fertilization">
-                <h4 className="pp-card--headers">FERTILIZATION</h4>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">METHOD:</div>
-                  <Field
-                    placeholder="fertilizationMethod"
-                    name="fertilizationMethod"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-                <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">FREQUENCY:</div>
-                  <Field
-                    placeholder="fertilizationFrequency"
-                    name="fertilizationFrequency"
-                    type="input"
-                    as={TextField}
-                  />
-                </div>
-              </Box>
-              <Box className="pp-card--location">
+              <Box
+                className="pp-card--location"
+                sx={{ width: "100%" }}
+                display="flex"
+                justifyContent="center"
+              >
                 <FormControl className="pp-card--locations-container">
                   <FormLabel id="demo-radio-buttons-group-label">
                     <h4 className="pp-card--headers">CURRENT LOCATION</h4>
                   </FormLabel>
+                  <Typography className="pp-form--level-subtext">
+                    What is the current location of this plant?
+                  </Typography>
                   <RadioGroup
                     aria-labelledby="currentLocation-label"
                     defaultValue="Indoors"
@@ -408,16 +299,15 @@ export default function PlantProfileForm() {
                   </RadioGroup>
                 </FormControl>
               </Box>
-              <Box className="pp-card--water">
+              <Box className="pp-card--water" sx={{ width: "100%" }}>
                 <h4 className="pp-card--headers">WATER</h4>
-                <div className="pp-card--water-container">
-                  <Typography gutterBottom>
+                <div className="pp-card--water-container form">
+                  <Typography gutterBottom className="pp-form--subtext">
                     Select the water level from 1 (low) to 5 (high)
                   </Typography>
-                  <Typography gutterBottom>
-                    Current Value: {values.waterLevel}
-                  </Typography>
+
                   <PrettoSlider
+                    sx={{ m: "1rem" }}
                     className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
@@ -429,18 +319,20 @@ export default function PlantProfileForm() {
                       setFieldValue("waterLevel", event.target.value);
                     }}
                   />
+                  <Typography className="pp-form--level-subtext">
+                    Current Value: <strong>{values.waterLevel}</strong>
+                  </Typography>
                 </div>
               </Box>
-              <Box className="pp-card--sunlight">
+              <Box className="pp-card--sunlight" sx={{ width: "100%" }}>
                 <h4 className="pp-card--headers">SUNLIGHT</h4>
-                <div className="pp-card--sunlight-container">
-                  <Typography gutterBottom>
+                <div className="pp-card--sunlight-container form">
+                  <Typography gutterBottom className="pp-form--subtext">
                     Select the sunlight level from 1 (low) to 5 (high)
                   </Typography>
-                  <Typography gutterBottom>
-                    Current Value: {values.sunlightLevel}
-                  </Typography>
+
                   <PrettoSlider
+                    sx={{ m: "1rem" }}
                     className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
@@ -452,8 +344,177 @@ export default function PlantProfileForm() {
                       setFieldValue("sunlightLevel", event.target.value);
                     }}
                   />
+                  <Typography className="pp-form--level-subtext">
+                    Current Value: <strong>{values.sunlightLevel}</strong>
+                  </Typography>
                 </div>
               </Box>
+            </Box>
+            <Box
+              className="pp-card--right-side"
+              sx={{ gridArea: "right" }}
+              display="flex"
+              flexDirection="column"
+              gap="1rem"
+              m="1rem"
+            >
+              <Box className="pp-card--general-info">
+                <h4 className="pp-card--headers">GENERAL INFO</h4>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">PLANT NAME:</div>
+                  <Field
+                    placeholder="What is this plant's name?"
+                    name="plantName"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">SCIENTIFIC NAME:</div>
+                  <Field
+                    placeholder="What is the scientific name for this plant?"
+                    name="scientificName"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">PLANT TYPE:</div>
+                  <Field
+                    placeholder="What is this plant's family (scientific classification)?"
+                    name="plantFamily"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">DATE ACQUIRED:</div>
+                  <Field
+                    placeholder="When did you acquire this plant?"
+                    name="dateAcquired"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">I GOT IT FROM:</div>
+                  <Field
+                    placeholder="Where did you get this plant?"
+                    name="iGotItFrom"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">TOXICITIY:</div>
+                  <Field
+                    placeholder="Is this plant toxic?"
+                    name="toxicity"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+              </Box>
+              <Box className="pp-card--plant-care-needs">
+                <h4 className="pp-card--headers">PLANT CARE NEEDS</h4>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">WATER:</div>
+                  <Field
+                    placeholder="What are the general watering requirements?"
+                    name="water"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">LIGHT:</div>
+                  <Field
+                    placeholder="What are the general light requirements?"
+                    name="light"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">SOIL TYPE:</div>
+                  <Field
+                    placeholder="What is the current soil mixture in this pot?"
+                    name="soilType"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">HUMIDITY:</div>
+                  <Field
+                    placeholder="Does this plant like humidity?"
+                    name="humidity"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">IDEAL TEMP:</div>
+                  <Field
+                    placeholder="What is the ideal temp range? (Ex: 60-75°F)"
+                    name="idealTemp"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+              </Box>
+              <Box className="pp-card--fertilization">
+                <h4 className="pp-card--headers">FERTILIZATION</h4>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">METHOD:</div>
+                  <Field
+                    placeholder="What does this plant require for fertilization?"
+                    name="fertilizationMethod"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+                <div className="pp-card--form-individual">
+                  <div className="pp-card--form-label">FREQUENCY:</div>
+                  <Field
+                    placeholder="How often does this plant require fertilization?"
+                    name="fertilizationFrequency"
+                    type="input"
+                    as={TextField}
+                    sx={{ width: "100%" }}
+                  />
+                </div>
+              </Box>
+            </Box>
+            <Box
+              className="pp-card--common-issues"
+              sx={{ gridArea: "issues" }}
+              display="flex"
+              flexDirection="column"
+            >
+              <h4 className="pp-card--headers">COMMON ISSUES</h4>
+              <TextField
+                id="outlined-multiline-flexible"
+                name="commonIssues"
+                placeholder="Type in your common issues..."
+                label=""
+                multiline
+                rows={5}
+                // style={{ width: 100% }}
+              />
             </Box>
             <Box
               className="pp-card--notes"
@@ -462,22 +523,44 @@ export default function PlantProfileForm() {
               flexDirection="column"
             >
               <h4 className="pp-card--headers">NOTES</h4>
-              <Field
-                // className="textarea----test"
-                placeholder="write your notes here..."
+              <TextField
+                id="outlined-multiline-flexible"
                 name="notes"
-                type="input"
-                as={TextField}
+                placeholder="Type in your notes..."
+                label=""
+                multiline
+                rows={5}
+                // style={{ width: 500 }}
               />
             </Box>
             {/* BUTTONS */}
-            <Box sx={{ gridArea: "buttons" }} className="pp-form-buttons">
+            <Box
+              sx={{ gridArea: "buttons" }}
+              className="pp-form-buttons"
+              display="flex"
+              // flexDirection="column"
+              // alignContent="flex-end"
+              justifyContent="space-between"
+            >
+              <Button
+                type="button"
+                sx={{
+                  m: "2rem 0",
+                  p: "1rem",
+                  backgroundColor: palette.primary.light,
+                  color: palette.background.dark,
+                  "&:hover": { color: palette.primary.main },
+                }}
+              >
+                Clear Fields
+              </Button>
               <Button
                 disabled={isSubmitting}
                 type="submit"
                 sx={{
                   m: "2rem 0",
                   p: "1rem",
+                  width: "200px",
                   backgroundColor: palette.primary.main,
                   color: palette.background.alt,
                   "&:hover": { color: palette.primary.main },

@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router";
 import { Box, Button, useMediaQuery } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import EditIcon from "@mui/icons-material/Edit";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -60,6 +61,10 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
             mt="2rem"
             gap="2rem"
           >
+            <Button className="spp--update-btn" sx={{ fontSize: "1.25rem" }}>
+              <EditIcon sx={{ fontSize: "1.5rem" }} />
+              Update Plant Profile
+            </Button>
             <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
               <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
               Previous

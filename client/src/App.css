@@ -483,40 +483,24 @@ h4 {
   border-radius: 50%;
 }
 
-/* .pp-card--water-container,
-.pp-card--sunlight-container {
+.pp-card--water-container.form,
+.pp-card--sunlight-container.form {
   display: flex;
-  justify-content: space-between;
-} */
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.pp-form--subtext,
+.pp-form--slider {
+  align-self: center;
+}
+
+.pp-form--level-subtext {
+  align-self: flex-end;
+  padding-right: 2rem;
+}
 
 @media (min-width: 800px) {
-  .pp-card--container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "title title"
-      "left-side right-side"
-      "left-side right-side"
-      "notes notes";
-    gap: 1rem;
-  }
-
-  .pp-card--title {
-    grid-area: title;
-  }
-
-  .pp-card--right-side {
-    grid-area: right-side;
-  }
-
-  .pp-card--left-side {
-    grid-area: left-side;
-  }
-
-  .pp-card--notes {
-    grid-area: notes;
-  }
-
   .pp-card--icon-water {
     /* padding: 0.5rem; */
     width: 20px;
@@ -527,9 +511,16 @@ h4 {
 
 .MuiButton-root.spp--change-btns {
   border: 2px solid var(--clr-main);
-  width: calc(50% - 2.1rem);
+  width: calc(50% - 2rem);
   color: var(--clr-dark);
   background-color: rgba(var(--clr-accent-rgb), 0.25);
+}
+
+.MuiButton-root.spp--update-btn {
+  border: 2px solid var(--clr-main);
+  width: calc(100% - 2rem);
+  color: var(--clr-dark);
+  background-color: rgba(var(--clr-accent-2-rgb), 0.25);
 }
 
 /* SEARCHBAR */

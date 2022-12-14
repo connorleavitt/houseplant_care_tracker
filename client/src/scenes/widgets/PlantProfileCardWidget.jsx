@@ -49,7 +49,6 @@ const PlantProfileCardWidget = ({
       <Box
         className="pp-card--container"
         display={isNonMobileScreens ? "grid" : "flex"}
-        // m="0 0.25rem"
         sx={{
           gridTemplateColumns: "repeat(2, 1fr)",
           gridTemplateRows: "auto",
@@ -57,6 +56,7 @@ const PlantProfileCardWidget = ({
                                   "left right"
                                   "notes notes"
                                   "buttons buttons"`,
+          gap: "1rem",
         }}
       >
         {isNonMobileScreens ? (
@@ -338,17 +338,18 @@ const PlantProfileCardWidget = ({
                 </Typography>
               </div>
               <div className="pp-card--form-individual">
-                <div className="pp-card--form-label">DATE ACQUIRED:</div>
-                <Typography color={main} fontSize="1.2rem" fontWeight="600">
-                  {moment(dateAcquired).format("MMM Do (YYYY)")}
-                </Typography>
-              </div>
-              <div className="pp-card--form-individual">
                 <div className="pp-card--form-label">PLANT TYPE:</div>
                 <Typography color={main} fontSize="1.2rem" fontWeight="600">
                   {plantFamily}
                 </Typography>
               </div>
+              <div className="pp-card--form-individual">
+                <div className="pp-card--form-label">DATE ACQUIRED:</div>
+                <Typography color={main} fontSize="1.2rem" fontWeight="600">
+                  {moment(dateAcquired).format("MMM Do (YYYY)")}
+                </Typography>
+              </div>
+
               <div className="pp-card--form-individual">
                 <div className="pp-card--form-label">I GOT IT FROM:</div>
                 <Typography color={main} fontSize="1.2rem" fontWeight="600">
