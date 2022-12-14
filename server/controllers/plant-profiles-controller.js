@@ -90,8 +90,8 @@ export const createPlantProfile = async (req, res) => {
       picturePath,
     });
     await newPlantProfile.save();
+    console.log(newPlantProfile);
     const plantProfile = await PlantProfile.find();
-
     res.status(201).json(plantProfile);
   } catch (error) {
     res.status(409).json({ message: error.message });
