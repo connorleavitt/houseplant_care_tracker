@@ -1,10 +1,4 @@
-import {
-  Box,
-  Typography,
-  useTheme,
-  useMediaQuery,
-  Button,
-} from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 
 import WidgetWrapper from "components/WidgetWrapper";
 import { useNavigate } from "react-router";

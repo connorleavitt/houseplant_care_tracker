@@ -35,7 +35,6 @@ const PlantProfileCardWidget = ({
   const { palette } = useTheme();
   const main = palette.neutral.main;
   // const primary = palette.primary.main;
-
   return (
     <Box
       className="pp-card--container"

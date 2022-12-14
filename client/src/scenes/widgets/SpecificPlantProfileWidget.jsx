@@ -12,11 +12,10 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
-  const navigate = useNavigate();
 
-  console.log(
-    `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
-  );
+  // console.log(
+  //   `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
+  // );
 
   const getSpecificUserPlantProfile = async () => {
     const response = await fetch(
@@ -35,7 +34,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   if (userId !== _id) {
     return (
-      <Box>
+      <Box m="2rem" display="flex" flexDirection="column" alignItems="center">
         <h3>This is not your plant!</h3>
         <p>To view your own plant profiles, navigate to Plant Profiles!</p>
       </Box>

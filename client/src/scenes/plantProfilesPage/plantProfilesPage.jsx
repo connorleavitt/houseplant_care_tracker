@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import React from "react";
 import { useSelector } from "react-redux";

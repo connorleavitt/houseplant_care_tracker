@@ -36,7 +36,7 @@ const UserListWidget = () => {
 
   return (
     <>
-      <WidgetWrapper m="1rem 0">
+      <WidgetWrapper m="2rem 0">
         <h3 className="home--list-all-users">All Users</h3>
         {allUsers.map(({ _id, userId, firstName, lastName, picturePath }) => (
           <Box
@@ -46,7 +46,7 @@ const UserListWidget = () => {
             alignItems="center"
             mt="1rem"
           >
-            <UserImage image={picturePath} size="25px" />
+            <UserImage image={picturePath} size="30px" borderRadius="5px" />
             <Box pl="1rem">
               <Typography
                 variant="h4"
