@@ -6,6 +6,7 @@ import {
   getSpecificUserPlantProfile,
   // createPlantProfile,
   postUpdateFormForUserPlantProfile,
+  deleteUserPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
 
 const router = express.Router();
@@ -21,5 +22,8 @@ router.patch("/:userId/:id", verifyToken, postUpdateFormForUserPlantProfile);
 
 // POST
 // router.post("/create", createPlantProfile);
+
+// DELETE
+router.delete("/:userId/:id", verifyToken, deleteUserPlantProfile);
 
 export default router;

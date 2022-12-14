@@ -132,3 +132,18 @@ export const postUpdateFormForUserPlantProfile = async (req, res) => {
 
 // ^^need to figure out futher
 //  1:31:33 in video
+
+// handle specific pp DELETE
+export const deleteUserPlantProfile = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPlantProfile = await PlantProfile.findByIdAndDelete({
+      _id: id,
+    });
+
+    res.status(200).json(deletedPlantProfile);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
