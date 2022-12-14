@@ -374,18 +374,17 @@ h4 {
 }
 
 .pp-card--notes {
-  order: 3;
+  order: 4;
   background-color: lightgray;
   border-radius: 10px;
 }
 
-/* .pp-card--notes .pp-card--headers {
-  margin: 0.2rem 0;
-  padding-top: 1rem;
-} */
+.pp-card--common-issues {
+  order: 3;
+}
 
 .pp-form-buttons {
-  order: 4;
+  order: 5;
 }
 
 .pp-form--slider {

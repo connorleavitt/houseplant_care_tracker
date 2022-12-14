@@ -545,7 +545,7 @@ export default function PlantProfileForm() {
               <Button
                 type="button"
                 sx={{
-                  m: "2rem 0",
+                  m: "1rem",
                   p: "1rem",
                   backgroundColor: palette.primary.light,
                   color: palette.background.dark,
@@ -558,9 +558,9 @@ export default function PlantProfileForm() {
                 disabled={isSubmitting}
                 type="submit"
                 sx={{
-                  m: "2rem 0",
+                  m: "1rem",
                   p: "1rem",
-                  width: "200px",
+                  width: `${isNonMobileScreens ? "200px" : "auto"}`,
                   backgroundColor: palette.primary.main,
                   color: palette.background.alt,
                   "&:hover": { color: palette.primary.main },
