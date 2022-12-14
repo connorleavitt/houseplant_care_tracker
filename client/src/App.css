@@ -325,7 +325,8 @@ h4 {
   border: 5px solid green;
   border-radius: 5px;
   padding: 1rem;
-  margin: 2rem;
+  margin: 2rem 1rem;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }
@@ -338,7 +339,8 @@ h4 {
 
 .pp-card--headers {
   text-align: center;
-  margin: 1rem 0;
+  margin: 0;
+  padding: 1rem 0;
   /* margin-top: 2rem; */
 }
 
@@ -346,19 +348,14 @@ h4 {
   order: 1;
 }
 
-.pp-card--form-label {
-  font-weight: var(--fw-mid);
-}
-
 .pp-card--left-side {
   order: 2;
 }
 
 .pp-card--img {
-  height: 200px;
+  max-height: 500px;
   border: 2px solid gray;
-  margin: 1rem 0;
-  background-color: #1c91da;
+  background-color: #bde6ff;
   text-align: center;
 }
 
@@ -371,19 +368,20 @@ h4 {
   background-color: lightgray;
   border-bottom: 2px solid gray;
   margin: 0;
-  padding: 0.1rem 0;
-  padding-top: 0.3rem;
+  /* padding: 0.1rem 0; */
+  /* padding-top: 0.2rem; */
 }
 
 .pp-card--notes {
   order: 3;
   background-color: lightgray;
+  border-radius: 10px;
 }
 
-.pp-card--notes .pp-card--headers {
+/* .pp-card--notes .pp-card--headers {
   margin: 0.2rem 0;
-  padding-top: 0.3rem;
-}
+  padding-top: 1rem;
+} */
 
 .pp-form-buttons {
   order: 4;
@@ -394,13 +392,22 @@ h4 {
   max-width: 300px;
 }
 
-.textarea----test {
+.pp-common-issues--textarea {
   background-color: inherit;
   margin: 1rem;
-  border: 1px solid red;
   resize: none;
   width: calc(100% - 2rem);
-  height: 100px;
+  /* height: 100px; */
+}
+
+.pp-notes--textarea {
+  background-color: inherit;
+  padding: 1rem;
+  margin: 1rem;
+  margin-top: 0;
+  width: calc(100% - 2rem);
+  /* width: 100%; */
+  min-height: 100px;
 }
 
 .pp-card--form-individual {
@@ -411,17 +418,26 @@ h4 {
 }
 
 .pp-card--form-label {
+  font-weight: var(--fw-mid);
+
   padding-top: 0.2rem;
   margin-right: 0.25rem;
 }
 
 .pp-card--general-info .pp-card--form-label {
-  min-width: 120px;
+  min-width: 130px;
 }
 
 .pp-card--plant-care-needs .pp-card--form-label,
 .pp-card--fertilization .pp-card--form-label {
   min-width: 90px;
+}
+
+.pp-card--plant-care-needs,
+.pp-card--fertilization {
+  margin-top: 1rem;
+  border-top: 2px solid gray;
+  padding-top: 1rem;
 }
 
 .pp-card--form-input {

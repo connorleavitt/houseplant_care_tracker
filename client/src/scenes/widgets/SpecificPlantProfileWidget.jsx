@@ -96,7 +96,6 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
           />
         )
       )}
-      <Button>CLICK ME</Button>
     </>
   );
 };
