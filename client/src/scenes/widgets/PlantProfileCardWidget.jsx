@@ -59,13 +59,20 @@ const PlantProfileCardWidget = ({
                                   "buttons buttons"`,
         }}
       >
-        <Box sx={{ gridArea: "header" }}>
-          <h2 className="pp-card--title">Plant Profile</h2>
-        </Box>
+        {isNonMobileScreens ? (
+          <Box sx={{ gridArea: "header" }}>
+            <h2 className="pp-card--title">Plant Profile</h2>
+          </Box>
+        ) : (
+          <Box sx={{ gridArea: "header" }} mb="1rem">
+            <h2 className="pp-card--title">Plant Profile</h2>
+          </Box>
+        )}
+
         <Box className="pp-card--left-side" sx={{ gridArea: "left" }}>
           <Box className="pp-card--img" borderRadius="5px" p="1rem">
             <img
-              width="100%"
+              width={isNonMobileScreens ? "300px" : "100%"}
               height="auto"
               alt="plant-profile"
               style={{ borderRadius: "0.75rem", maxHeight: "400px" }}
@@ -311,10 +318,9 @@ const PlantProfileCardWidget = ({
           flexDirection="column"
         >
           <Box
-            border="5px solid black"
+            border="3px solid black"
             p="0 1rem .5rem 1rem"
             m="0"
-            mt="1rem"
             borderRadius="10px"
           >
             <Box className="pp-card--general-info">

@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
 import { useNavigate, useParams } from "react-router";
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
 
   // console.log(
   //   `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
@@ -42,59 +45,152 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   }
   return (
     <>
-      {plantProfiles.map(
-        ({
-          _id,
-          userId,
-          userFirstName,
-          userPicturePath,
-          picturePath,
-          plantName,
-          scientificName,
-          dateAcquired,
-          plantFamily,
-          iGotItFrom,
-          toxicity,
-          water,
-          light,
-          soilType,
-          humidity,
-          idealTemp,
-          currentLocation,
-          fertilizationMethod,
-          fertilizationFrequency,
-          waterLevel,
-          sunlightLevel,
-          commonIssues,
-          notes,
-        }) => (
-          <PlantProfileCardWidget
-            key={_id}
-            plantProfileId={_id}
-            plantProfileUserId={userId}
-            userFirstName={userFirstName}
-            plantName={plantName}
-            scientificName={scientificName}
-            picturePath={picturePath}
-            userPicturePath={userPicturePath}
-            dateAcquired={dateAcquired}
-            plantFamily={plantFamily}
-            iGotItFrom={iGotItFrom}
-            toxicity={toxicity}
-            water={water}
-            light={light}
-            soilType={soilType}
-            humidity={humidity}
-            idealTemp={idealTemp}
-            fertilizationMethod={fertilizationMethod}
-            fertilizationFrequency={fertilizationFrequency}
-            currentLocation={currentLocation}
-            waterLevel={waterLevel}
-            sunlightLevel={sunlightLevel}
-            commonIssues={commonIssues}
-            notes={notes}
-          />
-        )
+      {isNonMobileScreens ? (
+        <>
+          <Box
+            display="flex"
+            justifyContent="center"
+            width="50%"
+            mt="2rem"
+            gap="2rem"
+          >
+            <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
+              Previous
+            </Button>
+            <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              Next
+              <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
+            </Button>
+          </Box>
+          {plantProfiles.map(
+            ({
+              _id,
+              userId,
+              userFirstName,
+              userPicturePath,
+              picturePath,
+              plantName,
+              scientificName,
+              dateAcquired,
+              plantFamily,
+              iGotItFrom,
+              toxicity,
+              water,
+              light,
+              soilType,
+              humidity,
+              idealTemp,
+              currentLocation,
+              fertilizationMethod,
+              fertilizationFrequency,
+              waterLevel,
+              sunlightLevel,
+              commonIssues,
+              notes,
+            }) => (
+              <PlantProfileCardWidget
+                key={_id}
+                plantProfileId={_id}
+                plantProfileUserId={userId}
+                userFirstName={userFirstName}
+                plantName={plantName}
+                scientificName={scientificName}
+                picturePath={picturePath}
+                userPicturePath={userPicturePath}
+                dateAcquired={dateAcquired}
+                plantFamily={plantFamily}
+                iGotItFrom={iGotItFrom}
+                toxicity={toxicity}
+                water={water}
+                light={light}
+                soilType={soilType}
+                humidity={humidity}
+                idealTemp={idealTemp}
+                fertilizationMethod={fertilizationMethod}
+                fertilizationFrequency={fertilizationFrequency}
+                currentLocation={currentLocation}
+                waterLevel={waterLevel}
+                sunlightLevel={sunlightLevel}
+                commonIssues={commonIssues}
+                notes={notes}
+              />
+            )
+          )}
+        </>
+      ) : (
+        <>
+          <Box
+            display="flex"
+            justifyContent="center"
+            width="100%"
+            mt="2rem"
+            gap="2rem"
+          >
+            <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
+              Previous
+            </Button>
+            <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              Next
+              <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
+            </Button>
+          </Box>
+          {plantProfiles.map(
+            ({
+              _id,
+              userId,
+              userFirstName,
+              userPicturePath,
+              picturePath,
+              plantName,
+              scientificName,
+              dateAcquired,
+              plantFamily,
+              iGotItFrom,
+              toxicity,
+              water,
+              light,
+              soilType,
+              humidity,
+              idealTemp,
+              currentLocation,
+              fertilizationMethod,
+              fertilizationFrequency,
+              waterLevel,
+              sunlightLevel,
+              commonIssues,
+              notes,
+            }) => (
+              <PlantProfileCardWidget
+                key={_id}
+                plantProfileId={_id}
+                plantProfileUserId={userId}
+                userFirstName={userFirstName}
+                plantName={plantName}
+                scientificName={scientificName}
+                picturePath={picturePath}
+                userPicturePath={userPicturePath}
+                dateAcquired={dateAcquired}
+                plantFamily={plantFamily}
+                iGotItFrom={iGotItFrom}
+                toxicity={toxicity}
+                water={water}
+                light={light}
+                soilType={soilType}
+                humidity={humidity}
+                idealTemp={idealTemp}
+                fertilizationMethod={fertilizationMethod}
+                fertilizationFrequency={fertilizationFrequency}
+                currentLocation={currentLocation}
+                waterLevel={waterLevel}
+                sunlightLevel={sunlightLevel}
+                commonIssues={commonIssues}
+                notes={notes}
+              />
+            )
+          )}
+        </>
       )}
     </>
   );
