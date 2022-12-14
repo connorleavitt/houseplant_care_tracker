@@ -46,7 +46,13 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   return (
     <>
       {isNonMobileScreens ? (
-        <>
+        <Box
+          display="flex"
+          flexDirection="column"
+          // justifyContent="center"
+          alignItems="center"
+          width="100%"
+        >
           <Box
             display="flex"
             justifyContent="center"
@@ -63,61 +69,63 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
             </Button>
           </Box>
-          {plantProfiles.map(
-            ({
-              _id,
-              userId,
-              userFirstName,
-              userPicturePath,
-              picturePath,
-              plantName,
-              scientificName,
-              dateAcquired,
-              plantFamily,
-              iGotItFrom,
-              toxicity,
-              water,
-              light,
-              soilType,
-              humidity,
-              idealTemp,
-              currentLocation,
-              fertilizationMethod,
-              fertilizationFrequency,
-              waterLevel,
-              sunlightLevel,
-              commonIssues,
-              notes,
-            }) => (
-              <PlantProfileCardWidget
-                key={_id}
-                plantProfileId={_id}
-                plantProfileUserId={userId}
-                userFirstName={userFirstName}
-                plantName={plantName}
-                scientificName={scientificName}
-                picturePath={picturePath}
-                userPicturePath={userPicturePath}
-                dateAcquired={dateAcquired}
-                plantFamily={plantFamily}
-                iGotItFrom={iGotItFrom}
-                toxicity={toxicity}
-                water={water}
-                light={light}
-                soilType={soilType}
-                humidity={humidity}
-                idealTemp={idealTemp}
-                fertilizationMethod={fertilizationMethod}
-                fertilizationFrequency={fertilizationFrequency}
-                currentLocation={currentLocation}
-                waterLevel={waterLevel}
-                sunlightLevel={sunlightLevel}
-                commonIssues={commonIssues}
-                notes={notes}
-              />
-            )
-          )}
-        </>
+          <Box width="80%">
+            {plantProfiles.map(
+              ({
+                _id,
+                userId,
+                userFirstName,
+                userPicturePath,
+                picturePath,
+                plantName,
+                scientificName,
+                dateAcquired,
+                plantFamily,
+                iGotItFrom,
+                toxicity,
+                water,
+                light,
+                soilType,
+                humidity,
+                idealTemp,
+                currentLocation,
+                fertilizationMethod,
+                fertilizationFrequency,
+                waterLevel,
+                sunlightLevel,
+                commonIssues,
+                notes,
+              }) => (
+                <PlantProfileCardWidget
+                  key={_id}
+                  plantProfileId={_id}
+                  plantProfileUserId={userId}
+                  userFirstName={userFirstName}
+                  plantName={plantName}
+                  scientificName={scientificName}
+                  picturePath={picturePath}
+                  userPicturePath={userPicturePath}
+                  dateAcquired={dateAcquired}
+                  plantFamily={plantFamily}
+                  iGotItFrom={iGotItFrom}
+                  toxicity={toxicity}
+                  water={water}
+                  light={light}
+                  soilType={soilType}
+                  humidity={humidity}
+                  idealTemp={idealTemp}
+                  fertilizationMethod={fertilizationMethod}
+                  fertilizationFrequency={fertilizationFrequency}
+                  currentLocation={currentLocation}
+                  waterLevel={waterLevel}
+                  sunlightLevel={sunlightLevel}
+                  commonIssues={commonIssues}
+                  notes={notes}
+                />
+              )
+            )}
+          </Box>
+        </Box>
       ) : (
         <>
           <Box

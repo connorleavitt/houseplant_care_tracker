@@ -11,17 +11,7 @@ export default function SpecificPlantProfilePage() {
   return (
     <Box>
       <NavbarPage userId={_id} />
-
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        // gap="2rem"
-      >
-        <SpecificPlantProfileWidget userId={_id} />
-      </Box>
+      <SpecificPlantProfileWidget userId={_id} />
     </Box>
   );
 }

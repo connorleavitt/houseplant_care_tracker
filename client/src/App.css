@@ -355,8 +355,8 @@ h4 {
 
 .pp-card--img {
   max-height: 500px;
-  border: 2px solid gray;
-  background-color: #bde6ff;
+  /* border: 2px solid gray; */
+  /* background-color: #bde6ff; */
   text-align: center;
 }
 
