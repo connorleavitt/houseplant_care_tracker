@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
   IconButton,
   InputBase,
   Typography,
@@ -10,6 +9,8 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+import { Box } from "@mui/system";
+
 import { Search, DarkMode, LightMode, Menu, Close } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
@@ -37,28 +38,30 @@ export default function NavbarPage({ userId, picturePath }) {
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt} className="navbar">
       <FlexBetween gap="1.75rem">
-        <Typography
-          fontWeight="bold"
-          fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color={primaryMain}
-          onClick={() => navigate("/home")}
-          sx={{
-            "&:hover": {
-              color: primaryDark,
-              cursor: "pointer",
-            },
-          }}
-        >
-          Houseplant Care Tracker
-        </Typography>
+        <Box sx={{ minWidth: "300px" }}>
+          <Typography
+            fontWeight="bold"
+            fontSize="clamp(1rem, 1.5rem, 2rem)"
+            color={primaryMain}
+            onClick={() => navigate("/home")}
+            sx={{
+              "&:hover": {
+                color: primaryDark,
+                cursor: "pointer",
+              },
+            }}
+          >
+            Houseplant Care Tracker
+          </Typography>
+        </Box>
         {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
             borderRadius="9px"
-            gap="3rem"
-            padding="0.1rem 1.5rem"
+            gap="1rem"
+            padding="0.1rem 1rem"
           >
-            <InputBase placeholder="Search..." />
+            <InputBase sx={{ minWidth: "100px" }} placeholder="Search..." />
             <IconButton>
               <Search />
             </IconButton>
@@ -67,7 +70,7 @@ export default function NavbarPage({ userId, picturePath }) {
       </FlexBetween>
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
-        <FlexBetween gap="2rem">
+        <FlexBetween gap="1rem">
           <IconButton
             sx={{ fontSize: "25px", borderRadius: "5px" }}
             onClick={() => dispatch(setMode())}
@@ -76,6 +79,11 @@ export default function NavbarPage({ userId, picturePath }) {
               <DarkMode sx={{ fontSize: "25px" }} />
             ) : (
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
+            )}
+            {theme.palette.mode === "dark" ? (
+              <p className="text-underneath-icon-on-hover">LIGHT MODE</p>
+            ) : (
+              <p className="text-underneath-icon-on-hover dark">DARK MODE</p>
             )}
           </IconButton>
           <IconButton
@@ -101,7 +109,10 @@ export default function NavbarPage({ userId, picturePath }) {
               </p>
             )}
           </IconButton>
-          <IconButton sx={{ fontSize: "25px", borderRadius: "5px" }}>
+          <IconButton
+            sx={{ fontSize: "25px", borderRadius: "5px" }}
+            onClick={() => navigate(`/watering`)}
+          >
             {theme.palette.mode === "dark" ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-fill-drip"
@@ -175,7 +186,10 @@ export default function NavbarPage({ userId, picturePath }) {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
+              <MenuItem
+                onClick={() => navigate("/user/account")}
+                value={fullName}
+              >
                 <Typography fontSize="1rem">{fullName}</Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>
