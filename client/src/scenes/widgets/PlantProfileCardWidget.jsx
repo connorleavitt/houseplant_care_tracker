@@ -1,5 +1,12 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
+import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+
+import HomeIcon from "@mui/icons-material/Home";
 import moment from "moment";
+import FlexBetween from "components/FlexBetween";
 
 const PlantProfileCardWidget = ({
   plantProfileId,
@@ -61,7 +68,227 @@ const PlantProfileCardWidget = ({
             src={`http://localhost:3001/assets/${picturePath}`}
           />
         </Box>
-        <Box className="pp-card--common-issues">
+
+        <Box className="pp-card--location" m="1rem 0">
+          <h4 className="pp-card--headers">CURRENT LOCATION</h4>
+          <Box
+            className="pp-card--locations-container"
+            display="flex"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HomeIcon
+                sx={{
+                  opacity: `${currentLocation === "Indoors" ? "1" : ".3"}`,
+                  fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                }}
+              />
+              <Typography
+                className="pp-card--location-item"
+                fontWeight="bold"
+                sx={{
+                  opacity: `${currentLocation === "Indoors" ? "1" : ".3"}`,
+                }}
+                // fontSize="1.1rem"
+              >
+                INDOORS
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <NaturePeopleIcon
+                sx={{
+                  opacity: `${currentLocation === "Outdoors" ? "1" : ".3"}`,
+                  fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                }}
+              />
+              <Typography
+                className="pp-card--location-item"
+                fontWeight="bold"
+                sx={{
+                  opacity: `${currentLocation === "Outdoors" ? "1" : ".3"}`,
+                }}
+                // fontSize="1.1rem"
+              >
+                OUTDOORS
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HelpCenterIcon
+                sx={{
+                  opacity: `${currentLocation === "Other" ? "1" : ".3"}`,
+                  fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                }}
+              />
+              <Typography
+                className="pp-card--location-item"
+                fontWeight="bold"
+                sx={{
+                  opacity: `${currentLocation === "Other" ? "1" : ".3"}`,
+                }}
+                // fontSize="1.1rem"
+              >
+                OTHER
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          className="pp-card--water"
+          border="2px solid darkblue"
+          backgroundColor="lightblue"
+          borderRadius="10px"
+          m="1rem 0"
+        >
+          <h4 className="pp-card--headers">WATER</h4>
+          <Box className="pp-card--water-container">
+            <FlexBetween m="0 2rem">
+              <Box display="flex" alignItems="center">
+                <FormatColorFillIcon
+                  sx={{
+                    opacity: `${waterLevel >= 1 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <FormatColorFillIcon
+                  sx={{
+                    opacity: `${waterLevel >= 2 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <FormatColorFillIcon
+                  sx={{
+                    opacity: `${waterLevel >= 3 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <FormatColorFillIcon
+                  sx={{
+                    opacity: `${waterLevel >= 4 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <FormatColorFillIcon
+                  sx={{
+                    opacity: `${waterLevel >= 5 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+            </FlexBetween>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-end"
+              m="1rem 1rem .5rem 1rem"
+            >
+              <Typography>Plant's desired watering:</Typography>
+              <Typography
+                sx={{
+                  fontSize: `${isNonMobileScreens ? "1.25rem" : "1.1rem"}`,
+                }}
+                pl="0.5rem"
+                fontWeight="bold"
+              >
+                LEVEL {waterLevel}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          className="pp-card--sunlight"
+          border="2px solid darkred"
+          backgroundColor="lightyellow"
+          borderRadius="10px"
+          m="1rem 0"
+        >
+          <h4 className="pp-card--headers">SUNLIGHT</h4>
+          <Box className="pp-card--sunlight-container">
+            <FlexBetween m="0 2rem">
+              <Box display="flex" alignItems="center">
+                <WbSunnyIcon
+                  sx={{
+                    opacity: `${sunlightLevel >= 1 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <WbSunnyIcon
+                  sx={{
+                    opacity: `${sunlightLevel >= 2 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <WbSunnyIcon
+                  sx={{
+                    opacity: `${sunlightLevel >= 3 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <WbSunnyIcon
+                  sx={{
+                    opacity: `${sunlightLevel >= 4 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+              <Box display="flex" alignItems="center">
+                <WbSunnyIcon
+                  sx={{
+                    opacity: `${sunlightLevel >= 5 ? "1" : ".3"}`,
+                    fontSize: `${isNonMobileScreens ? "50px" : "30px"}`,
+                  }}
+                />
+              </Box>
+            </FlexBetween>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-end"
+              m="1rem 1rem .5rem 1rem"
+            >
+              <Typography>Plant's desired sunlight:</Typography>
+              <Typography
+                sx={{
+                  fontSize: `${isNonMobileScreens ? "1.25rem" : "1.1rem"}`,
+                }}
+                pl="0.5rem"
+                fontWeight="bold"
+              >
+                LEVEL {sunlightLevel}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box className="pp-card--common-issues" m="1rem 0">
           <h4 className="pp-card--headers">COMMON ISSUES</h4>
           <div className="textarea----test">{commonIssues}</div>
         </Box>
@@ -157,28 +384,6 @@ const PlantProfileCardWidget = ({
             <div className="pp-card--form-label">FREQUENCY:</div>
             <Typography color={main} fontSize="1.5rem" fontWeight="600">
               {fertilizationFrequency}
-            </Typography>
-          </div>
-        </Box>
-        <Box className="pp-card--location">
-          <h4 className="pp-card--headers">CURRENT LOCATION</h4>
-          <div className="pp-card--locations-container">
-            <div className="pp-card--location-item">
-              Currently located <strong>{currentLocation}</strong>
-            </div>
-          </div>
-        </Box>
-        <Box className="pp-card--water">
-          <h4 className="pp-card--headers">WATER</h4>
-          <div className="pp-card--water-container">
-            <Typography>Plant's desired water level: {waterLevel}</Typography>
-          </div>
-        </Box>
-        <Box className="pp-card--sunlight">
-          <h4 className="pp-card--headers">SUNLIGHT</h4>
-          <div className="pp-card--sunlight-container">
-            <Typography>
-              Plant's desired sunlight level: {sunlightLevel}
             </Typography>
           </div>
         </Box>

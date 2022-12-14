@@ -339,7 +339,7 @@ h4 {
 .pp-card--headers {
   text-align: center;
   margin: 1rem 0;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
 
 .pp-card--right-side {
@@ -432,20 +432,20 @@ h4 {
   border-bottom: 1px solid rgba(85, 85, 85, 0.5);
 }
 
-.pp-card--locations-container {
+/* .pp-card--locations-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 
-.pp-card--location-item {
+/* .pp-card--location-item {
   padding: 0.25rem 0.5rem;
-}
-
+} */
+/* 
 .pp-card--location-item:first-child {
   background-color: #da711c;
   border-radius: 5px;
-}
+} */
 
 .pp-card--icon-water {
   padding: 0.5rem;

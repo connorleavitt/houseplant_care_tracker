@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
 import { useNavigate, useParams } from "react-router";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -96,6 +96,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
           />
         )
       )}
+      <Button>CLICK ME</Button>
     </>
   );
 };
