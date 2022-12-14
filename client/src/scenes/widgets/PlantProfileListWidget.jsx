@@ -40,6 +40,11 @@ const PlantProfileListWidget = ({
         }
         sx={{
           cursor: "pointer",
+          backgroundColor: "#f9f9f9",
+          borderRadius: "10px",
+          "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+            backgroundColor: `${palette.primary.light}`,
+          },
         }}
       >
         <Box>
@@ -48,7 +53,7 @@ const PlantProfileListWidget = ({
             width="100%"
             height="100%"
             alt="plant-profile"
-            style={{ borderRadius: "0.75rem" }}
+            style={{ borderRadius: "0.5rem" }}
             src={`http://localhost:3001/assets/${picturePath}`}
           />
         </Box>

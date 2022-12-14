@@ -3,10 +3,8 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
-
 import HomeIcon from "@mui/icons-material/Home";
 import moment from "moment";
-import FlexBetween from "components/FlexBetween";
 
 const PlantProfileCardWidget = ({
   plantProfileId,

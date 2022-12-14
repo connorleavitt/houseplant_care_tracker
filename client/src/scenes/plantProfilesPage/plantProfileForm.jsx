@@ -506,14 +506,12 @@ export default function PlantProfileForm() {
               flexDirection="column"
             >
               <h4 className="pp-card--headers">COMMON ISSUES</h4>
-              <TextField
-                id="outlined-multiline-flexible"
+              <Field
                 name="commonIssues"
                 placeholder="Type in your common issues..."
-                label=""
-                multiline
-                rows={5}
-                // style={{ width: 100% }}
+                label="COMMON ISSUES"
+                type="input"
+                as={TextField}
               />
             </Box>
             <Box
@@ -523,14 +521,12 @@ export default function PlantProfileForm() {
               flexDirection="column"
             >
               <h4 className="pp-card--headers">NOTES</h4>
-              <TextField
-                id="outlined-multiline-flexible"
+              <Field
                 name="notes"
                 placeholder="Type in your notes..."
-                label=""
-                multiline
-                rows={5}
-                // style={{ width: 500 }}
+                label="NOTES"
+                type="input"
+                as={TextField}
               />
             </Box>
             {/* BUTTONS */}

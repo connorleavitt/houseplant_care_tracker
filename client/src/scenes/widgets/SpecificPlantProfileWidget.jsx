@@ -1,6 +1,6 @@
 // import WidgetWrapper from "components/WidgetWrapper";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
 import { useNavigate, useParams } from "react-router";
@@ -11,6 +11,10 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [error, setError] = useState(null);
+
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
@@ -36,6 +40,28 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   useEffect(() => {
     getSpecificUserPlantProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleDelete = async () => {
+    const response = await fetch(
+      `http://localhost:3001/plant-profiles/${userId}/${id}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.error);
+      console.log(error);
+    }
+    if (response.ok) {
+      setError(null);
+      console.log("plant profile delete", data);
+      navigate("/plant-profiles");
+    }
+  };
+
   if (userId !== _id) {
     return (
       <Box m="2rem" display="flex" flexDirection="column" alignItems="center">
@@ -57,14 +83,10 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
           <Box
             display="flex"
             justifyContent="center"
-            width="50%"
+            // width="100%"
             mt="2rem"
             gap="2rem"
           >
-            <Button className="spp--update-btn" sx={{ fontSize: "1.25rem" }}>
-              <EditIcon sx={{ fontSize: "1.5rem" }} />
-              Update Plant Profile
-            </Button>
             <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
               <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
               Previous
@@ -72,6 +94,18 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
             <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
               Next
               <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
+            </Button>
+            <Button className="spp--update-btn" sx={{ fontSize: "1.25rem" }}>
+              <EditIcon sx={{ fontSize: "1.5rem" }} />
+              Update
+            </Button>
+            <Button
+              className="spp--delete-btn"
+              sx={{ fontSize: "1.25rem" }}
+              onClick={handleDelete}
+            >
+              <EditIcon sx={{ fontSize: "1.5rem" }} />
+              Delete
             </Button>
           </Box>
           <Box width="80%">

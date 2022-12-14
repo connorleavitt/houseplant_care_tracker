@@ -376,7 +376,7 @@ h4 {
 .pp-card--notes {
   order: 4;
   background-color: lightgray;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .pp-card--common-issues {
@@ -510,16 +510,25 @@ h4 {
 
 .MuiButton-root.spp--change-btns {
   border: 2px solid var(--clr-main);
-  width: calc(50% - 2rem);
+  min-width: fit-content;
   color: var(--clr-dark);
   background-color: rgba(var(--clr-accent-rgb), 0.25);
 }
 
 .MuiButton-root.spp--update-btn {
   border: 2px solid var(--clr-main);
-  width: calc(100% - 2rem);
+  min-width: fit-content;
+
   color: var(--clr-dark);
   background-color: rgba(var(--clr-accent-2-rgb), 0.25);
+}
+
+.MuiButton-root.spp--delete-btn {
+  border: 2px solid orange;
+  min-width: fit-content;
+
+  color: var(--clr-dark);
+  background-color: var(--clr-accent-2);
 }
 
 /* SEARCHBAR */
