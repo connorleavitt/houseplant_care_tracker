@@ -4,7 +4,8 @@ import {
   getAllPlantProfiles,
   getUserPlantProfiles,
   getSpecificUserPlantProfile,
-  createPlantProfile,
+  // createPlantProfile,
+  postUpdateFormForUserPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
 
 const router = express.Router();
@@ -16,7 +17,7 @@ router.get("/:userId/all", verifyToken, getUserPlantProfiles);
 router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 
 // UPDATE
-// router.patch('/:')
+router.patch("/:userId/:id", verifyToken, postUpdateFormForUserPlantProfile);
 
 // POST
 // router.post("/create", createPlantProfile);

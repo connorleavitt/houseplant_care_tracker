@@ -99,37 +99,36 @@ export const createPlantProfile = async (req, res) => {
 };
 
 // handle specific pp UPDATE form on POST.
-// export const postUpdateFormForUserPlantProfile = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const {
-//       userId,
-//       plantName,
-//       scientificName,
-//       dateAcquired,
-//       plantType,
-//       iGotItFrom,
-//       toxicity,
-//       water,
-//       light,
-//       soilType,
-//       humidity,
-//       idealTemp,
-//       fertilizationMethod,
-//       fertilizationFrequency,
-//       waterLevel,
-//       sunlightLevel,
-//       commonIssues,
-//       notes,
-//       picturePath,
-//     } = req.body;
-//     const updatedPlantProfile = await PlantProfile.findByIdAndUpdate({ id });
+export const postUpdateFormForUserPlantProfile = async (req, res) => {
+  try {
+    const { userId, id } = req.params;
+    const {
+      plantName,
+      scientificName,
+      dateAcquired,
+      plantType,
+      iGotItFrom,
+      toxicity,
+      water,
+      light,
+      soilType,
+      humidity,
+      idealTemp,
+      fertilizationMethod,
+      fertilizationFrequency,
+      waterLevel,
+      sunlightLevel,
+      commonIssues,
+      notes,
+      picturePath,
+    } = req.body;
+    const updatedPlantProfile = await PlantProfile.findByIdAndUpdate({ id });
 
-//     res.status(200).json(updatedPlantProfile);
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
+    res.status(200).json(updatedPlantProfile);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 // ^^need to figure out futher
 //  1:31:33 in video
