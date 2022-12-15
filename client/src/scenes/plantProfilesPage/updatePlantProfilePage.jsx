@@ -7,7 +7,6 @@ export default function UpdatePlantProfilePage() {
   return (
     <Box>
       <NavbarPage />
-      <h2>TEST TEST TEST</h2>
       <PlantProfileForm pageType={"edit"} />
     </Box>
   );

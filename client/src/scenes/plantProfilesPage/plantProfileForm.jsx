@@ -25,6 +25,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import { setPlantProfiles } from "state";
+import { render } from "@testing-library/react";
 
 // const plantProfileSchema = yup.object().shape({
 //   plantName: yup.string().required("required"),
@@ -88,7 +89,7 @@ export default function PlantProfileForm({ pageType }) {
 
     if (savedUserResponse.ok) {
       setError(null);
-      console.log("New plant profile added", savedPlantProfile);
+      // console.log("New plant profile added", savedPlantProfile);
       navigate("/plant-profiles");
     }
   };
@@ -112,7 +113,7 @@ export default function PlantProfileForm({ pageType }) {
         body: formData,
       }
     );
-    console.log(savedUpdatedUserResponse);
+    // console.log(savedUpdatedUserResponse);
     const savedUpdatedPlantProfile = await savedUpdatedUserResponse.json();
     onSubmitProps.resetForm();
 
@@ -123,7 +124,7 @@ export default function PlantProfileForm({ pageType }) {
 
     if (savedUpdatedUserResponse.ok) {
       setError(null);
-      console.log("Plant profile updated:", savedUpdatedPlantProfile);
+      // console.log("Plant profile updated:", savedUpdatedPlantProfile);
       navigate(`/plant-profiles/${userId}/${id}`);
     }
   };
@@ -132,16 +133,6 @@ export default function PlantProfileForm({ pageType }) {
     values,
     onSubmitProps
   ) => {
-    // const formData = new FormData();
-    // for (let value in values) {
-    //   if (value === "picturePath") {
-    //     delete values[value];
-    //   } else {
-    //     formData.append(value, values[value]);
-    //   }
-    // }
-    // console.log(formData);
-    // delete values.picturePath;
     const savedUpdatedUserResponse = await fetch(
       `http://localhost:3001/plant-profiles/${userId}/${id}/edit`,
       {
@@ -150,7 +141,7 @@ export default function PlantProfileForm({ pageType }) {
         body: JSON.stringify(values),
       }
     );
-    console.log(savedUpdatedUserResponse);
+    // console.log(savedUpdatedUserResponse);
     const savedUpdatedPlantProfile = await savedUpdatedUserResponse.json();
     onSubmitProps.resetForm();
 
@@ -161,7 +152,7 @@ export default function PlantProfileForm({ pageType }) {
 
     if (savedUpdatedUserResponse.ok) {
       setError(null);
-      console.log("Plant profile updated:", savedUpdatedPlantProfile);
+      // console.log("Plant profile updated:", savedUpdatedPlantProfile);
       navigate(`/plant-profiles/${userId}/${id}`);
     }
   };
@@ -174,19 +165,24 @@ export default function PlantProfileForm({ pageType }) {
         values.picture !== undefined &&
         values.picture.name !== plantProfiles[0].picturePath
       ) {
-        console.log(
-          "NEW PHOTO",
-          plantProfiles[0].picturePath,
-          values.picture.name
-        );
         await updatePlantProfileFormWithNewPhoto(values, onSubmitProps);
       } else {
-        console.log("CURRENT PHOTO", plantProfiles[0].picturePath);
         delete values.picturePath;
-        console.log(values);
         await updatePlantProfileFormWithCurrentPhoto(values, onSubmitProps);
       }
     }
+  };
+
+  const [waterSlider, setWaterSlider] = useState(
+    isEdit ? plantProfiles[0].waterLevel : 3
+  );
+
+  const resetSliders = () => {
+    if (isEdit) {
+      setWaterSlider(plantProfiles[0].waterLevel);
+    }
+
+    if (isCreate) setWaterSlider(3);
   };
 
   const PrettoSlider = styled(Slider)({
@@ -283,9 +279,9 @@ export default function PlantProfileForm({ pageType }) {
 
       // validationSchema={plantProfileSchema}
     >
-      {({ values, isSubmitting, setFieldValue }) => (
+      {({ values, isSubmitting, setFieldValue, resetForm }) => (
         <Form>
-          <pre>{JSON.stringify(values, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
 
           <Box
             className="pp-card--container"
@@ -302,13 +298,13 @@ export default function PlantProfileForm({ pageType }) {
               margin: `${isNonMobileScreens ? "2rem 15rem" : "0"}`,
             }}
           >
-            {isNonMobileScreens ? (
+            {isNonMobileScreens && isCreate ? (
               <Box sx={{ gridArea: "header", m: "1rem", mb: "0" }}>
                 <h2 className="pp-card--title">Create a new Plant Profile</h2>
               </Box>
             ) : (
               <Box sx={{ gridArea: "header" }} mb="1rem">
-                <h2 className="pp-card--title">Create a new Plant Profile</h2>
+                <h2 className="pp-card--title">Update your Plant Profile</h2>
               </Box>
             )}
 
@@ -482,7 +478,7 @@ export default function PlantProfileForm({ pageType }) {
                     className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
-                    defaultValue={3}
+                    defaultValue={waterSlider}
                     min={1}
                     max={5}
                     name="waterLevel"
@@ -507,7 +503,7 @@ export default function PlantProfileForm({ pageType }) {
                     className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
-                    defaultValue={3}
+                    defaultValue={isEdit ? plantProfiles[0].sunlightLevel : 3}
                     min={1}
                     max={5}
                     name="sunlightLevel"
@@ -711,6 +707,27 @@ export default function PlantProfileForm({ pageType }) {
             >
               <Button
                 type="button"
+                onClick={() => {
+                  isCreate
+                    ? navigate(`/plant-profiles/`)
+                    : navigate(`/plant-profiles/${userId}/${id}`);
+                }}
+                sx={{
+                  m: "1rem",
+                  p: "1rem",
+                  backgroundColor: palette.primary.medium,
+                  color: palette.background.dark,
+                  "&:hover": { color: palette.primary.main },
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="reset"
+                onClick={() => {
+                  resetForm();
+                  resetSliders();
+                }}
                 sx={{
                   m: "1rem",
                   p: "1rem",
@@ -719,7 +736,7 @@ export default function PlantProfileForm({ pageType }) {
                   "&:hover": { color: palette.primary.main },
                 }}
               >
-                Clear Fields
+                {isEdit ? "Reset to original" : "Clear Fields"}
               </Button>
               <Button
                 disabled={isSubmitting}
