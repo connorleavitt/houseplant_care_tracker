@@ -6,6 +6,7 @@ import {
   getSpecificUserPlantProfile,
   // createPlantProfile,
   deleteUserPlantProfile,
+  updateUserPlantProfileCurrentPhoto,
 } from "../controllers/plant-profiles-controller.js";
 
 const router = express.Router();
@@ -17,7 +18,11 @@ router.get("/:userId/all", verifyToken, getUserPlantProfiles);
 router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 
 // UPDATE
-// router.patch("/:userId/:id/edit", verifyToken, updateUserPlantProfile);
+router.patch(
+  "/:userId/:id/edit",
+  verifyToken,
+  updateUserPlantProfileCurrentPhoto
+);
 
 // POST
 // router.post("/create", createPlantProfile);

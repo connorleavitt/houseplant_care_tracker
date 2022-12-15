@@ -99,7 +99,7 @@ export const createPlantProfile = async (req, res) => {
 };
 
 // handle specific pp UPDATE form on POST.
-export const updateUserPlantProfile = async (req, res) => {
+export const updateUserPlantProfileNewPhoto = async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -146,6 +146,61 @@ export const updateUserPlantProfile = async (req, res) => {
         commonIssues,
         notes,
         picturePath,
+      }
+    );
+
+    res.status(200).json(updatedPlantProfile);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// handle specific pp UPDATE form on POST.
+export const updateUserPlantProfileCurrentPhoto = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      plantName,
+      scientificName,
+      dateAcquired,
+      plantType,
+      iGotItFrom,
+      toxicity,
+      water,
+      light,
+      soilType,
+      humidity,
+      idealTemp,
+      fertilizationMethod,
+      fertilizationFrequency,
+      currentLocation,
+      waterLevel,
+      sunlightLevel,
+      commonIssues,
+      notes,
+    } = req.body;
+
+    const updatedPlantProfile = await PlantProfile.findByIdAndUpdate(
+      { _id: id },
+      {
+        plantName,
+        scientificName,
+        dateAcquired,
+        plantType,
+        iGotItFrom,
+        toxicity,
+        water,
+        light,
+        soilType,
+        humidity,
+        idealTemp,
+        fertilizationMethod,
+        fertilizationFrequency,
+        currentLocation,
+        waterLevel,
+        sunlightLevel,
+        commonIssues,
+        notes,
       }
     );
 

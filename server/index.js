@@ -14,7 +14,7 @@ import plantProfileRoutes from "./routes/plant-profiles.js";
 import { register } from "./controllers/auth.js";
 import {
   createPlantProfile,
-  updateUserPlantProfile,
+  updateUserPlantProfileNewPhoto,
 } from "./controllers/plant-profiles-controller.js";
 import { verifyToken } from "./middleware/auth.js";
 // import User from "./models/User.js";
@@ -59,9 +59,9 @@ app.post(
   createPlantProfile
 );
 app.patch(
-  "/plant-profiles/:userId/:id/edit",
+  "/plant-profiles/:userId/:id/edit/new",
   upload.single("picture"),
-  updateUserPlantProfile
+  updateUserPlantProfileNewPhoto
 );
 
 // ROUTES
