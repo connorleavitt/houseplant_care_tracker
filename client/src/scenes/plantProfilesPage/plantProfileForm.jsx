@@ -103,7 +103,6 @@ export default function PlantProfileForm({ pageType }) {
       }
     }
     formData.append("picturePath", values.picture.name);
-    console.log(formData);
 
     const savedUpdatedUserResponse = await fetch(
       `http://localhost:3001/plant-profiles/${userId}/${id}/edit/new`,
@@ -142,6 +141,7 @@ export default function PlantProfileForm({ pageType }) {
     //   }
     // }
     // console.log(formData);
+    // delete values.picturePath;
     const savedUpdatedUserResponse = await fetch(
       `http://localhost:3001/plant-profiles/${userId}/${id}/edit`,
       {
@@ -170,7 +170,6 @@ export default function PlantProfileForm({ pageType }) {
     // await newPlantProfileForm(values, onSubmitProps);
     if (isCreate) await newPlantProfileForm(values, onSubmitProps);
     if (isEdit) {
-      console.log(values);
       if (
         values.picture !== undefined &&
         values.picture.name !== plantProfiles[0].picturePath
@@ -183,6 +182,8 @@ export default function PlantProfileForm({ pageType }) {
         await updatePlantProfileFormWithNewPhoto(values, onSubmitProps);
       } else {
         console.log("CURRENT PHOTO", plantProfiles[0].picturePath);
+        delete values.picturePath;
+        console.log(values);
         await updatePlantProfileFormWithCurrentPhoto(values, onSubmitProps);
       }
     }
