@@ -18,11 +18,7 @@ router.get("/:userId/all", verifyToken, getUserPlantProfiles);
 router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 
 // UPDATE
-router.patch(
-  "/:userId/:id/edit",
-  verifyToken,
-  updateUserPlantProfileCurrentPhoto
-);
+router.patch("/:userId/:id/edit", updateUserPlantProfileCurrentPhoto);
 
 // POST
 // router.post("/create", createPlantProfile);
