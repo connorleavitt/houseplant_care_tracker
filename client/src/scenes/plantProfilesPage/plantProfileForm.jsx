@@ -26,26 +26,26 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import { setPlantProfiles } from "state";
 
-const plantProfileSchema = yup.object().shape({
-  plantName: yup.string().required("required"),
-  scientificName: yup.string().required("required"),
-  dateAcquired: yup.string().required("required"),
-  plantFamily: yup.string().required("required"),
-  iGotItFrom: yup.string().required("required"),
-  toxicity: yup.string().required("required"),
-  water: yup.string().required("required"),
-  light: yup.string().required("required"),
-  soilType: yup.string().required("required"),
-  humidity: yup.string().required("required"),
-  idealTemp: yup.string().required("required"),
-  fertilizationMethod: yup.string().required("required"),
-  fertilizationFrequency: yup.string().required("required"),
-  currentLocation: yup.string().required("required"),
-  waterLevel: yup.string().required("required"),
-  sunlightLevel: yup.string().required("required"),
-  commonIssues: yup.string().required("required"),
-  notes: yup.string().required("required"),
-});
+// const plantProfileSchema = yup.object().shape({
+//   plantName: yup.string().required("required"),
+//   scientificName: yup.string().required("required"),
+//   dateAcquired: yup.string().required("required"),
+//   plantFamily: yup.string().required("required"),
+//   iGotItFrom: yup.string().required("required"),
+//   toxicity: yup.string().required("required"),
+//   water: yup.string().required("required"),
+//   light: yup.string().required("required"),
+//   soilType: yup.string().required("required"),
+//   humidity: yup.string().required("required"),
+//   idealTemp: yup.string().required("required"),
+//   fertilizationMethod: yup.string().required("required"),
+//   fertilizationFrequency: yup.string().required("required"),
+//   currentLocation: yup.string().required("required"),
+//   waterLevel: yup.string().required("required"),
+//   sunlightLevel: yup.string().required("required"),
+//   commonIssues: yup.string().required("required"),
+//   notes: yup.string().required("required"),
+// });
 
 export default function PlantProfileForm({ pageType }) {
   const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
@@ -53,13 +53,14 @@ export default function PlantProfileForm({ pageType }) {
   // const token = useSelector((state) => state.token);
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const [error, setError] = useState(null);
+  const [editPhoto, setEditPhoto] = useState(false);
   const { palette } = useTheme();
   const navigate = useNavigate();
   const { userId, id } = useParams();
   const isCreate = pageType === "create";
   const isEdit = pageType === "edit";
 
-  console.log(pageType, userId, id);
+  // console.log(pageType, userId, id);
 
   const newPlantProfileForm = async (values, onSubmitProps) => {
     const formData = new FormData();
@@ -92,15 +93,20 @@ export default function PlantProfileForm({ pageType }) {
     }
   };
 
-  const updatePlantProfileForm = async (values, onSubmitProps) => {
+  const updatePlantProfileFormWithNewPhoto = async (values, onSubmitProps) => {
     const formData = new FormData();
     for (let value in values) {
-      formData.append(value, values[value]);
+      if (value === "picturePath") {
+        delete values[value];
+      } else {
+        formData.append(value, values[value]);
+      }
     }
     formData.append("picturePath", values.picture.name);
+    console.log(formData);
 
     const savedUpdatedUserResponse = await fetch(
-      `http://localhost:3001/plant-profiles/${userId}/${id}/edit`,
+      `http://localhost:3001/plant-profiles/${userId}/${id}/edit/new`,
       {
         method: "PATCH",
         // headers: { "Content-Type": "application/json" },
@@ -123,10 +129,63 @@ export default function PlantProfileForm({ pageType }) {
     }
   };
 
+  const updatePlantProfileFormWithCurrentPhoto = async (
+    values,
+    onSubmitProps
+  ) => {
+    // const formData = new FormData();
+    // for (let value in values) {
+    //   if (value === "picturePath") {
+    //     delete values[value];
+    //   } else {
+    //     formData.append(value, values[value]);
+    //   }
+    // }
+    // console.log(formData);
+    const savedUpdatedUserResponse = await fetch(
+      `http://localhost:3001/plant-profiles/${userId}/${id}/edit`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      }
+    );
+    console.log(savedUpdatedUserResponse);
+    const savedUpdatedPlantProfile = await savedUpdatedUserResponse.json();
+    onSubmitProps.resetForm();
+
+    if (!savedUpdatedUserResponse.ok) {
+      setError(savedUpdatedPlantProfile.error);
+      console.log(error);
+    }
+
+    if (savedUpdatedUserResponse.ok) {
+      setError(null);
+      console.log("Plant profile updated:", savedUpdatedPlantProfile);
+      navigate(`/plant-profiles/${userId}/${id}`);
+    }
+  };
+
   const handleFormSubmit = async (values, onSubmitProps) => {
     // await newPlantProfileForm(values, onSubmitProps);
     if (isCreate) await newPlantProfileForm(values, onSubmitProps);
-    if (isEdit) await updatePlantProfileForm(values, onSubmitProps);
+    if (isEdit) {
+      console.log(values);
+      if (
+        values.picture !== undefined &&
+        values.picture.name !== plantProfiles[0].picturePath
+      ) {
+        console.log(
+          "NEW PHOTO",
+          plantProfiles[0].picturePath,
+          values.picture.name
+        );
+        await updatePlantProfileFormWithNewPhoto(values, onSubmitProps);
+      } else {
+        console.log("CURRENT PHOTO", plantProfiles[0].picturePath);
+        await updatePlantProfileFormWithCurrentPhoto(values, onSubmitProps);
+      }
+    }
   };
 
   const PrettoSlider = styled(Slider)({
@@ -183,12 +242,12 @@ export default function PlantProfileForm({ pageType }) {
     idealTemp: plantProfiles[0].idealTemp,
     fertilizationMethod: plantProfiles[0].fertilizationMethod,
     fertilizationFrequency: plantProfiles[0].fertilizationFrequency,
+    currentLocation: plantProfiles[0].currentLocation,
     waterLevel: plantProfiles[0].waterLevel,
     sunlightLevel: plantProfiles[0].sunlightLevel,
     commonIssues: plantProfiles[0].commonIssues,
     notes: plantProfiles[0].notes,
-    // picturePath: plantProfiles[0].picturePath,
-    currentLocation: plantProfiles[0].currentLocation,
+    picturePath: plantProfiles[0].picturePath,
   };
 
   const initialValuesPlantProfile = {
@@ -269,35 +328,103 @@ export default function PlantProfileForm({ pageType }) {
                 p="1rem"
                 sx={{ minWidth: "100%", maxWidth: "500px" }}
               >
-                <Dropzone
-                  acceptedFiles=".jpg,.jpeg,.png,.webp"
-                  multiple={false}
-                  onDrop={(acceptedFiles) =>
-                    setFieldValue("picture", acceptedFiles[0])
-                  }
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <Box
-                      {...getRootProps()}
-                      border={`2px dashed ${palette.primary.main}`}
-                      p="1rem"
-                      textAlign="center"
-                      sx={{
-                        "&:hover": { cursor: "pointer" },
-                      }}
+                {isCreate ? (
+                  <>
+                    <Dropzone
+                      acceptedFiles=".jpg,.jpeg,.png,.webp"
+                      multiple={false}
+                      onDrop={(acceptedFiles) =>
+                        setFieldValue("picture", acceptedFiles[0])
+                      }
                     >
-                      <input {...getInputProps()} />
-                      {!values.picture ? (
-                        <p>Add Picture Here</p>
+                      {({ getRootProps, getInputProps }) => (
+                        <Box
+                          {...getRootProps()}
+                          border={`2px dashed ${palette.primary.main}`}
+                          p="1rem"
+                          textAlign="center"
+                          sx={{
+                            "&:hover": { cursor: "pointer" },
+                          }}
+                        >
+                          <input {...getInputProps()} />
+                          {!values.picture ? (
+                            <p>Add Picture Here</p>
+                          ) : (
+                            <FlexBetween>
+                              <Typography>{values.picture.name}</Typography>
+                              <EditOutlinedIcon />
+                            </FlexBetween>
+                          )}
+                        </Box>
+                      )}
+                    </Dropzone>
+                  </>
+                ) : (
+                  <>
+                    <Box>
+                      <img
+                        width={isNonMobileScreens ? "300px" : "100%"}
+                        height="auto"
+                        alt="plant-profile"
+                        style={{ borderRadius: "0.75rem", maxHeight: "400px" }}
+                        src={`http://localhost:3001/assets/${plantProfiles[0].picturePath}`}
+                      />
+                      <Field
+                        name="picture"
+                        type="input"
+                        disabled
+                        value={values.picturePath}
+                        as={TextField}
+                        // sx={{ width: "100%" }}
+                      />
+                      <Button
+                        onClick={() => {
+                          setEditPhoto(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                      {editPhoto ? (
+                        <>
+                          <Dropzone
+                            acceptedFiles=".jpg,.jpeg,.png,.webp"
+                            multiple={false}
+                            onDrop={(acceptedFiles) =>
+                              setFieldValue("picture", acceptedFiles[0])
+                            }
+                          >
+                            {({ getRootProps, getInputProps }) => (
+                              <Box
+                                {...getRootProps()}
+                                border={`2px dashed ${palette.primary.main}`}
+                                p="1rem"
+                                textAlign="center"
+                                sx={{
+                                  "&:hover": { cursor: "pointer" },
+                                }}
+                              >
+                                <input {...getInputProps()} />
+                                {!values.picture ? (
+                                  <p>Add Picture Here</p>
+                                ) : (
+                                  <FlexBetween>
+                                    <Typography>
+                                      {values.picture.name}
+                                    </Typography>
+                                    <EditOutlinedIcon />
+                                  </FlexBetween>
+                                )}
+                              </Box>
+                            )}
+                          </Dropzone>
+                        </>
                       ) : (
-                        <FlexBetween>
-                          <Typography>{values.picture.name}</Typography>
-                          <EditOutlinedIcon />
-                        </FlexBetween>
+                        <></>
                       )}
                     </Box>
-                  )}
-                </Dropzone>
+                  </>
+                )}
               </Box>
               <Box
                 className="pp-card--location"
