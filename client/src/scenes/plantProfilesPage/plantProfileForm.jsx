@@ -176,13 +176,20 @@ export default function PlantProfileForm({ pageType }) {
   const [waterSlider, setWaterSlider] = useState(
     isEdit ? plantProfiles[0].waterLevel : 3
   );
+  const [sunlightSlider, setSunlightSlider] = useState(
+    isEdit ? plantProfiles[0].sunlightLevel : 3
+  );
 
   const resetSliders = () => {
     if (isEdit) {
       setWaterSlider(plantProfiles[0].waterLevel);
+      setSunlightSlider(plantProfiles[0].sunlightLevel);
     }
 
-    if (isCreate) setWaterSlider(3);
+    if (isCreate) {
+      setWaterSlider(3);
+      setSunlightSlider(3);
+    }
   };
 
   const PrettoSlider = styled(Slider)({
@@ -484,6 +491,7 @@ export default function PlantProfileForm({ pageType }) {
                     name="waterLevel"
                     onChange={(event) => {
                       setFieldValue("waterLevel", event.target.value);
+                      setWaterSlider(event.target.value);
                     }}
                   />
                   <Typography className="pp-form--level-subtext">
@@ -503,12 +511,13 @@ export default function PlantProfileForm({ pageType }) {
                     className="pp-form--slider"
                     valueLabelDisplay="auto"
                     aria-label="pretto slider"
-                    defaultValue={isEdit ? plantProfiles[0].sunlightLevel : 3}
+                    defaultValue={sunlightSlider}
                     min={1}
                     max={5}
                     name="sunlightLevel"
                     onChange={(event) => {
                       setFieldValue("sunlightLevel", event.target.value);
+                      setSunlightSlider(event.target.value);
                     }}
                   />
                   <Typography className="pp-form--level-subtext">
