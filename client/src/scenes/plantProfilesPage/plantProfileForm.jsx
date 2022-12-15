@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -21,9 +21,10 @@ import * as yup from "yup";
 import FlexBetween from "components/FlexBetween";
 import Dropzone from "react-dropzone";
 // import { DesktopDatePicker } from "@mui/x-date-pickers";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
+import { setPlantProfiles } from "state";
 
 const plantProfileSchema = yup.object().shape({
   plantName: yup.string().required("required"),
@@ -46,38 +47,19 @@ const plantProfileSchema = yup.object().shape({
   notes: yup.string().required("required"),
 });
 
-// const savedValuesPlantProfile = {
-//   userId: "",
-//   userFirstName: "",
-//   userPicturePath: "",
-//   plantName: "",
-//   scientificName: "",
-//   dateAcquired: "",
-//   plantFamily: "",
-//   iGotItFrom: "",
-//   toxicity: "",
-//   water: "",
-//   light: "",
-//   soilType: "",
-//   humidity: "",
-//   idealTemp: "",
-//   fertilizationMethod: "",
-//   fertilizationFrequency: "",
-//   waterLevel: "",
-//   sunlightLevel: "",
-//   commonIssues: "",
-//   notes: "",
-//   picturePath: "",
-// };
-
-export default function PlantProfileForm() {
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
-
+export default function PlantProfileForm({ pageType }) {
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
   const { _id } = useSelector((state) => state.user);
-
+  // const token = useSelector((state) => state.token);
+  const plantProfiles = useSelector((state) => state.plantProfiles);
   const [error, setError] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
+  const { userId, id } = useParams();
+  const isCreate = pageType === "create";
+  const isEdit = pageType === "edit";
+
+  console.log(pageType, userId, id);
 
   const newPlantProfileForm = async (values, onSubmitProps) => {
     const formData = new FormData();
@@ -110,8 +92,41 @@ export default function PlantProfileForm() {
     }
   };
 
+  const updatePlantProfileForm = async (values, onSubmitProps) => {
+    const formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+    formData.append("picturePath", values.picture.name);
+
+    const savedUpdatedUserResponse = await fetch(
+      `http://localhost:3001/plant-profiles/${userId}/${id}/edit`,
+      {
+        method: "PATCH",
+        // headers: { "Content-Type": "application/json" },
+        body: formData,
+      }
+    );
+    console.log(savedUpdatedUserResponse);
+    const savedUpdatedPlantProfile = await savedUpdatedUserResponse.json();
+    onSubmitProps.resetForm();
+
+    if (!savedUpdatedUserResponse.ok) {
+      setError(savedUpdatedPlantProfile.error);
+      console.log(error);
+    }
+
+    if (savedUpdatedUserResponse.ok) {
+      setError(null);
+      console.log("Plant profile updated:", savedUpdatedPlantProfile);
+      navigate(`/plant-profiles/${userId}/${id}`);
+    }
+  };
+
   const handleFormSubmit = async (values, onSubmitProps) => {
-    await newPlantProfileForm(values, onSubmitProps);
+    // await newPlantProfileForm(values, onSubmitProps);
+    if (isCreate) await newPlantProfileForm(values, onSubmitProps);
+    if (isEdit) await updatePlantProfileForm(values, onSubmitProps);
   };
 
   const PrettoSlider = styled(Slider)({
@@ -153,36 +168,64 @@ export default function PlantProfileForm() {
     },
   });
 
+  const savedValuesPlantProfile = {
+    userId: userId,
+    plantName: plantProfiles[0].plantName,
+    scientificName: plantProfiles[0].scientificName,
+    dateAcquired: plantProfiles[0].dateAcquired,
+    plantFamily: plantProfiles[0].plantFamily,
+    iGotItFrom: plantProfiles[0].iGotItFrom,
+    toxicity: plantProfiles[0].toxicity,
+    water: plantProfiles[0].water,
+    light: plantProfiles[0].light,
+    soilType: plantProfiles[0].soilType,
+    humidity: plantProfiles[0].humidity,
+    idealTemp: plantProfiles[0].idealTemp,
+    fertilizationMethod: plantProfiles[0].fertilizationMethod,
+    fertilizationFrequency: plantProfiles[0].fertilizationFrequency,
+    waterLevel: plantProfiles[0].waterLevel,
+    sunlightLevel: plantProfiles[0].sunlightLevel,
+    commonIssues: plantProfiles[0].commonIssues,
+    notes: plantProfiles[0].notes,
+    // picturePath: plantProfiles[0].picturePath,
+    currentLocation: plantProfiles[0].currentLocation,
+  };
+
+  const initialValuesPlantProfile = {
+    userId: _id,
+    plantName: "",
+    scientificName: "",
+    dateAcquired: "",
+    plantFamily: "",
+    iGotItFrom: "",
+    toxicity: "",
+    water: "",
+    light: "",
+    soilType: "",
+    humidity: "",
+    idealTemp: "",
+    fertilizationMethod: "",
+    fertilizationFrequency: "",
+    currentLocation: "Indoors",
+    waterLevel: Number(3),
+    sunlightLevel: Number(3),
+    commonIssues: "",
+    notes: "",
+  };
+
   return (
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={{
-        userId: _id,
-        plantName: "",
-        scientificName: "",
-        dateAcquired: "",
-        plantFamily: "",
-        iGotItFrom: "",
-        toxicity: "",
-        water: "",
-        light: "",
-        soilType: "",
-        humidity: "",
-        idealTemp: "",
-        fertilizationMethod: "",
-        fertilizationFrequency: "",
-        currentLocation: "Indoors",
-        waterLevel: Number(3),
-        sunlightLevel: Number(3),
-        commonIssues: "",
-        notes: "",
-      }}
+      initialValues={
+        isEdit ? savedValuesPlantProfile : initialValuesPlantProfile
+      }
+      enableReinitialize
 
       // validationSchema={plantProfileSchema}
     >
       {({ values, isSubmitting, setFieldValue }) => (
         <Form>
-          {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+          <pre>{JSON.stringify(values, null, 2)}</pre>
 
           <Box
             className="pp-card--container"
@@ -273,7 +316,7 @@ export default function PlantProfileForm() {
                     aria-labelledby="currentLocation-label"
                     defaultValue="Indoors"
                     name="currentLocation"
-                    value={values.currentLocation.toString()}
+                    value={values.currentLocation}
                     onChange={(event) => {
                       setFieldValue(
                         "currentLocation",

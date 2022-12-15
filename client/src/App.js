@@ -22,6 +22,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfilePage";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import SpecificPlantProfilePage from "scenes/plantProfilesPage/specificPlantProfilePage";
+import UpdatePlantProfilePage from "scenes/plantProfilesPage/updatePlantProfilePage";
 
 library.add(fas);
 
@@ -60,6 +61,12 @@ function App() {
                 path="/plant-profiles/:userId/:id"
                 element={
                   isAuth ? <SpecificPlantProfilePage /> : <Navigate to="/" />
+                }
+              ></Route>
+              <Route
+                path="/plant-profiles/:userId/:id/edit"
+                element={
+                  isAuth ? <UpdatePlantProfilePage /> : <Navigate to="/" />
                 }
               ></Route>
             </Routes>

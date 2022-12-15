@@ -12,7 +12,10 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import plantProfileRoutes from "./routes/plant-profiles.js";
 import { register } from "./controllers/auth.js";
-import { createPlantProfile } from "./controllers/plant-profiles-controller.js";
+import {
+  createPlantProfile,
+  updateUserPlantProfile,
+} from "./controllers/plant-profiles-controller.js";
 import { verifyToken } from "./middleware/auth.js";
 // import User from "./models/User.js";
 // import PlantProfile from "./models/PlantProfile.js";
@@ -54,6 +57,11 @@ app.post(
   "/plant-profiles/create",
   upload.single("picture"),
   createPlantProfile
+);
+app.patch(
+  "/plant-profiles/:userId/:id/edit",
+  upload.single("picture"),
+  updateUserPlantProfile
 );
 
 // ROUTES

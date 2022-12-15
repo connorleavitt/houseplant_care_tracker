@@ -5,7 +5,6 @@ import {
   getUserPlantProfiles,
   getSpecificUserPlantProfile,
   // createPlantProfile,
-  postUpdateFormForUserPlantProfile,
   deleteUserPlantProfile,
 } from "../controllers/plant-profiles-controller.js";
 
@@ -18,7 +17,7 @@ router.get("/:userId/all", verifyToken, getUserPlantProfiles);
 router.get("/:userId/:id", verifyToken, getSpecificUserPlantProfile);
 
 // UPDATE
-router.patch("/:userId/:id", verifyToken, postUpdateFormForUserPlantProfile);
+// router.patch("/:userId/:id/edit", verifyToken, updateUserPlantProfile);
 
 // POST
 // router.post("/create", createPlantProfile);

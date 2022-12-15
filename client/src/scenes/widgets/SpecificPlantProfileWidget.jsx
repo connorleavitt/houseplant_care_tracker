@@ -8,6 +8,7 @@ import { Box, Button, useMediaQuery } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
+  const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
 
   // console.log(
   //   `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
@@ -95,17 +96,21 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               Next
               <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
             </Button>
-            <Button className="spp--update-btn" sx={{ fontSize: "1.25rem" }}>
-              <EditIcon sx={{ fontSize: "1.5rem" }} />
+            <Button
+              className="spp--update-btn"
+              sx={{ fontSize: "1.25rem" }}
+              onClick={() => navigate(`edit`)}
+            >
               Update
+              <EditIcon sx={{ fontSize: "1.5rem" }} />
             </Button>
             <Button
               className="spp--delete-btn"
               sx={{ fontSize: "1.25rem" }}
               onClick={handleDelete}
             >
-              <EditIcon sx={{ fontSize: "1.5rem" }} />
               Delete
+              <DeleteForeverIcon sx={{ fontSize: "1.5rem" }} />
             </Button>
           </Box>
           <Box width="80%">
