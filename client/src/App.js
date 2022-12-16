@@ -23,6 +23,7 @@ import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfileP
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import SpecificPlantProfilePage from "scenes/plantProfilesPage/specificPlantProfilePage";
 import UpdatePlantProfilePage from "scenes/plantProfilesPage/updatePlantProfilePage";
+import UpdateUserProfilePage from "scenes/userProfilePage/updateUserProfilePage";
 
 library.add(fas);
 
@@ -46,6 +47,12 @@ function App() {
               <Route
                 path="/user/account"
                 element={isAuth ? <UserProfilePage /> : <Navigate to="/" />}
+              ></Route>
+              <Route
+                path="/user/account/edit"
+                element={
+                  isAuth ? <UpdateUserProfilePage /> : <Navigate to="/" />
+                }
               ></Route>
               <Route
                 path="/plant-profiles"

@@ -24,8 +24,6 @@ import Dropzone from "react-dropzone";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
-import { setPlantProfiles } from "state";
-import { render } from "@testing-library/react";
 
 const plantProfileSchema = yup.object().shape({
   plantName: yup.string().required("required"),
@@ -165,8 +163,12 @@ export default function PlantProfileForm({ pageType }) {
         values.picture !== undefined &&
         values.picture.name !== plantProfiles[0].picturePath
       ) {
+        console.log("using NEW PHOTO PATH");
+
         await updatePlantProfileFormWithNewPhoto(values, onSubmitProps);
       } else {
+        console.log("using CURRENT PHOTO PATH");
+
         delete values.picturePath;
         await updatePlantProfileFormWithCurrentPhoto(values, onSubmitProps);
       }

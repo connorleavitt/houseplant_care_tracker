@@ -9,14 +9,18 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { useParams } from "react-router-dom";
-import { setLogout } from "state";
+import { setLogout, setUser } from "state";
 import NavbarPage from "scenes/navbar/navbarPage";
 import UserWidget from "scenes/widgets/UserWidget";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+
 import FlexBetween from "components/FlexBetween";
+import { useNavigate } from "react-router";
 
 export default function UserProfilePage() {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const { _id, picturePath } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
@@ -36,14 +40,20 @@ export default function UserProfilePage() {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
-    setUser(data);
+    setCurrentUser(data);
+    console.log(data);
+    dispatch(
+      setUser({
+        user: data,
+      })
+    );
   };
 
   useEffect(() => {
     getUser();
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!user) return null;
+  if (!currentUser) return null;
 
   return (
     <Box>
@@ -53,7 +63,7 @@ export default function UserProfilePage() {
         <UserWidget userId={_id} picturePath={picturePath} />
         <FlexBetween>
           <Button
-            // onClick={() => dispatch(setEditProfile())}
+            onClick={() => navigate(`edit`)}
             sx={{
               m: "1rem",
               borderRadius: "5px",
@@ -67,7 +77,10 @@ export default function UserProfilePage() {
               },
             }}
           >
-            <Typography fontSize="1rem">Edit Profile</Typography>
+            <Typography fontSize="1rem">
+              <EditOutlinedIcon />
+              Edit Profile
+            </Typography>
           </Button>
           <Button
             onClick={() => dispatch(setLogout())}

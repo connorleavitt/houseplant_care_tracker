@@ -24,10 +24,9 @@ export const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
-    // setEditProfile: (state, action) => {
-    //   state.user = action.payload.user;
-    //   state.token = action.payload.token;
-    // },
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+    },
     setAllUsers: (state, action) => {
       state.allUsers = action.payload.allUsers;
     },
@@ -52,6 +51,7 @@ export const {
   setMode,
   setLogin,
   setLogout,
+  setUser,
   setAllUsers,
   setPlantProfiles,
   setAllPlantProfiles,
