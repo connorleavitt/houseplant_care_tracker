@@ -1,7 +1,7 @@
 // import WidgetWrapper from "components/WidgetWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { setPlantProfiles } from "state";
+import { setAllPlantProfiles, setPlantProfiles } from "state";
 import PlantProfileCardWidget from "./PlantProfileCardWidget";
 import { useNavigate, useParams } from "react-router";
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
@@ -9,23 +9,61 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { render } from "@testing-library/react";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [error, setError] = useState(null);
-  const [deletionConfirmation, setDeletionConfirmation] = useState(false);
-
   const plantProfiles = useSelector((state) => state.plantProfiles);
+  const allPlantProfiles = useSelector((state) => state.allPlantProfiles);
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
 
+  const [error, setError] = useState(null);
+  const [deletionConfirmation, setDeletionConfirmation] = useState(false);
+  const [previousPlantProfile, setPreviousPlantProfile] = useState(id);
   // console.log(
   //   `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
   // );
+
+  const getUserPlantProfiles = async () => {
+    const response = await fetch(
+      `http://localhost:3001/plant-profiles/${userId}/all`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    const data = await response.json();
+    dispatch(setAllPlantProfiles({ allPlantProfiles: data }));
+  };
+
+  const returnPreviousPlantProfile = () => {
+    console.log(allPlantProfiles);
+    console.log(previousPlantProfile);
+
+    let newPlantProfileId;
+    for (let profile in allPlantProfiles) {
+      // console.log(allPlantProfiles[profile]._id, id);
+      if (allPlantProfiles[profile]._id === id) {
+        console.log("match", profile);
+        newPlantProfileId = profile - 1;
+      } else {
+        console.log("no match", profile);
+      }
+    }
+    console.log(
+      `/plant-profiles/${userId}/${allPlantProfiles[newPlantProfileId]._id}`
+    );
+    setPreviousPlantProfile(allPlantProfiles[newPlantProfileId]._id);
+
+    console.log(previousPlantProfile);
+    // navigate(`/plant-profiles/${userId}/${previousPlantProfile}`);
+    return;
+  };
 
   const getSpecificUserPlantProfile = async () => {
     const response = await fetch(
@@ -40,6 +78,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   };
 
   useEffect(() => {
+    getUserPlantProfiles();
     getSpecificUserPlantProfile();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -233,7 +272,11 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               mt="2rem"
               gap="2rem"
             >
-              <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              <Button
+                className="spp--change-btns"
+                sx={{ fontSize: "1.25rem" }}
+                onClick={returnPreviousPlantProfile}
+              >
                 <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
                 Previous
               </Button>

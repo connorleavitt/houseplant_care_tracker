@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   token: null,
   plantProfiles: [],
+  allPlantProfiles: [],
   allUsers: [],
 };
 
@@ -33,6 +34,9 @@ export const authSlice = createSlice({
     setPlantProfiles: (state, action) => {
       state.plantProfiles = action.payload.plantProfiles;
     },
+    setAllPlantProfiles: (state, action) => {
+      state.allPlantProfiles = action.payload.allPlantProfiles;
+    },
     setPlantProfile: (state, action) => {
       const updatedPlantProfiles = state.plantProfiles.map((plantProfiles) => {
         if (plantProfiles._id === action.payload.plantProfiles._id)
@@ -50,6 +54,7 @@ export const {
   setLogout,
   setAllUsers,
   setPlantProfiles,
+  setAllPlantProfiles,
   setPlantProfile,
 } = authSlice.actions;
 
