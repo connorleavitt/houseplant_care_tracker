@@ -336,7 +336,7 @@ const PlantProfileCardWidget = ({
                 </Typography>
               </div>
               <div className="pp-card--form-individual">
-                <div className="pp-card--form-label">PLANT TYPE:</div>
+                <div className="pp-card--form-label">PLANT FAMILY:</div>
                 <Typography color={main} fontSize="1.2rem" fontWeight="600">
                   {plantFamily}
                 </Typography>

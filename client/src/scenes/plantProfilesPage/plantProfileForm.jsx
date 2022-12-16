@@ -27,26 +27,26 @@ import styled from "@emotion/styled";
 import { setPlantProfiles } from "state";
 import { render } from "@testing-library/react";
 
-// const plantProfileSchema = yup.object().shape({
-//   plantName: yup.string().required("required"),
-//   scientificName: yup.string().required("required"),
-//   dateAcquired: yup.string().required("required"),
-//   plantFamily: yup.string().required("required"),
-//   iGotItFrom: yup.string().required("required"),
-//   toxicity: yup.string().required("required"),
-//   water: yup.string().required("required"),
-//   light: yup.string().required("required"),
-//   soilType: yup.string().required("required"),
-//   humidity: yup.string().required("required"),
-//   idealTemp: yup.string().required("required"),
-//   fertilizationMethod: yup.string().required("required"),
-//   fertilizationFrequency: yup.string().required("required"),
-//   currentLocation: yup.string().required("required"),
-//   waterLevel: yup.string().required("required"),
-//   sunlightLevel: yup.string().required("required"),
-//   commonIssues: yup.string().required("required"),
-//   notes: yup.string().required("required"),
-// });
+const plantProfileSchema = yup.object().shape({
+  plantName: yup.string().required("required"),
+  scientificName: yup.string().required("required"),
+  dateAcquired: yup.string().required("required"),
+  plantFamily: yup.string().required("required"),
+  iGotItFrom: yup.string().required("required"),
+  toxicity: yup.string().required("required"),
+  water: yup.string().required("required"),
+  light: yup.string().required("required"),
+  soilType: yup.string().required("required"),
+  humidity: yup.string().required("required"),
+  idealTemp: yup.string().required("required"),
+  fertilizationMethod: yup.string().required("required"),
+  fertilizationFrequency: yup.string().required("required"),
+  currentLocation: yup.string().required("required"),
+  waterLevel: yup.string().required("required"),
+  sunlightLevel: yup.string().required("required"),
+  commonIssues: yup.string().required("required"),
+  notes: yup.string().required("required"),
+});
 
 export default function PlantProfileForm({ pageType }) {
   const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
@@ -283,8 +283,7 @@ export default function PlantProfileForm({ pageType }) {
         isEdit ? savedValuesPlantProfile : initialValuesPlantProfile
       }
       enableReinitialize
-
-      // validationSchema={plantProfileSchema}
+      validationSchema={plantProfileSchema}
     >
       {({ values, isSubmitting, setFieldValue, resetForm }) => (
         <Form>
@@ -554,7 +553,7 @@ export default function PlantProfileForm({ pageType }) {
                   />
                 </div>
                 <div className="pp-card--form-individual">
-                  <div className="pp-card--form-label">PLANT TYPE:</div>
+                  <div className="pp-card--form-label">PLANT FAMILY:</div>
                   <Field
                     placeholder="What is this plant's family (scientific classification)?"
                     name="plantFamily"
