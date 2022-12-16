@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, getUser } from "../controllers/users.js";
+import { getAllUsers, getUser, updateUser } from "../controllers/users.js";
 import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.get("/:id", verifyToken, getUser);
 router.get("/", verifyToken, getAllUsers);
 
 // UPDATE
+router.patch("/:id/edit", updateUser);
 
 export default router;
