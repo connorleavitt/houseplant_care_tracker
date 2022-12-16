@@ -220,8 +220,11 @@ export default function UserForm() {
                             }}
                           >
                             <input {...getInputProps()} />
-                            {!values.picture ? (
-                              <p>Add Picture Here</p>
+                            {values.picture === user.picturePath ? (
+                              <>
+                                <Typography>{user.picturePath}</Typography>
+                                <EditOutlinedIcon />
+                              </>
                             ) : (
                               <FlexBetween>
                                 <Typography>{values.picture.name}</Typography>
@@ -312,6 +315,8 @@ export default function UserForm() {
                   </Button>
                   {editPhoto ? (
                     <>
+                      {console.log(!values.picture)}
+
                       <Dropzone
                         acceptedFiles=".jpg,.jpeg,.png,.webp"
                         multiple={false}
@@ -330,8 +335,11 @@ export default function UserForm() {
                             }}
                           >
                             <input {...getInputProps()} />
-                            {!values.picture ? (
-                              <p>Add Picture Here</p>
+                            {values.picture === user.picturePath ? (
+                              <>
+                                <Typography>{user.picturePath}</Typography>
+                                <EditOutlinedIcon />
+                              </>
                             ) : (
                               <FlexBetween>
                                 <Typography>{values.picture.name}</Typography>
