@@ -36,7 +36,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const { firstName, lastName, email } = user;
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper sx={{ width: "100%" }}>
       {/* FIRST ROW */}
       <FlexBetween
         gap="0.5rem"
