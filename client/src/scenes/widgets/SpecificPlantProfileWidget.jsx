@@ -9,7 +9,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { render } from "@testing-library/react";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
 
   const [error, setError] = useState(null);
   const [deletionConfirmation, setDeletionConfirmation] = useState(false);
-  const [previousPlantProfile, setPreviousPlantProfile] = useState(id);
   // console.log(
   //   `requested user: ${userId} requested plant: ${id} logged in user: ${_id}`
   // );
@@ -42,27 +40,50 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   };
 
   const returnPreviousPlantProfile = () => {
-    console.log(allPlantProfiles);
-    console.log(previousPlantProfile);
+    let newPlantProfileId;
+    for (let profile in allPlantProfiles) {
+      console.log(allPlantProfiles[profile]._id, id);
+      if (allPlantProfiles[profile]._id === id) {
+        console.log("match", profile);
+        newPlantProfileId = Number(profile) - 1;
+        if (newPlantProfileId < 0)
+          newPlantProfileId = allPlantProfiles.length - 1;
+        console.log("at end", newPlantProfileId);
+      } else {
+        console.log("no match", profile);
+      }
+    }
 
+    console.log(
+      `/plant-profiles/${userId}/${allPlantProfiles[newPlantProfileId]._id}`
+    );
+
+    navigate(
+      `/plant-profiles/${userId}/${allPlantProfiles[newPlantProfileId]._id}`
+    );
+    return window.location.reload();
+  };
+
+  const returnNextPlantProfile = () => {
     let newPlantProfileId;
     for (let profile in allPlantProfiles) {
       // console.log(allPlantProfiles[profile]._id, id);
       if (allPlantProfiles[profile]._id === id) {
         console.log("match", profile);
-        newPlantProfileId = profile - 1;
+        newPlantProfileId = 1 + Number(profile);
+        if (newPlantProfileId >= allPlantProfiles.length) newPlantProfileId = 0;
       } else {
         console.log("no match", profile);
       }
     }
-    console.log(
+    // console.log(
+    //   `/plant-profiles/${userId}/${allPlantProfiles[newPlantProfileId]._id}`
+    // );
+
+    navigate(
       `/plant-profiles/${userId}/${allPlantProfiles[newPlantProfileId]._id}`
     );
-    setPreviousPlantProfile(allPlantProfiles[newPlantProfileId]._id);
-
-    console.log(previousPlantProfile);
-    // navigate(`/plant-profiles/${userId}/${previousPlantProfile}`);
-    return;
+    return window.location.reload();
   };
 
   const getSpecificUserPlantProfile = async () => {
@@ -280,7 +301,11 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
                 Previous
               </Button>
-              <Button className="spp--change-btns" sx={{ fontSize: "1.25rem" }}>
+              <Button
+                className="spp--change-btns"
+                sx={{ fontSize: "1.25rem" }}
+                onClick={returnNextPlantProfile}
+              >
                 Next
                 <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />
               </Button>
