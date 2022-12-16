@@ -19,7 +19,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const token = useSelector((state) => state.token);
   const { userId, id } = useParams();
   const { _id } = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px)");
+  const isNonMobileScreens = useMediaQuery("(min-width:800px)");
 
   const [error, setError] = useState(null);
   const [deletionConfirmation, setDeletionConfirmation] = useState(false);
@@ -155,6 +155,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 <Button
                   className="spp--change-btns"
                   sx={{ fontSize: "1.25rem" }}
+                  onClick={returnPreviousPlantProfile}
                 >
                   <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
                   Previous
@@ -162,6 +163,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 <Button
                   className="spp--change-btns"
                   sx={{ fontSize: "1.25rem" }}
+                  onClick={returnNextPlantProfile}
                 >
                   Next
                   <ArrowForwardIcon sx={{ fontSize: "1.5rem" }} />

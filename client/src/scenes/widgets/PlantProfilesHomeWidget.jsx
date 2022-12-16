@@ -18,26 +18,10 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
     dispatch(setPlantProfiles({ plantProfiles: data }));
   };
 
-  const getUserPlantProfiles = async () => {
-    const response = await fetch(
-      `http://localhost:3001/plant-profiles/${userId}/all`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    const data = await response.json();
-    dispatch(setPlantProfiles({ plantProfiles: data }));
-  };
-
   useEffect(() => {
-    if (isProfile) {
-      getUserPlantProfiles();
-    } else {
-      getPlantProfiles();
-    }
+    getPlantProfiles();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  // console.log(isProfile);
+
   return (
     <Box>
       {plantProfiles.map(
@@ -45,11 +29,26 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
           _id,
           userId,
           userFirstName,
-          plantName,
-          picturePath,
           userPicturePath,
-          currentLocation,
+          picturePath,
+          plantName,
+          scientificName,
+          dateAcquired,
+          plantFamily,
           iGotItFrom,
+          toxicity,
+          water,
+          light,
+          soilType,
+          humidity,
+          idealTemp,
+          currentLocation,
+          fertilizationMethod,
+          fertilizationFrequency,
+          waterLevel,
+          sunlightLevel,
+          commonIssues,
+          notes,
         }) => (
           <PlantProfileListWidget
             key={_id}
@@ -57,10 +56,25 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
             plantProfileUserId={userId}
             userFirstName={userFirstName}
             plantName={plantName}
+            scientificName={scientificName}
             picturePath={picturePath}
             userPicturePath={userPicturePath}
-            currentLocation={currentLocation}
+            dateAcquired={dateAcquired}
+            plantFamily={plantFamily}
             iGotItFrom={iGotItFrom}
+            toxicity={toxicity}
+            water={water}
+            light={light}
+            soilType={soilType}
+            humidity={humidity}
+            idealTemp={idealTemp}
+            fertilizationMethod={fertilizationMethod}
+            fertilizationFrequency={fertilizationFrequency}
+            currentLocation={currentLocation}
+            waterLevel={waterLevel}
+            sunlightLevel={sunlightLevel}
+            commonIssues={commonIssues}
+            notes={notes}
           />
         )
       )}
