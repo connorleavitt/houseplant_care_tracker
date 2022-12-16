@@ -376,11 +376,8 @@ export default function PlantProfileForm({ pageType }) {
                       />
                       <Field
                         name="picture"
-                        type="input"
-                        disabled
+                        type="hidden"
                         value={values.picturePath}
-                        as={TextField}
-                        // sx={{ width: "100%" }}
                       />
                       <Button
                         onClick={() => {
