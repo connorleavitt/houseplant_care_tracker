@@ -319,6 +319,12 @@ h4 {
   min-width: 200px;
 }
 
+/* USER / ACCOUNT */
+
+.user-edit--title {
+  font-size: 2rem;
+}
+
 /* PLANT PROFILES CARD */
 
 .pp-card--container {

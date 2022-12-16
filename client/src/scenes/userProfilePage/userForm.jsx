@@ -127,106 +127,244 @@ export default function UserForm() {
         setFieldValue,
       }) => (
         <Form>
-          <pre>{JSON.stringify(values, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+          <Box
+            m="1rem 2rem"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {isNonMobileScreens ? (
+              <Box sx={{ gridArea: "header", m: "2rem" }}>
+                <h2 className="user-edit--title">Update your User Profile</h2>
+              </Box>
+            ) : (
+              <Box sx={{ gridArea: "header" }} m="2rem 0">
+                <h2 className="user-edit--title">Update your User Profile</h2>
+              </Box>
+            )}
+            {isNonMobileScreens ? (
+              <Box display="flex" flexDirection="column" gap="30px">
+                <TextField
+                  label="First Name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.firstName}
+                  name="firstName"
+                  error={
+                    Boolean(touched.firstName) && Boolean(errors.firstName)
+                  }
+                  helperText={touched.firstName && errors.firstName}
+                />
+                <TextField
+                  label="Last Name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.lastName}
+                  name="lastName"
+                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
+                  helperText={touched.lastName && errors.lastName}
+                />
 
-          {isNonMobileScreens ? (
-            <Box sx={{ gridArea: "header", m: "1rem", mb: "0" }}>
-              <h2 className="pp-card--title">Update your User Profile</h2>
-            </Box>
-          ) : (
-            <Box sx={{ gridArea: "header" }} mb="1rem">
-              <h2 className="pp-card--title">Update your User Profile</h2>
-            </Box>
-          )}
-          <Box display="flex" flexDirection="column" gap="30px">
-            <TextField
-              label="First Name"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.firstName}
-              name="firstName"
-              error={Boolean(touched.firstName) && Boolean(errors.firstName)}
-              helperText={touched.firstName && errors.firstName}
-            />
-            <TextField
-              label="Last Name"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.lastName}
-              name="lastName"
-              error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
-            />
-
-            <Box>
-              <img
-                width={isNonMobileScreens ? "300px" : "100%"}
-                height="auto"
-                alt="user"
-                style={{ borderRadius: "0.75rem", maxHeight: "400px" }}
-                src={`http://localhost:3001/assets/${user.picturePath}`}
-              />
-              <Field name="picture" type="hidden" value={values.picturePath} />
-              <Button
-                onClick={() => {
-                  setEditPhoto(true);
-                }}
-              >
-                Edit
-              </Button>
-              {editPhoto ? (
-                <>
-                  <Dropzone
-                    acceptedFiles=".jpg,.jpeg,.png,.webp"
-                    multiple={false}
-                    onDrop={(acceptedFiles) =>
-                      setFieldValue("picture", acceptedFiles[0])
-                    }
+                <Box sx={{ position: "relative" }}>
+                  <img
+                    width={isNonMobileScreens ? "300px" : "100%"}
+                    height="auto"
+                    alt="user"
+                    style={{ borderRadius: "0.75rem", maxHeight: "400px" }}
+                    src={`http://localhost:3001/assets/${user.picturePath}`}
+                  />
+                  <Field
+                    name="picture"
+                    type="hidden"
+                    value={values.picturePath}
+                  />
+                  <Button
+                    sx={{
+                      m: "1rem",
+                      p: "1rem",
+                      width: "100px",
+                      right: "0",
+                      position: "absolute",
+                      backgroundColor: palette.neutral.dark,
+                      color: palette.background.default,
+                      "&:hover": {
+                        backgroundColor: palette.neutral.light,
+                        color: palette.primary.dark,
+                      },
+                    }}
+                    onClick={() => {
+                      setEditPhoto(true);
+                    }}
                   >
-                    {({ getRootProps, getInputProps }) => (
-                      <Box
-                        {...getRootProps()}
-                        border={`2px dashed ${palette.primary.main}`}
-                        p="1rem"
-                        textAlign="center"
-                        sx={{
-                          "&:hover": { cursor: "pointer" },
-                        }}
+                    Edit
+                  </Button>
+                  {editPhoto ? (
+                    <>
+                      <Dropzone
+                        acceptedFiles=".jpg,.jpeg,.png,.webp"
+                        multiple={false}
+                        onDrop={(acceptedFiles) =>
+                          setFieldValue("picture", acceptedFiles[0])
+                        }
                       >
-                        <input {...getInputProps()} />
-                        {!values.picture ? (
-                          <p>Add Picture Here</p>
-                        ) : (
-                          <FlexBetween>
-                            <Typography>{values.picture.name}</Typography>
-                            <EditOutlinedIcon />
-                          </FlexBetween>
+                        {({ getRootProps, getInputProps }) => (
+                          <Box
+                            {...getRootProps()}
+                            border={`2px dashed ${palette.primary.main}`}
+                            p="1rem"
+                            textAlign="center"
+                            sx={{
+                              "&:hover": { cursor: "pointer" },
+                            }}
+                          >
+                            <input {...getInputProps()} />
+                            {!values.picture ? (
+                              <p>Add Picture Here</p>
+                            ) : (
+                              <FlexBetween>
+                                <Typography>{values.picture.name}</Typography>
+                                <EditOutlinedIcon />
+                              </FlexBetween>
+                            )}
+                          </Box>
                         )}
-                      </Box>
-                    )}
-                  </Dropzone>
-                </>
-              ) : (
-                <></>
-              )}
-            </Box>
+                      </Dropzone>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Box>
 
-            {/* BUTTONS */}
-            <Button
-              disabled={isSubmitting}
-              type="submit"
-              // onClick={handleFormSubmit}
-              sx={{
-                m: "1rem",
-                p: "1rem",
-                width: `${isNonMobileScreens ? "200px" : "auto"}`,
-                backgroundColor: palette.primary.main,
-                color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
-              }}
-            >
-              Submit
-            </Button>
+                {/* BUTTONS */}
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  // onClick={handleFormSubmit}
+                  sx={{
+                    m: "1rem",
+                    p: "1rem",
+                    width: "auto",
+                    backgroundColor: palette.primary.main,
+                    color: palette.background.alt,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            ) : (
+              <Box display="flex" flexDirection="column" gap="30px">
+                <TextField
+                  label="First Name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.firstName}
+                  name="firstName"
+                  error={
+                    Boolean(touched.firstName) && Boolean(errors.firstName)
+                  }
+                  helperText={touched.firstName && errors.firstName}
+                />
+                <TextField
+                  label="Last Name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.lastName}
+                  name="lastName"
+                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
+                  helperText={touched.lastName && errors.lastName}
+                />
+
+                <Box>
+                  <img
+                    width={isNonMobileScreens ? "300px" : "100%"}
+                    height="auto"
+                    alt="user"
+                    style={{ borderRadius: "0.75rem", maxHeight: "400px" }}
+                    src={`http://localhost:3001/assets/${user.picturePath}`}
+                  />
+                  <Field
+                    name="picture"
+                    type="hidden"
+                    value={values.picturePath}
+                  />
+                  <Button
+                    sx={{
+                      m: "1rem",
+                      p: "1rem",
+                      width: "100px",
+                      right: "2rem",
+                      position: "absolute",
+                      backgroundColor: palette.neutral.dark,
+                      color: palette.background.default,
+                      "&:hover": {
+                        backgroundColor: palette.neutral.light,
+                        color: palette.primary.dark,
+                      },
+                    }}
+                    onClick={() => {
+                      setEditPhoto(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  {editPhoto ? (
+                    <>
+                      <Dropzone
+                        acceptedFiles=".jpg,.jpeg,.png,.webp"
+                        multiple={false}
+                        onDrop={(acceptedFiles) =>
+                          setFieldValue("picture", acceptedFiles[0])
+                        }
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <Box
+                            {...getRootProps()}
+                            border={`2px dashed ${palette.primary.main}`}
+                            p="1rem"
+                            textAlign="center"
+                            sx={{
+                              "&:hover": { cursor: "pointer" },
+                            }}
+                          >
+                            <input {...getInputProps()} />
+                            {!values.picture ? (
+                              <p>Add Picture Here</p>
+                            ) : (
+                              <FlexBetween>
+                                <Typography>{values.picture.name}</Typography>
+                                <EditOutlinedIcon />
+                              </FlexBetween>
+                            )}
+                          </Box>
+                        )}
+                      </Dropzone>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Box>
+
+                {/* BUTTONS */}
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  // onClick={handleFormSubmit}
+                  sx={{
+                    m: "0 1rem",
+                    p: "1rem",
+                    width: `${isNonMobileScreens ? "200px" : "auto"}`,
+                    backgroundColor: palette.primary.main,
+                    color: palette.background.alt,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            )}
           </Box>
         </Form>
       )}
