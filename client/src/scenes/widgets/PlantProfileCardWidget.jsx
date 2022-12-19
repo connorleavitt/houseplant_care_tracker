@@ -66,10 +66,13 @@ const PlantProfileCardWidget = ({
                                   "left right"
                                   "notes notes"
                                   "buttons buttons"`,
-          gap: "1rem",
-          backgroundColor: alt,
-          border: `4px solid ${secondaryDark}`,
+          // backgroundColor: alt,
         }}
+        gap={isNonMobileScreens ? "2rem" : "0"}
+        p="1rem"
+        m="2rem 0"
+        borderRadius="5px"
+        border={isNonMobileScreens ? `4px solid ${secondaryDark}` : `0`}
       >
         {isNonMobileScreens ? (
           <Box sx={{ gridArea: "header" }} ml="3rem">

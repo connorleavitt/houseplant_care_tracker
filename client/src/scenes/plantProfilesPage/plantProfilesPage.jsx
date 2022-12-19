@@ -1,5 +1,6 @@
+import { useTheme } from "@emotion/react";
 import { Add } from "@mui/icons-material";
-import { Box, Button, useMediaQuery } from "@mui/material";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -12,6 +13,8 @@ export default function PlantProfilesPage() {
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px");
   const navigate = useNavigate();
   const { _id, picturePath } = useSelector((state) => state.user);
+  const theme = useTheme();
+  const secondaryMain = theme.palette.secondary.main;
 
   return (
     <Box>
@@ -31,20 +34,61 @@ export default function PlantProfilesPage() {
           flexBasis={isNonMobileScreens ? "70%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <FlexBetween className="add-new--container">
-            <h3 className="pp-list--title">Your Plant Profiles</h3>
-            <Button
-              startIcon={<Add />}
-              sx={{
-                border: "2px solid black",
-                backgroundColor: "#eea144",
-                color: "#303030",
-              }}
-              onClick={() => navigate("/plant-profiles/create")}
+          {isNonMobileScreens ? (
+            <FlexBetween className="add-new--container">
+              <Typography
+                className="pp-list--title"
+                fontWeight="bold"
+                fontSize="2.5rem"
+                sx={{
+                  color: secondaryMain,
+                }}
+              >
+                Your Plant Profiles
+              </Typography>
+              <Button
+                startIcon={<Add />}
+                sx={{
+                  border: "2px solid black",
+                  backgroundColor: { secondaryMain },
+                  color: { secondaryMain },
+                }}
+                onClick={() => navigate("/plant-profiles/create")}
+              >
+                CREATE NEW PLANT PROFILE
+              </Button>
+            </FlexBetween>
+          ) : (
+            <Box
+              className="add-new--container"
+              display="flex"
+              flexDirection="column"
+              gap="1rem"
             >
-              CREATE NEW PLANT PROFILE
-            </Button>
-          </FlexBetween>
+              <Typography
+                className="pp-list--title"
+                fontWeight="bold"
+                fontSize="1.5rem"
+                sx={{
+                  color: secondaryMain,
+                }}
+              >
+                Your Plant Profiles
+              </Typography>
+              <Button
+                startIcon={<Add />}
+                sx={{
+                  border: "2px solid black",
+                  backgroundColor: { secondaryMain },
+                  color: { secondaryMain },
+                }}
+                onClick={() => navigate("/plant-profiles/create")}
+              >
+                CREATE NEW PLANT PROFILE
+              </Button>
+            </Box>
+          )}
+
           <PlantProfilesWidget userId={_id} />
         </Box>
       </Box>

@@ -30,7 +30,7 @@ const PlantProfileListWidget = ({
   };
 
   return (
-    <WidgetWrapper m="2rem">
+    <WidgetWrapper m="2rem 0">
       <Box
         display={isNonMobileScreens ? "grid" : "flex"}
         gridTemplateColumns="1fr 3fr"

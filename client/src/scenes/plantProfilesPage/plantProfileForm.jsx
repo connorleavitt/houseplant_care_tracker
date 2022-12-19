@@ -59,6 +59,21 @@ export default function PlantProfileForm({ pageType }) {
   const isCreate = pageType === "create";
   const isEdit = pageType === "edit";
 
+  const theme = useTheme();
+  const neutralLight = theme.palette.neutral.light;
+  const dark = theme.palette.neutral.dark;
+  const main = theme.palette.neutral.main;
+  const background = theme.palette.background.default;
+  const primaryDark = theme.palette.primary.dark;
+  const secondaryDark = theme.palette.secondary.dark;
+  const secondaryMain = theme.palette.secondary.main;
+  const waterLight = theme.palette.water.light;
+  const waterDark = theme.palette.water.dark;
+  const sunlightLight = theme.palette.sunlight.light;
+  const sunlightDark = theme.palette.sunlight.dark;
+  const primaryMain = theme.palette.primary.main;
+  const alt = theme.palette.background.alt;
+
   // console.log(pageType, userId, id);
 
   const newPlantProfileForm = async (values, onSubmitProps) => {
@@ -302,17 +317,44 @@ export default function PlantProfileForm({ pageType }) {
                                   "issues issues"
                                   "notes notes"
                                   "buttons buttons"`,
-              gap: "1rem",
-              margin: `${isNonMobileScreens ? "2rem 15rem" : "0"}`,
+              margin: `${isNonMobileScreens ? "2rem 15rem" : "1rem"}`,
             }}
+            gap={isNonMobileScreens ? "2rem" : "0"}
+            p="1rem"
+            border={`4px solid ${dark}`}
+            borderRadius="5px"
           >
-            {isNonMobileScreens && isCreate ? (
-              <Box sx={{ gridArea: "header", m: "1rem", mb: "0" }}>
-                <h2 className="pp-card--title">Create a new Plant Profile</h2>
+            {isNonMobileScreens ? (
+              <Box sx={{ gridArea: "header" }}>
+                <Typography
+                  className="pp-card--title"
+                  fontWeight="bold"
+                  fontSize="3.5rem"
+                  sx={{
+                    color: secondaryMain,
+                    m: "0",
+                  }}
+                >
+                  {isCreate
+                    ? "Create a new Plant Profile"
+                    : "Update your Plant Profile"}
+                </Typography>
               </Box>
             ) : (
               <Box sx={{ gridArea: "header" }} mb="1rem">
-                <h2 className="pp-card--title">Update your Plant Profile</h2>
+                <Typography
+                  className="pp-card--title"
+                  fontWeight="bold"
+                  fontSize="2rem"
+                  sx={{
+                    color: secondaryMain,
+                    m: "0",
+                  }}
+                >
+                  {isCreate
+                    ? "Create a new Plant Profile"
+                    : "Update your Plant Profile"}
+                </Typography>
               </Box>
             )}
 
@@ -324,13 +366,14 @@ export default function PlantProfileForm({ pageType }) {
               alignItems="center"
               // justifyContent="space-around"
               gap="3rem"
-              m="1rem"
+              m="0"
               pt={isNonMobileScreens ? "3.5rem" : "0"}
             >
               <Box
                 border={`1px solid ${palette.neutral.medium}`}
                 borderRadius="5px"
                 p="1rem"
+                mt={isNonMobileScreens ? "0" : "3rem"}
                 sx={{ minWidth: "100%", maxWidth: "500px" }}
               >
                 {isCreate ? (
@@ -530,7 +573,7 @@ export default function PlantProfileForm({ pageType }) {
               display="flex"
               flexDirection="column"
               gap="1rem"
-              m="1rem"
+              m="0"
             >
               <Box className="pp-card--general-info">
                 <h4 className="pp-card--headers">GENERAL INFO</h4>
@@ -678,6 +721,7 @@ export default function PlantProfileForm({ pageType }) {
               sx={{ gridArea: "issues" }}
               display="flex"
               flexDirection="column"
+              m={isNonMobileScreens ? "0" : "2rem 0 1rem 0"}
             >
               <h4 className="pp-card--headers">COMMON ISSUES</h4>
               <Field
@@ -693,6 +737,7 @@ export default function PlantProfileForm({ pageType }) {
               sx={{ gridArea: "notes" }}
               display="flex"
               flexDirection="column"
+              m={isNonMobileScreens ? "0" : "1rem 0"}
             >
               <h4 className="pp-card--headers">NOTES</h4>
               <Field
@@ -704,62 +749,119 @@ export default function PlantProfileForm({ pageType }) {
               />
             </Box>
             {/* BUTTONS */}
-            <Box
-              sx={{ gridArea: "buttons" }}
-              className="pp-form-buttons"
-              display="flex"
-              // flexDirection="column"
-              // alignContent="flex-end"
-              justifyContent="space-between"
-            >
-              <Button
-                type="button"
-                onClick={() => {
-                  isCreate
-                    ? navigate(`/plant-profiles/`)
-                    : navigate(`/plant-profiles/${userId}/${id}`);
-                }}
-                sx={{
-                  m: "1rem",
-                  p: "1rem",
-                  backgroundColor: palette.primary.medium,
-                  color: palette.background.dark,
-                  "&:hover": { color: palette.primary.main },
-                }}
+            {isNonMobileScreens ? (
+              <Box
+                sx={{ gridArea: "buttons" }}
+                className="pp-form-buttons"
+                display="flex"
+                justifyContent="space-between"
               >
-                Cancel
-              </Button>
-              <Button
-                type="reset"
-                onClick={() => {
-                  resetForm();
-                  resetSliders();
-                }}
-                sx={{
-                  m: "1rem",
-                  p: "1rem",
-                  backgroundColor: palette.primary.light,
-                  color: palette.background.dark,
-                  "&:hover": { color: palette.primary.main },
-                }}
+                <Box>
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      isCreate
+                        ? navigate(`/plant-profiles/`)
+                        : navigate(`/plant-profiles/${userId}/${id}`);
+                    }}
+                    sx={{
+                      m: "1rem",
+                      p: "1rem",
+                      backgroundColor: palette.primary.medium,
+                      color: palette.background.dark,
+                      "&:hover": { color: palette.primary.main },
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="reset"
+                    onClick={() => {
+                      resetForm();
+                      resetSliders();
+                    }}
+                    sx={{
+                      m: "1rem",
+                      p: "1rem",
+                      backgroundColor: palette.primary.light,
+                      color: palette.background.dark,
+                      "&:hover": { color: palette.primary.main },
+                    }}
+                  >
+                    {isEdit ? "Reset to original" : "Clear Fields"}
+                  </Button>
+                </Box>
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  sx={{
+                    m: "1rem",
+                    p: "1rem",
+                    width: `${isNonMobileScreens ? "200px" : "auto"}`,
+                    backgroundColor: palette.primary.main,
+                    color: palette.background.alt,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            ) : (
+              <Box
+                className="pp-form-buttons"
+                display="flex"
+                flexDirection="column"
               >
-                {isEdit ? "Reset to original" : "Clear Fields"}
-              </Button>
-              <Button
-                disabled={isSubmitting}
-                type="submit"
-                sx={{
-                  m: "1rem",
-                  p: "1rem",
-                  width: `${isNonMobileScreens ? "200px" : "auto"}`,
-                  backgroundColor: palette.primary.main,
-                  color: palette.background.alt,
-                  "&:hover": { color: palette.primary.main },
-                }}
-              >
-                Submit
-              </Button>
-            </Box>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    isCreate
+                      ? navigate(`/plant-profiles/`)
+                      : navigate(`/plant-profiles/${userId}/${id}`);
+                  }}
+                  sx={{
+                    m: "1rem",
+                    p: "1rem",
+                    backgroundColor: palette.primary.medium,
+                    border: `2px solid ${secondaryMain}`,
+                    color: palette.background.dark,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="reset"
+                  onClick={() => {
+                    resetForm();
+                    resetSliders();
+                  }}
+                  sx={{
+                    m: "1rem",
+                    p: "1rem",
+                    backgroundColor: palette.primary.light,
+                    color: palette.background.dark,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  {isEdit ? "Reset to original" : "Clear Fields"}
+                </Button>
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  sx={{
+                    m: "1rem",
+                    p: "1rem",
+                    width: `${isNonMobileScreens ? "200px" : "auto"}`,
+                    backgroundColor: palette.primary.main,
+                    color: palette.background.alt,
+                    "&:hover": { color: palette.primary.main },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            )}
           </Box>
         </Form>
       )}
