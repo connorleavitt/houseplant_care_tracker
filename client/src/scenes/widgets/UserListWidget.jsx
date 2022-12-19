@@ -54,7 +54,7 @@ const UserListWidget = () => {
                 fontWeight="500"
                 sx={{
                   "&:hover": {
-                    color: palette.primary.dark,
+                    color: palette.secondary.dark,
                     cursor: "pointer",
                   },
                 }}

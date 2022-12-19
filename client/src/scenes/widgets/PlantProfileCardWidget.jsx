@@ -37,9 +37,21 @@ const PlantProfileCardWidget = ({
 
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
 
-  const { palette } = useTheme();
-  const main = palette.neutral.main;
-  // const primary = palette.primary.main;
+  const theme = useTheme();
+  const neutralLight = theme.palette.neutral.light;
+  const dark = theme.palette.neutral.dark;
+  const main = theme.palette.neutral.main;
+  const background = theme.palette.background.default;
+  const primaryDark = theme.palette.primary.dark;
+  const secondaryDark = theme.palette.secondary.dark;
+  const secondaryMain = theme.palette.secondary.main;
+  const waterLight = theme.palette.water.light;
+  const waterDark = theme.palette.water.dark;
+  const sunlightLight = theme.palette.sunlight.light;
+  const sunlightDark = theme.palette.sunlight.dark;
+  const primaryMain = theme.palette.primary.main;
+  const alt = theme.palette.background.alt;
+
   return (
     <Box
     // display="flex" justifyContent="center"
@@ -55,18 +67,37 @@ const PlantProfileCardWidget = ({
                                   "notes notes"
                                   "buttons buttons"`,
           gap: "1rem",
+          backgroundColor: alt,
+          border: `4px solid ${secondaryDark}`,
         }}
       >
         {isNonMobileScreens ? (
-          <Box sx={{ gridArea: "header" }}>
-            <h2 className="pp-card--title">Plant Profile</h2>
+          <Box sx={{ gridArea: "header" }} ml="3rem">
+            <Typography
+              className="pp-card--title"
+              fontWeight="bold"
+              fontSize="3.5rem"
+              sx={{
+                color: secondaryMain,
+              }}
+            >
+              Plant Profile
+            </Typography>
           </Box>
         ) : (
-          <Box sx={{ gridArea: "header" }} mb="1rem">
-            <h2 className="pp-card--title">Plant Profile</h2>
+          <Box sx={{ gridArea: "header" }}>
+            <Typography
+              className="pp-card--title"
+              fontWeight="bold"
+              fontSize="2.5rem"
+              sx={{
+                color: secondaryMain,
+              }}
+            >
+              Plant Profile
+            </Typography>
           </Box>
         )}
-
         <Box className="pp-card--left-side" sx={{ gridArea: "left" }}>
           <Box className="pp-card--img" borderRadius="5px" p="1rem">
             <img
@@ -162,8 +193,10 @@ const PlantProfileCardWidget = ({
           </Box>
           <Box
             className="pp-card--water"
-            border="2px solid darkblue"
-            backgroundColor="lightblue"
+            sx={{
+              backgroundColor: waterLight,
+              border: `2px solid ${waterDark}`,
+            }}
             borderRadius="10px"
             m="1rem 0"
           >
@@ -236,8 +269,10 @@ const PlantProfileCardWidget = ({
           </Box>
           <Box
             className="pp-card--sunlight"
-            border="2px solid darkred"
-            backgroundColor="lightyellow"
+            sx={{
+              backgroundColor: sunlightLight,
+              border: `2px solid ${sunlightDark}`,
+            }}
             borderRadius="10px"
             m="1rem 0"
           >
@@ -410,8 +445,25 @@ const PlantProfileCardWidget = ({
               </div>
             </Box>
           </Box>
-          <Box className="pp-card--common-issues" m="1rem 0">
-            <h4 className="pp-card--headers">COMMON ISSUES</h4>
+          <Box
+            className="pp-card--common-issues"
+            m="1rem 0"
+            sx={{
+              backgroundColor: alt,
+              border: `2px solid ${dark}`,
+            }}
+          >
+            <Typography
+              className="pp-card--headers"
+              fontWeight="bold"
+              fontSize="1rem"
+              sx={{
+                color: alt,
+                backgroundColor: dark,
+              }}
+            >
+              COMMON ISSUES
+            </Typography>
             <Box className="pp-common-issues--textarea" fontSize="1.1rem">
               {commonIssues}
             </Box>
@@ -419,12 +471,30 @@ const PlantProfileCardWidget = ({
         </Box>
         <Box
           className="pp-card--notes"
-          sx={{ gridArea: "notes" }}
+          sx={{
+            gridArea: "notes",
+            backgroundColor: dark,
+          }}
           display="flex"
           flexDirection="column"
         >
-          <h4 className="pp-card--headers">NOTES</h4>
-          <Box className="pp-notes--textarea" fontSize="1.1rem">
+          <Typography
+            className="pp-card--headers"
+            fontWeight="bold"
+            fontSize="1.35rem"
+            sx={{
+              color: alt,
+            }}
+          >
+            NOTES
+          </Typography>
+          <Box
+            className="pp-notes--textarea"
+            fontSize="1.1rem"
+            sx={{
+              color: alt,
+            }}
+          >
             {notes}
           </Box>
         </Box>

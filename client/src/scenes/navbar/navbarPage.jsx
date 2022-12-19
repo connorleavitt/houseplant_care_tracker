@@ -42,11 +42,11 @@ export default function NavbarPage({ userId, picturePath }) {
           <Typography
             fontWeight="bold"
             fontSize="clamp(1rem, 1.5rem, 2rem)"
-            color={primaryMain}
+            color={primaryDark}
             onClick={() => navigate("/home")}
             sx={{
               "&:hover": {
-                color: primaryDark,
+                color: primaryMain,
                 cursor: "pointer",
               },
             }}
@@ -81,9 +81,9 @@ export default function NavbarPage({ userId, picturePath }) {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
             {theme.palette.mode === "dark" ? (
-              <p className="text-underneath-icon-on-hover">LIGHT MODE</p>
+              <p className="text-underneath-icon-on-hover">THEME</p>
             ) : (
-              <p className="text-underneath-icon-on-hover dark">DARK MODE</p>
+              <p className="text-underneath-icon-on-hover dark">THEME</p>
             )}
           </IconButton>
           <IconButton

@@ -9,10 +9,21 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useTheme } from "@emotion/react";
 
 const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const neutralLight = theme.palette.neutral.light;
+  const dark = theme.palette.neutral.dark;
+  const background = theme.palette.background.default;
+  const primaryDark = theme.palette.primary.dark;
+  const secondaryDark = theme.palette.secondary.dark;
+  const secondaryMain = theme.palette.secondary.main;
+  const secondaryLight = theme.palette.secondary.light;
+  const primaryMain = theme.palette.primary.main;
+  const alt = theme.palette.background.alt;
 
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const allPlantProfiles = useSelector((state) => state.allPlantProfiles);
@@ -154,7 +165,13 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               >
                 <Button
                   className="spp--change-btns"
-                  sx={{ fontSize: "1.25rem" }}
+                  sx={{
+                    fontSize: "1.25rem",
+                    "&:hover": {
+                      color: primaryDark,
+                      cursor: "pointer",
+                    },
+                  }}
                   onClick={returnPreviousPlantProfile}
                 >
                   <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
@@ -162,7 +179,13 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 </Button>
                 <Button
                   className="spp--change-btns"
-                  sx={{ fontSize: "1.25rem" }}
+                  sx={{
+                    fontSize: "1.25rem",
+                    "&:hover": {
+                      color: primaryDark,
+                      cursor: "pointer",
+                    },
+                  }}
                   onClick={returnNextPlantProfile}
                 >
                   Next
@@ -170,7 +193,15 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 </Button>
                 <Button
                   className="spp--update-btn"
-                  sx={{ fontSize: "1.25rem" }}
+                  sx={{
+                    fontSize: "1.25rem",
+                    color: alt,
+                    backgroundColor: primaryMain,
+                    "&:hover": {
+                      color: primaryDark,
+                      cursor: "pointer",
+                    },
+                  }}
                   onClick={() => navigate(`edit`)}
                 >
                   Update
@@ -178,7 +209,16 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
                 </Button>
                 <Button
                   className="spp--delete-btn"
-                  sx={{ fontSize: "1.25rem" }}
+                  sx={{
+                    fontSize: "1.25rem",
+                    color: dark,
+                    backgroundColor: background,
+                    border: `2px solid ${dark}`,
+                    "&:hover": {
+                      backgroundColor: secondaryLight,
+                      cursor: "pointer",
+                    },
+                  }}
                   onClick={() => setDeletionConfirmation(true)}
                 >
                   Delete
@@ -275,7 +315,16 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               </Button>
               <Button
                 className="spp--delete-btn"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  color: dark,
+                  backgroundColor: background,
+                  border: `2px solid ${dark}`,
+                  "&:hover": {
+                    backgroundColor: secondaryLight,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={handleDelete}
               >
                 DELETE
@@ -297,7 +346,13 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
             >
               <Button
                 className="spp--change-btns"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  "&:hover": {
+                    color: primaryDark,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={returnPreviousPlantProfile}
               >
                 <ArrowBackIcon sx={{ fontSize: "1.5rem" }} />
@@ -305,7 +360,13 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               </Button>
               <Button
                 className="spp--change-btns"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  "&:hover": {
+                    color: primaryDark,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={returnNextPlantProfile}
               >
                 Next
@@ -375,7 +436,15 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
             >
               <Button
                 className="spp--update-btn"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  color: alt,
+                  backgroundColor: primaryMain,
+                  "&:hover": {
+                    color: primaryDark,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={() => navigate(`edit`)}
               >
                 Update
@@ -383,7 +452,16 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               </Button>
               <Button
                 className="spp--delete-btn"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  color: dark,
+                  backgroundColor: background,
+                  border: `2px solid ${dark}`,
+                  "&:hover": {
+                    backgroundColor: secondaryLight,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={() => setDeletionConfirmation(true)}
               >
                 Delete
@@ -423,7 +501,16 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               </Button>
               <Button
                 className="spp--delete-btn"
-                sx={{ fontSize: "1.25rem" }}
+                sx={{
+                  fontSize: "1.25rem",
+                  color: dark,
+                  backgroundColor: background,
+                  border: `2px solid ${dark}`,
+                  "&:hover": {
+                    backgroundColor: secondaryLight,
+                    cursor: "pointer",
+                  },
+                }}
                 onClick={handleDelete}
               >
                 DELETE

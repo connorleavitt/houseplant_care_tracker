@@ -40,10 +40,10 @@ const PlantProfileListWidget = ({
         }
         sx={{
           cursor: "pointer",
-          backgroundColor: "#f9f9f9",
+          backgroundColor: `${palette.background.default}`,
           borderRadius: "10px",
           "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-            backgroundColor: `${palette.primary.light}`,
+            backgroundColor: `${palette.secondary.light}`,
           },
         }}
       >
