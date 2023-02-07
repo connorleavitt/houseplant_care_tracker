@@ -1,4 +1,5 @@
-import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
+// import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useSelector } from "react-redux";
@@ -10,16 +11,16 @@ const PreviousPlantProfileWidget = ({ plantProfileId, plantProfileUserId }) => {
 
   const plantProfiles = useSelector((state) => state.plantProfiles);
   const allPlantProfiles = useSelector((state) => state.allPlantProfiles);
-  const token = useSelector((state) => state.token);
+  // const token = useSelector((state) => state.token);
 
-  const isNonMobileScreens = useMediaQuery("(min-width: 800px");
+  // const isNonMobileScreens = useMediaQuery("(min-width: 800px");
 
-  const { palette } = useTheme();
-  const main = palette.neutral.main;
+  // const { palette } = useTheme();
+  // const main = palette.neutral.main;
   // const primary = palette.primary.main;
 
   const { userId, id } = useParams();
-  const { _id } = useSelector((state) => state.user);
+  // const { _id } = useSelector((state) => state.user);
 
   let newPlantProfileId;
 

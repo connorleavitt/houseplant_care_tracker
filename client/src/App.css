@@ -332,11 +332,11 @@ h4 {
   flex-direction: column;
 }
 
-.pp-card--title {
-  /* grid-area: header; */
-  /* color: var(--clr-main); */
-  /* margin-bottom: 1rem; */
-}
+/* .pp-card--title { */
+/* grid-area: header; */
+/* color: var(--clr-main); */
+/* margin-bottom: 1rem; */
+/* } */
 
 .pp-card--headers {
   text-align: center;

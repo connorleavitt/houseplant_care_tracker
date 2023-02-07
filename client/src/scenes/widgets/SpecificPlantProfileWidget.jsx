@@ -15,12 +15,12 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
-  const neutralLight = theme.palette.neutral.light;
+  // const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
   const primaryDark = theme.palette.primary.dark;
-  const secondaryDark = theme.palette.secondary.dark;
-  const secondaryMain = theme.palette.secondary.main;
+  // const secondaryDark = theme.palette.secondary.dark;
+  // const secondaryMain = theme.palette.secondary.main;
   const secondaryLight = theme.palette.secondary.light;
   const primaryMain = theme.palette.primary.main;
   const alt = theme.palette.background.alt;
@@ -431,7 +431,7 @@ const SpecificPlantProfileWidget = ({ isProfile = false }) => {
               display="flex"
               justifyContent="center"
               width="100%"
-              m="2rem 0"
+              m="3rem 0"
               gap="2rem"
             >
               <Button

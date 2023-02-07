@@ -38,18 +38,18 @@ const PlantProfileCardWidget = ({
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
 
   const theme = useTheme();
-  const neutralLight = theme.palette.neutral.light;
+  // const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const main = theme.palette.neutral.main;
-  const background = theme.palette.background.default;
-  const primaryDark = theme.palette.primary.dark;
+  // const background = theme.palette.background.default;
+  // const primaryDark = theme.palette.primary.dark;
   const secondaryDark = theme.palette.secondary.dark;
   const secondaryMain = theme.palette.secondary.main;
   const waterLight = theme.palette.water.light;
   const waterDark = theme.palette.water.dark;
   const sunlightLight = theme.palette.sunlight.light;
   const sunlightDark = theme.palette.sunlight.dark;
-  const primaryMain = theme.palette.primary.main;
+  // const primaryMain = theme.palette.primary.main;
   const alt = theme.palette.background.alt;
 
   return (
@@ -70,7 +70,7 @@ const PlantProfileCardWidget = ({
         }}
         gap={isNonMobileScreens ? "2rem" : "0"}
         p="1rem"
-        m="2rem 0"
+        m={isNonMobileScreens ? "2rem 0" : "1rem 0"}
         borderRadius="5px"
         border={isNonMobileScreens ? `4px solid ${secondaryDark}` : `0`}
       >
@@ -88,7 +88,7 @@ const PlantProfileCardWidget = ({
             </Typography>
           </Box>
         ) : (
-          <Box sx={{ gridArea: "header" }}>
+          <Box sx={{ gridArea: "header", textAlign: "center" }} mb="1rem">
             <Typography
               className="pp-card--title"
               fontWeight="bold"
