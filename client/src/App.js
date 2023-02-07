@@ -11,20 +11,21 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
+//SCENES
 import HomePage from "scenes/homePage/homePage";
 import LoginPage from "scenes/loginPage/loginPage";
 import UserProfilePage from "scenes/userProfilePage/userProfilePage";
+import UpdateUserProfilePage from "scenes/userProfilePage/updateUserProfilePage";
 import PlantProfilesPage from "scenes/plantProfilesPage/plantProfilesPage";
+import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfilePage";
+import SpecificPlantProfilePage from "scenes/plantProfilesPage/specificPlantProfilePage";
+import UpdatePlantProfilePage from "scenes/plantProfilesPage/updatePlantProfilePage";
+import WateringPage from "scenes/wateringPage/wateringPage";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import CreatePlantProfilePage from "scenes/plantProfilesPage/createPlantProfilePage";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import SpecificPlantProfilePage from "scenes/plantProfilesPage/specificPlantProfilePage";
-import UpdatePlantProfilePage from "scenes/plantProfilesPage/updatePlantProfilePage";
-import UpdateUserProfilePage from "scenes/userProfilePage/updateUserProfilePage";
-
 library.add(fas);
 
 function App() {
@@ -76,6 +77,10 @@ function App() {
                   isAuth ? <UpdatePlantProfilePage /> : <Navigate to="/" />
                 }
               ></Route>
+              <Route
+                path="/watering"
+                element={isAuth ? <WateringPage /> : <Navigate to="/" />}
+              />
             </Routes>
           </LocalizationProvider>
         </ThemeProvider>
