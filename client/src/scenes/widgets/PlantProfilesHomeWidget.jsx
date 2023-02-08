@@ -20,6 +20,7 @@ const PlantProfilesHomeWidget = ({ userId, isProfile = false }) => {
 
   useEffect(() => {
     getPlantProfiles();
+    // console.log(plantProfiles);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
