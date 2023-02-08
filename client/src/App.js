@@ -77,10 +77,10 @@ function App() {
                   isAuth ? <UpdatePlantProfilePage /> : <Navigate to="/" />
                 }
               ></Route>
-              <Route
+              {/* <Route
                 path="/watering"
                 element={isAuth ? <WateringPage /> : <Navigate to="/" />}
-              />
+              /> */}
             </Routes>
           </LocalizationProvider>
         </ThemeProvider>
