@@ -5,7 +5,7 @@ import NavbarPage from "scenes/navbar/navbarPage";
 import PlantProfilesHomeWidget from "scenes/widgets/PlantProfilesHomeWidget";
 import UserListWidget from "scenes/widgets/UserListWidget";
 import UserWidget from "scenes/widgets/UserWidget";
-// import Searchbar from "../../components/Searchbar";
+import RandomPlantFactWidget from "scenes/widgets/RandomPlantFactWidget";
 
 export default function HomePage() {
   const isNonMobileScreens = useMediaQuery("(min-width: 800px");
@@ -24,6 +24,7 @@ export default function HomePage() {
         <Box flexBasis={isNonMobileScreens ? "25%" : undefined}>
           <UserWidget userId={_id} picturePath={picturePath} />
           <UserListWidget />
+          <RandomPlantFactWidget />
         </Box>
 
         <Box
