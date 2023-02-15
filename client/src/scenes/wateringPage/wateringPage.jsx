@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import NavbarPage from "scenes/navbar/navbarPage";
 import UserWidget from "scenes/widgets/UserWidget";
+import WateringPlantInfoWidget from "scenes/widgets/WateringPlantInfoWidget";
 import WateringWidget from "scenes/widgets/WateringWidget";
 
 export default function WateringPage() {
@@ -51,7 +52,9 @@ export default function WateringPage() {
       </Box>
       <Box m="5rem" border="5px solid red">
         <Box p="2rem" backgroundColor="gray" display="flex">
-          <Box display="flex">hfhf</Box>
+          <Box display="flex">
+            <WateringWidget userId={_id} />
+          </Box>
           <Box mt={isNonMobileScreens ? undefined : "2rem"} display="flex">
             <WateringDayButton day={1} />
             <WateringDayButton day={2} />
