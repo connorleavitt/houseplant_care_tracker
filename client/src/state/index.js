@@ -44,6 +44,9 @@ export const authSlice = createSlice({
       });
       state.plantProfiles = updatedPlantProfiles;
     },
+    setRandomPlantFact: (state, action) => {
+      state.randomPlantFact = action.payload.randomPlantFact;
+    },
   },
 });
 
@@ -56,6 +59,7 @@ export const {
   setPlantProfiles,
   setAllPlantProfiles,
   setPlantProfile,
+  setRandomPlantFact,
 } = authSlice.actions;
 
 export default authSlice.reducer;
