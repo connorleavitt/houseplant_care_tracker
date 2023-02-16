@@ -26,7 +26,7 @@ const WateringPlantInfoWidget = ({
     <WidgetWrapper m="1rem 0" height="400px" display="flex">
       <Box
         display={isNonMobileScreens ? "grid" : "flex"}
-        flexBasis="25%"
+        flexBasis="60%"
         gridTemplateColumns="1fr 3fr"
         // className="home-pp-list--contianer"
         onClick={() =>
@@ -50,46 +50,64 @@ const WateringPlantInfoWidget = ({
             style={{ borderRadius: "0.5rem" }}
             src={`http://localhost:3001/assets/${picturePath}`}
           />
+          <Typography>{plantName}</Typography>
         </Box>
       </Box>
       <Box
         mt={isNonMobileScreens ? undefined : "2rem"}
-        display="flex"
-        flexBasis="60%"
+        // display="flex"
+        flexBasis="40%"
         flexWrap="wrap"
-        flex="0 1 100%"
+        // flex="0 1 100%"
+        m="1rem"
       >
-        <WateringDayButton day={1} />
-        <WateringDayButton day={2} />
-        <WateringDayButton day={3} />
-        <WateringDayButton day={4} />
-        <WateringDayButton day={5} />
-        <WateringDayButton day={6} />
-        <WateringDayButton day={7} />
-        <WateringDayButton day={8} />
-        <WateringDayButton day={9} />
-        <WateringDayButton day={10} />
-        <WateringDayButton day={11} />
-        <WateringDayButton day={12} />
-        <WateringDayButton day={13} />
-        <WateringDayButton day={14} />
-        <WateringDayButton day={15} />
-        <WateringDayButton day={16} />
-        <WateringDayButton day={17} />
-        <WateringDayButton day={18} />
-        <WateringDayButton day={19} />
-        <WateringDayButton day={20} />
-        <WateringDayButton day={21} />
-        <WateringDayButton day={22} />
-        <WateringDayButton day={23} />
-        <WateringDayButton day={24} />
-        <WateringDayButton day={25} />
-        <WateringDayButton day={26} />
-        <WateringDayButton day={27} />
-        <WateringDayButton day={28} />
-        <WateringDayButton day={29} />
-        <WateringDayButton day={30} />
-        <WateringDayButton day={31} />
+        <Typography
+          p="1rem"
+          pt="0"
+          sx={{
+            color: { main },
+            fontSize: "1.4rem",
+          }}
+        >
+          Days I've watered this plant:
+        </Typography>
+        <Box
+          mt={isNonMobileScreens ? undefined : "2rem"}
+          display="flex"
+          flexWrap="wrap"
+        >
+          <WateringDayButton day={1} />
+          <WateringDayButton day={2} />
+          <WateringDayButton day={3} />
+          <WateringDayButton day={4} />
+          <WateringDayButton day={5} />
+          <WateringDayButton day={6} />
+          <WateringDayButton day={7} />
+          <WateringDayButton day={8} />
+          <WateringDayButton day={9} />
+          <WateringDayButton day={10} />
+          <WateringDayButton day={11} />
+          <WateringDayButton day={12} />
+          <WateringDayButton day={13} />
+          <WateringDayButton day={14} />
+          <WateringDayButton day={15} />
+          <WateringDayButton day={16} />
+          <WateringDayButton day={17} />
+          <WateringDayButton day={18} />
+          <WateringDayButton day={19} />
+          <WateringDayButton day={20} />
+          <WateringDayButton day={21} />
+          <WateringDayButton day={22} />
+          <WateringDayButton day={23} />
+          <WateringDayButton day={24} />
+          <WateringDayButton day={25} />
+          <WateringDayButton day={26} />
+          <WateringDayButton day={27} />
+          <WateringDayButton day={28} />
+          <WateringDayButton day={29} />
+          <WateringDayButton day={30} />
+          <WateringDayButton day={31} />
+        </Box>
       </Box>
     </WidgetWrapper>
   );

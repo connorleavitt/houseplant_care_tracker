@@ -21,12 +21,12 @@ const WateringDayButton = ({ day }) => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <Box m="1rem 0" display="flex">
+    <Box m=".06rem">
       <Button
         sx={{
           p: "1rem",
           backgroundColor: `${toggle ? waterDark : waterLight}`,
-          border: `2px solid ${secondaryMain}`,
+          border: `1px solid ${alt}`,
           color: `${toggle ? waterLight : waterDark}`,
           "&:hover": { color: waterLight, backgroundColor: waterDark },
         }}
