@@ -1,5 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button } from "@mui/material";
+import { useState } from "react";
 
 const WateringDayButton = ({ day }) => {
   const theme = useTheme();
@@ -16,16 +17,20 @@ const WateringDayButton = ({ day }) => {
   const sunlightDark = theme.palette.sunlight.dark;
   const primaryMain = theme.palette.primary.main;
   const alt = theme.palette.background.alt;
+
+  const [isClicked, setIsClicked] = useState(false);
+
   return (
-    <Box m="1rem 0">
+    <Box m="1rem 0" display="flex">
       <Button
         sx={{
           p: "1rem",
-          backgroundColor: waterLight,
+          backgroundColor: `${isClicked ? waterDark : waterLight}`,
           border: `2px solid ${secondaryMain}`,
-          color: waterDark,
+          color: `${isClicked ? waterLight : waterDark}`,
           "&:hover": { color: waterLight, backgroundColor: waterDark },
         }}
+        onClick={() => setIsClicked(true)}
       >
         {day}
       </Button>
