@@ -18,19 +18,19 @@ const WateringDayButton = ({ day }) => {
   const primaryMain = theme.palette.primary.main;
   const alt = theme.palette.background.alt;
 
-  const [isClicked, setIsClicked] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   return (
     <Box m="1rem 0" display="flex">
       <Button
         sx={{
           p: "1rem",
-          backgroundColor: `${isClicked ? waterDark : waterLight}`,
+          backgroundColor: `${toggle ? waterDark : waterLight}`,
           border: `2px solid ${secondaryMain}`,
-          color: `${isClicked ? waterLight : waterDark}`,
+          color: `${toggle ? waterLight : waterDark}`,
           "&:hover": { color: waterLight, backgroundColor: waterDark },
         }}
-        onClick={() => setIsClicked(true)}
+        onClick={() => setToggle((prev) => !prev)}
       >
         {day}
       </Button>
