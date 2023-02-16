@@ -1,4 +1,5 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import FlexBetween from "components/FlexBetween";
 import WateringDayButton from "components/WateringDayButton";
 
 import WidgetWrapper from "components/WidgetWrapper";
@@ -41,16 +42,73 @@ const WateringPlantInfoWidget = ({
           },
         }}
       >
-        <Box>
+        <Box p="1rem">
           <img
-            className="home-pp-list--img"
+            className="watering--img-contain"
             width="100%"
-            height="300px"
+            // height="100%"
             alt="plant-profile"
             style={{ borderRadius: "0.5rem" }}
             src={`http://localhost:3001/assets/${picturePath}`}
           />
-          <Typography>{plantName}</Typography>
+        </Box>
+        <Box p="1rem" position="relative">
+          <Typography
+            className="watering--plant-info-text"
+            sx={{
+              fontSize: "2rem",
+            }}
+          >
+            <strong>{plantName}</strong>
+          </Typography>
+
+          <Box mt="1rem">
+            <Typography
+              className="watering--plant-info-text"
+              sx={{
+                fontSize: "1.3rem",
+                color: "gray",
+                p: "0 0 0.25rem 0.75rem",
+                borderBottom: "2px solid gray",
+              }}
+            >
+              Watering Information
+            </Typography>
+            <Typography
+              mt="1rem"
+              className="watering--plant-info-text"
+              sx={{
+                fontSize: "1.5rem",
+              }}
+            >
+              <strong>{water}</strong>
+            </Typography>
+          </Box>
+          <Box
+            mt="1rem"
+            className="watering--water-level"
+            display="flex"
+            alignItems="center"
+            gap="1rem"
+          >
+            <Typography
+              className="watering--plant-info-text"
+              sx={{
+                fontSize: "1.3rem",
+                color: "gray",
+              }}
+            >
+              Water Level (1 to 5):
+            </Typography>
+            <Typography
+              className="watering--plant-info-text"
+              sx={{
+                fontSize: "2rem",
+              }}
+            >
+              <strong>{waterLevel}</strong>
+            </Typography>
+          </Box>
         </Box>
       </Box>
       <Box

@@ -522,3 +522,15 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+
+/* WATERING */
+
+.watering--img-contain {
+  object-fit: contain;
+}
+
+.watering--water-level {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+}

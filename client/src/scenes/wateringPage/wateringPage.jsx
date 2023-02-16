@@ -22,14 +22,11 @@ export default function WateringPage() {
       <NavbarPage userId={_id} />
       <Box
         width="100%"
-        padding="2rem 6%"
+        padding="2rem 10% 0 10%"
         display={isNonMobileScreens ? "flex" : "block"}
         gap="0.5rem"
         justifyContent="space-between"
       >
-        <Box flexBasis={isNonMobileScreens ? "25%" : undefined}>
-          <UserWidget userId={_id} picturePath={picturePath} />
-        </Box>
         <Box
           flexBasis={isNonMobileScreens ? "70%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
@@ -49,11 +46,14 @@ export default function WateringPage() {
             Watering Schedule
           </Typography>
         </Box>
+        <Box flexBasis={isNonMobileScreens ? "25%" : undefined}>
+          <UserWidget userId={_id} picturePath={picturePath} />
+        </Box>
       </Box>
-      <Box m="5rem" border="5px solid red">
+      <Box m="0 5rem">
         <Box
           p="2rem"
-          backgroundColor="gray"
+          //   backgroundColor="gray"
           display="flex"
           flexDirection="column"
         >
