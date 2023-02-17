@@ -120,14 +120,14 @@ const WateringPlantInfoWidget = ({
         m="1rem"
       >
         <Typography
-          p="1rem"
-          pt="0"
+          p="0 1rem 1rem 1rem"
+          textAlign="center"
           sx={{
             color: { main },
             fontSize: "1.4rem",
           }}
         >
-          Days I've watered this plant:
+          DAYS WATERED
         </Typography>
         <Box
           mt={isNonMobileScreens ? undefined : "2rem"}
